@@ -1,0 +1,583 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<title>Skills Aren’t Magic. They’re Scoped Context. 🧭🗂️</title>
+<link rel="canonical" href="https://dev.to/anchildress1/skills-arent-magic-theyre-scoped-context-d07">
+<meta name="description" content="Why GitHub Copilot skills sometimes help—and sometimes hurt. Learn how scoped context and SKILL.md actually change agent behavior.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dev.to/anchildress1/skills-arent-magic-theyre-scoped-context-d07">
+<meta property="og:title" content="Skills Aren’t Magic. They’re Scoped Context. 🧭🗂️">
+<meta property="og:description" content="Why GitHub Copilot skills sometimes help—and sometimes hurt. Learn how scoped context and SKILL.md actually change agent behavior.">
+<meta property="og:image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fujisg0b1zv79ohxzkjwd.png%3Fv%3D2026">
+<meta property="og:site_name" content="anchildress1—Dev.to Mirror">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://dev.to/anchildress1/skills-arent-magic-theyre-scoped-context-d07">
+<meta name="twitter:title" content="Skills Aren’t Magic. They’re Scoped Context. 🧭🗂️">
+<meta name="twitter:description" content="Why GitHub Copilot skills sometimes help—and sometimes hurt. Learn how scoped context and SKILL.md actually change agent behavior.">
+<meta name="twitter:image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fujisg0b1zv79ohxzkjwd.png%3Fv%3D2026">
+
+<!-- LinkedIn -->
+<meta property="linkedin:title" content="Skills Aren’t Magic. They’re Scoped Context. 🧭🗂️">
+<meta property="linkedin:description" content="Why GitHub Copilot skills sometimes help—and sometimes hurt. Learn how scoped context and SKILL.md actually change agent behavior.">
+<meta property="linkedin:image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fujisg0b1zv79ohxzkjwd.png%3Fv%3D2026">
+
+<!-- Additional Social Meta -->
+<meta name="image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fujisg0b1zv79ohxzkjwd.png%3Fv%3D2026">
+<meta name="author" content="Ashley Childress">
+<meta name="keywords" content="githubcopilot, ai, tutorial, programming">
+
+<!-- AI-Specific Enhanced Metadata -->
+
+
+<meta name="article:author" content="Ashley Childress">
+
+<meta name="article:published_time" content="2026-02-18T13:44:00Z">
+
+<meta name="article:modified_time" content="2026-02-18T02:40:15Z">
+
+<meta name="content-type" content="tutorial">
+
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+<meta name="content-language" content="en">
+
+<meta name="generator" content="anchildress1—Dev.to Mirror AI-Optimized Mirror">
+
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<meta name="theme-color" content="#000000">
+
+<meta name="canonical" content="https://dev.to/anchildress1/skills-arent-magic-theyre-scoped-context-d07">
+
+<meta name="source-platform" content="dev.to">
+
+<meta name="source-url" content="https://dev.to/anchildress1/skills-arent-magic-theyre-scoped-context-d07">
+
+<meta name="source-author-profile" content="https://dev.to/anchildress1">
+
+<meta name="source-post-id" content="3258417">
+
+<meta name="original-published-date" content="2026-02-18T13:44:00Z">
+
+<meta name="reading-time" content="5 minutes">
+
+<meta name="devto:reactions" content="0">
+
+<meta name="devto:comments" content="0">
+
+<meta name="devto:engagement_score" content="0">
+
+<meta name="content-fingerprint" content="420b3ae30f452df9">
+
+
+
+<!-- Cross-Reference Attribution Meta Tags -->
+
+
+<meta name="article:author" content="Ashley Childress">
+
+<meta name="article:publisher" content="Dev.to">
+
+<meta name="article:source" content="Dev.to">
+
+<meta name="content:source" content="https://dev.to/anchildress1/skills-arent-magic-theyre-scoped-context-d07">
+
+<meta name="content:original_publisher" content="Dev.to">
+
+<meta name="article:published_time" content="2026-02-18T13:44:00Z">
+
+
+
+<!-- JSON-LD Structured Data -->
+
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "Ashley Childress", "url": "https://dev.to/anchildress1"}, "dateModified": "2026-02-18T02:40:15Z", "datePublished": "2026-02-18T13:44:00Z", "description": "Why GitHub Copilot skills sometimes help\u2014and sometimes hurt. Learn how scoped context and SKILL.md actually change agent behavior.", "headline": "Skills Aren\u2019t Magic. They\u2019re Scoped Context. \ud83e\udded\ud83d\uddc2\ufe0f", "image": {"@type": "ImageObject", "height": 500, "url": "https://media2.dev.to/dynamic/image/width=1000,height=500,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fujisg0b1zv79ohxzkjwd.png%3Fv%3D2026", "width": 1000}, "inLanguage": "en", "interactionStatistic": [{"@type": "InteractionCounter", "interactionType": "https://schema.org/CommentAction", "userInteractionCount": 0}, {"@type": "InteractionCounter", "interactionType": "https://schema.org/LikeAction", "userInteractionCount": 0}], "keywords": ["githubcopilot", "ai", "tutorial", "programming"], "mainEntityOfPage": {"@id": "https://dev.to/anchildress1/skills-arent-magic-theyre-scoped-context-d07", "@type": "WebPage"}, "publisher": {"@type": "Organization", "name": "anchildress1\u2014Dev.to Mirror", "url": "https://crawly.checkmarkdevtools.dev"}, "timeRequired": "PT5M", "url": "https://dev.to/anchildress1/skills-arent-magic-theyre-scoped-context-d07", "wordCount": 1052}
+</script>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "item": "https://crawly.checkmarkdevtools.dev", "name": "Home", "position": 1}, {"@type": "ListItem", "item": "https://crawly.checkmarkdevtools.dev/posts", "name": "Posts", "position": 2}, {"@type": "ListItem", "item": "https://crawly.checkmarkdevtools.dev/posts/skills-arent-magic-theyre-scoped-context-d07.html", "name": "Skills Aren\u2019t Magic. They\u2019re Scoped Context. \ud83e\udded\ud83d\uddc2\ufe0f", "position": 3}]}
+</script>
+
+
+</head><body>
+<main>
+  <h1><a href="https://dev.to/anchildress1/skills-arent-magic-theyre-scoped-context-d07">Skills Aren’t Magic. They’re Scoped Context. 🧭🗂️</a></h1>
+  
+  <img src="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fujisg0b1zv79ohxzkjwd.png%3Fv%3D2026?v=2"
+      width="1000" height="420"
+      alt="Banner image for Skills Aren’t Magic. They’re Scoped Context. 🧭🗂️"
+      loading="lazy"
+      style="width:100%;max-width:1000px;height:auto;margin:1em 0;aspect-ratio:1000/420;">
+  
+  <p><em>Published: 2026-02-18T13:44:00Z</em></p>
+    
+    <p><strong>Tags:</strong>
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #githubcopilot
+            </span> 
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #ai
+            </span> 
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #tutorial
+            </span> 
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #programming
+            </span>
+        
+    </p>
+    
+  <p><em>Why GitHub Copilot skills sometimes help—and sometimes hurt. Learn how scoped context and SKILL.md actually change agent behavior.</em></p>
+
+  <!-- Enhanced Dev.to Attribution -->
+  
+  <div style="border: 1px solid #e0e0e0; padding: 15px; margin: 20px 0;
+                    background-color: #f9f9f9; border-radius: 5px;">
+            <p style="margin: 0; font-style: italic; color: #666;">
+                <strong>📝 Originally published on Dev.to</strong><br>
+                by Ashley Childress on 2026-02-18T13:44:00Z
+            </p>
+            <p style="margin: 10px 0 0 0;">
+                <a href="https://dev.to/anchildress1/skills-arent-magic-theyre-scoped-context-d07"
+                   style="color: #3b49df; text-decoration: none; font-weight: bold;"
+                   target="_blank" rel="noopener">
+                    → Read the original article on Dev.to
+                </a>
+            </p>
+        </div>
+  
+
+  <article><blockquote>
+<p>🦄 Skills don’t magically make your agent smarter. They change when context is loaded.</p>
+
+<p>I intended to add Copilot skills to the list of topics I’ve written about, but it quickly turned into a behavior discussion instead of a how-to. Honestly, the same patterns behind <a href="https://dev.to/anchildress1/series/33920">custom agents</a>, <a href="https://dev.to/anchildress1/series/32574">reusable prompts</a>, and <a href="https://dev.to/anchildress1/series/32973">repo instructions</a> all apply here. If you really want to understand a skill, then the mechanism matters more than writing the file.</p>
+
+<p>Most frustration I see comes from expecting improved agent intelligence instead of selectivity. The truly interesting part is knowing when they help… and when they quietly make things worse. 🚦💎</p>
+</blockquote>
+
+<p><a href="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Ftq6ihv3t2b6ddljpdia3.png%3Fv%3D2026" class="article-body-image-wrapper"><img src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Ftq6ihv3t2b6ddljpdia3.png%3Fv%3D2026" alt="Human-crafted, AI-edited badge" loading="lazy" width="200" height="200"></a></p>
+
+
+<hr>
+
+<h2>
+  <a href="#what-skills-actually-change">
+  </a>
+  What Skills Actually Change 💳
+</h2>
+
+<p>I’ve been rotating between Claude, GPT-5.2, and Gemini long enough to notice a pattern: most friction isn’t about model capability. It’s about context.</p>
+
+<p>Once you regularly switch agents, you start seeing how much behavior differences come down to what each system loads, when it loads it, and how aggressively it summarizes what you gave it.</p>
+
+<p>That’s where skills start to matter.</p>
+
+<p>Skills reduce context overload by deferring detailed instructions until the moment they’re relevant. When written well, they feel like relief. When written poorly, they introduce overhead: lookup cost, planning cost, and extra reasoning steps before execution begins.</p>
+
+<p>That overhead accumulates. Which is why I’m more interested in when skills <strong>should not exist</strong> than in how many you can create with the free space.</p>
+
+<blockquote>
+<p>🦄 Across tools, the bigger difference isn’t “which model is smarter.” It’s how each agentic system decides what context deserves attention.</p>
+</blockquote>
+
+
+<hr>
+
+<h2>
+  <a href="#instructions-vs-skills">
+  </a>
+  Instructions vs Skills 🧷
+</h2>
+
+<p>Metaphors always land faster than jargon for me. So here’s the one that stuck for me: "Bob the Builder".</p>
+
+<ul>
+<li>The agent is the builder.
+</li>
+<li>Instructions are the blueprints.
+</li>
+<li>Skills are the tools.</li>
+</ul>
+
+<p>Blueprints describe what is always true. If you’re building a house, the structural plan does not change because you switched from wiring to drywall. In a repository, that’s what belongs in <code>.github/copilot-instructions.md</code>: guidance that is universally applicable and always loaded for every task.</p>
+
+<p>Skills are conditional. You wouldn’t scatter every possible tool across the floor before starting a task. You grab what’s needed when you need it. Loading everything up front slows you down—and missing the one tool that actually matters often changes the outcome entirely.</p>
+
+<p>That distinction is even more important now that context bloat is a real constraint. Long instruction files get summarized and those summaries will drift from the original intent. The most important line you were relying on for tone or guardrails is often the first casualty.</p>
+
+<p>A skill avoids that by staying out of baseline context from the start.</p>
+
+<p>At runtime, only the skill’s <strong>name</strong> and <strong>description</strong> are visible to the agent. It evaluates whether the current task matches that description. If the skill is relevant, then—and only then—it loads the full <code>SKILL.md</code>.</p>
+
+<p>When a skill isn't activated, the agent didn’t “forget”—it never saw those details in the first place.</p>
+
+<blockquote>
+<p>💡 <strong>ProTip:</strong> GitHub’s docs on <a href="https://docs.github.com/en/copilot/concepts/agents/about-agent-skills" target="_blank" rel="noopener noreferrer">agent skills</a> and Claude Code’s <a href="https://code.claude.com/docs/en/skills" target="_blank" rel="noopener noreferrer">skills docs</a> are worth reviewing if you want the official mechanics behind activation.</p>
+</blockquote>
+
+
+<hr>
+
+<h2>
+  <a href="#skill-structure-and-activation">
+  </a>
+  Skill Structure and Activation 🪛
+</h2>
+
+<p>A Copilot skill is defined by a <code>SKILL.md</code> file. For repo-level skills, the structure looks like this:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre><code>.github/
+|-- skills/
+|   `-- your-skill-name/
+|       `-- SKILL.md
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    Enter fullscreen mode
+    
+
+
+    Exit fullscreen mode
+    
+
+
+</div>
+</div>
+</div>
+
+
+
+<p>The directory tree itself doesn't matter as much as when the agent activates it.</p>
+
+<p>Only the skill’s metadata is evaluated initially. If the description matches the task, then the agent loads only the <code>SKILL.md</code> file and treats its contents as procedural guidance.</p>
+
+<p>If you extend a skill with additional files, they are invisible unless explicitly referenced and deliberately loaded.</p>
+
+<p>This separation is the entire value proposition of a skill:</p>
+
+<div class="table-wrapper-paragraph">
+
+
+
+<strong>Before activation</strong>
+<strong>After activation</strong>
+
+
+
+
+Operates on inferred repository patterns
+Executes defined procedural rules
+
+
+Uses baseline instructions only
+Uses baseline instructions + skill guidance
+
+
+Optimizes for general applicability
+Optimizes for task-specific behavior
+
+
+</div>
+
+<blockquote>
+<p>💡 <strong>ProTip:</strong> Copilot also checks <code>.agents/skills</code> and <code>.claude/skills</code> (globally and per repo). That makes cross-tool skill reuse feasible without duplicating logic unnecessarily.</p>
+</blockquote>
+
+
+<hr>
+
+<h2>
+  <a href="#anatomy-of-raw-skillmd-endraw-">
+  </a>
+  Anatomy of <code>SKILL.md</code> 🧬
+</h2>
+
+<p>The <code>SKILL.md</code> file defines both activation metadata and execution guidance. The <code>name</code> and <code>description</code> are always visible to the agent. The rest of the file becomes active only after invocation.</p>
+
+<p>Skills can mirror:</p>
+
+<ul>
+<li>a custom agent</li>
+<li>a reusable prompt</li>
+<li>a custom instruction</li>
+<li>or a hybrid of all three</li>
+</ul>
+
+<p>Below is a simplified example designed to activate only when editing a <code>CHANGELOG.md</code> file:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre><code><span class="nn">---</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">changelog-writer</span>
+<span class="na">description</span><span class="pi">:</span> <span class="s">Rewrite changelog entries with cheeky, narrative flair following project conventions. Use this when asked to rewrite or update CHANGELOG.md entries.</span>
+<span class="nn">---</span>
+
+<span class="gu">## Execution Workflow</span>
+
+When invoked to rewrite a changelog entry:
+<span class="p">
+1.</span> <span class="gs">**Read CHANGELOG.md**</span> to extract tone and structure
+<span class="p">2.</span> <span class="gs">**Identify release type and breaking changes**</span>
+<span class="p">3.</span> <span class="gs">**Select emoji(s)**</span> appropriate to release theme
+<span class="p">4.</span> <span class="gs">**Craft italicized opening quote**</span>
+<span class="p">5.</span> <span class="gs">**Write body content**</span>
+<span class="p">6.</span> <span class="gs">**Validate links, formatting, and breaking-change visibility**</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    Enter fullscreen mode
+    
+
+
+    Exit fullscreen mode
+    
+
+
+</div>
+</div>
+</div>
+
+
+
+<p>The key observation here isn’t the workflow itself. It’s the activation boundary. Without activation, none of that logic exists in the agent’s working memory.</p>
+
+<blockquote>
+<p>🦄 The full version lives in my <a href="https://github.com/anchildress1/awesome-github-copilot/blob/main/skills/changelog-writer/SKILL.md" target="_blank" rel="noopener noreferrer">awesome-github-copilot</a> repo if you want to inspect it more closely.</p>
+</blockquote>
+
+
+<hr>
+
+<h2>
+  <a href="#one-sentence-version">
+  </a>
+  One Sentence Version 🐎
+</h2>
+
+<p>If a behavior must apply consistently, it belongs in repository or global instructions. </p>
+
+<p>If a behavior is conditional, procedural, or task-specific, it belongs in a skill. </p>
+
+<p>A skill should feel like a tool you occasionally reach for—not a consistent rule the agent has to rediscover on its own every session. However, once instructions grow large enough, they stop acting like baseline context and start acting like noise. At that point trimming becomes more valuable than adding.</p>
+
+<p>In case it helps, this is the prompt I use when reducing instruction bloat for newer LLMs:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre><code>Review #copilot-instructions.md and optimize for AI consumption. Remove information that can be inferred from repository structure or code usage. Eliminate duplication and anything that does not improve clarity or reduce ambiguity. Preserve personality and tone directives. The final file should prioritize agent understanding over human readability.
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    Enter fullscreen mode
+    
+
+
+    Exit fullscreen mode
+    
+
+
+</div>
+</div>
+</div>
+
+
+
+<blockquote>
+<p>💡 <strong>ProTip:</strong> Back up the original first. Agents are confident editors and occasionally <em>confident editors</em> erase the one line that mattered most.</p>
+</blockquote>
+
+
+<hr>
+
+<h2>
+  <a href="#behind-the-curtain">
+  </a>
+  🛡️ Behind the Curtain
+</h2>
+
+<p>I wrote this post, and ChatGPT helped like a well-defined skill. I made the final calls—it activated when needed and stayed out of the way otherwise.</p>
+
+</article>
+
+  <!-- Dev.to Backlinks -->
+  
+  <div style="margin: 20px 0; padding: 10px; border-left: 4px solid #3b49df; background-color: #f8f9ff;">
+            <p style="margin: 0; font-size: 0.9em; color: #555;">
+                💬 Join the discussion about "Skills Aren’t Magic. They’re Scoped Context. 🧭🗂️" on Dev.to:
+            </p>
+            <p style="margin: 5px 0 0 0;">
+                <a href="https://dev.to/anchildress1/skills-arent-magic-theyre-scoped-context-d07"
+                   style="color: #3b49df; font-weight: bold; text-decoration: none;"
+                   target="_blank" rel="noopener">
+                    View comments and reactions →
+                </a>
+            </p>
+        </div>
+  
+
+  <!-- Related Posts Section -->
+  
+  <section style="margin: 30px 0; padding: 20px; background-color: #f8f9fa; border-radius: 8px;
+                  border: 1px solid #e9ecef;">
+    <h3 style="margin-top: 0; color: #495057; font-size: 1.2em;">📚 Related Articles</h3>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="github-copilot-chat-modes-from-chaos-to-command-54k0.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            GitHub Copilot C̴h̴a̴t̴ ̴M̴o̴d̴e̴s̴ Agents: From Chaos to Command 🎛️
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">You’ve built your first GitHub Copilot c̶h̶a̶t̶ ̶m̶o̶d̶e̶ agent—now it’s time to tame it. Here’s how to set up, test, and share custom modes like a professional who occasionally yells at their AI.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#githubcopilot</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#tutorial</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#ai</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="github-copilot-chat-modes-explained-with-personality-2f4c.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            GitHub Copilot C̴h̴a̴t̴ ̴M̴o̴d̴e̴s̴ Agents Explained (with Personality) 🎭
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">The third way to shape how GitHub Copilot responds:  c̶h̶a̶t̶ ̶m̶o̶d̶e̶s̶ agents. Now officially documented and live in your repo, they let you define Copilot’s behavior with your own personality, tone, and workflow—because coding assistants should sound like you.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#githubcopilot</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#tutorial</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#ai</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="copilot-premium-requests-more-than-asked-exactly-what-you-need-8ph.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            Copilot Premium Requests—More Than Asked, Exactly What You Need 💸
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">Learn how to stretch every GitHub Copilot premium request, avoid quota meltdowns, and still get reliable AI output. Includes tested models, workflows, and prompt tips.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#githubcopilot</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#tutorial</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#ai</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="demystifying-coding-agent-prompts-that-always-work-2on7.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            Demystifying Coding Agent: Prompts That Always Work ✨
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">A field guide to the safest, most reliable GitHub Coding Agent prompts—feature docs, test specs, bug fixes, and more—all proven to ship without breaking anything.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#githubcopilot</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#tutorial</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#ai</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="github-coding-agent-the-magical-autonomous-ai-the-prequel-4h11.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            GitHub Coding Agent the Magical Autonomous AI: The Prequel
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">Everything you need to know about setting up GitHub&#39;s Coding Agent for best results—setup, advanced tricks, and gotchas from real stories and wins. Chaos, fun, and no filter.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#githubcopilot</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#tutorial</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#ai</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+    </ul>
+  </section>
+  
+
+  <p><a href="https://dev.to/anchildress1/skills-arent-magic-theyre-scoped-context-d07">Read on Dev.to →</a></p>
+</main>
+</body></html>
+</text>
