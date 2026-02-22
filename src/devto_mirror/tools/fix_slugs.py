@@ -28,16 +28,25 @@ def extract_slug_from_url(url):
     return None
 
 
+def _safe_path(path: pathlib.Path, base: pathlib.Path) -> pathlib.Path:
+    """Resolve path and validate it stays within base to prevent path traversal."""
+    resolved = path.resolve()
+    if not str(resolved).startswith(str(base.resolve())):
+        raise ValueError(f"Path traversal detected: {resolved!r} is outside {base!r}")
+    return resolved
+
+
 def main():
     """Fix slugs in posts_data.json"""
-    posts_file = pathlib.Path("posts_data.json")
+    base_dir = pathlib.Path(__file__).resolve().parents[3]
+    posts_file = _safe_path(base_dir / "posts_data.json", base_dir)
 
     if not posts_file.exists():
         print("No posts_data.json found. Nothing to fix.")
         return
 
     # Backup the original file
-    backup_file = pathlib.Path("posts_data.json.backup")
+    backup_file = _safe_path(base_dir / "posts_data.json.backup", base_dir)
     if not backup_file.exists():
         backup_file.write_text(posts_file.read_text(), encoding="utf-8")
         print("Created backup: posts_data.json.backup")
