@@ -81,24 +81,35 @@ NEW_FRAMEWORK=""
 NEW_DB=""
 NEW_PROJECT_TYPE=""
 
+# Constants
+readonly NEEDS_CLARIFICATION="NEEDS CLARIFICATION"
+
 #==============================================================================
 # Utility Functions
 #==============================================================================
 
 log_info() {
-    echo "INFO: $1"
+    local message="$1"
+    echo "INFO: $message"
+    return 0
 }
 
 log_success() {
-    echo "✓ $1"
+    local message="$1"
+    echo "✓ $message"
+    return 0
 }
 
 log_error() {
-    echo "ERROR: $1" >&2
+    local message="$1"
+    echo "ERROR: $message" >&2
+    return 0
 }
 
 log_warning() {
-    echo "WARNING: $1" >&2
+    local message="$1"
+    echo "WARNING: $message" >&2
+    return 0
 }
 
 # Cleanup function for temporary files
@@ -106,7 +117,7 @@ cleanup() {
     local exit_code=$?
     rm -f /tmp/agent_update_*_$$
     rm -f /tmp/manual_additions_$$
-    exit $exit_code
+    return $exit_code
 }
 
 # Set up cleanup trap
@@ -143,6 +154,7 @@ validate_environment() {
         log_warning "Template file not found at $TEMPLATE_FILE"
         log_warning "Creating new agent files will fail"
     fi
+    return 0
 }
 
 #==============================================================================
@@ -152,13 +164,14 @@ validate_environment() {
 extract_plan_field() {
     local field_pattern="$1"
     local plan_file="$2"
-    
+
     grep "^\*\*${field_pattern}\*\*: " "$plan_file" 2>/dev/null | \
         head -1 | \
         sed "s|^\*\*${field_pattern}\*\*: ||" | \
         sed 's/^[ \t]*//;s/[ \t]*$//' | \
-        grep -v "NEEDS CLARIFICATION" | \
+        grep -v "$NEEDS_CLARIFICATION" | \
         grep -v "^N/A$" || echo ""
+    return 0
 }
 
 parse_plan_data() {
@@ -199,6 +212,7 @@ parse_plan_data() {
     if [[ -n "$NEW_PROJECT_TYPE" ]]; then
         log_info "Found project type: $NEW_PROJECT_TYPE"
     fi
+    return 0
 }
 
 format_technology_stack() {
@@ -207,8 +221,8 @@ format_technology_stack() {
     local parts=()
     
     # Add non-empty parts
-    [[ -n "$lang" && "$lang" != "NEEDS CLARIFICATION" ]] && parts+=("$lang")
-    [[ -n "$framework" && "$framework" != "NEEDS CLARIFICATION" && "$framework" != "N/A" ]] && parts+=("$framework")
+    [[ -n "$lang" && "$lang" != "$NEEDS_CLARIFICATION" ]] && parts+=("$lang")
+    [[ -n "$framework" && "$framework" != "$NEEDS_CLARIFICATION" && "$framework" != "N/A" ]] && parts+=("$framework")
     
     # Join with proper formatting
     if [[ ${#parts[@]} -eq 0 ]]; then
@@ -223,6 +237,7 @@ format_technology_stack() {
         done
         echo "$result"
     fi
+    return 0
 }
 
 #==============================================================================
@@ -231,17 +246,18 @@ format_technology_stack() {
 
 get_project_structure() {
     local project_type="$1"
-    
+
     if [[ "$project_type" == *"web"* ]]; then
         echo "backend/\\nfrontend/\\ntests/"
     else
         echo "src/\\ntests/"
     fi
+    return 0
 }
 
 get_commands_for_language() {
     local lang="$1"
-    
+
     case "$lang" in
         *"Python"*)
             echo "cd src && pytest && ruff check ."
@@ -256,15 +272,16 @@ get_commands_for_language() {
             echo "# Add commands for $lang"
             ;;
     esac
+    return 0
 }
 
 get_language_conventions() {
     local lang="$1"
     echo "$lang: Follow standard conventions"
+    return 0
 }
 
 create_new_agent_file() {
-    local target_file="$1"
     local temp_file="$2"
     local project_name="$3"
     local current_date="$4"
@@ -379,14 +396,14 @@ update_existing_agent_file() {
         new_tech_entries+=("- $tech_stack ($CURRENT_BRANCH)")
     fi
     
-    if [[ -n "$NEW_DB" ]] && [[ "$NEW_DB" != "N/A" ]] && [[ "$NEW_DB" != "NEEDS CLARIFICATION" ]] && ! grep -q "$NEW_DB" "$target_file"; then
+    if [[ -n "$NEW_DB" ]] && [[ "$NEW_DB" != "N/A" ]] && [[ "$NEW_DB" != "$NEEDS_CLARIFICATION" ]] && ! grep -q "$NEW_DB" "$target_file"; then
         new_tech_entries+=("- $NEW_DB ($CURRENT_BRANCH)")
     fi
-    
+
     # Prepare new change entry
     if [[ -n "$tech_stack" ]]; then
         new_change_entry="- $CURRENT_BRANCH: Added $tech_stack"
-    elif [[ -n "$NEW_DB" ]] && [[ "$NEW_DB" != "N/A" ]] && [[ "$NEW_DB" != "NEEDS CLARIFICATION" ]]; then
+    elif [[ -n "$NEW_DB" ]] && [[ "$NEW_DB" != "N/A" ]] && [[ "$NEW_DB" != "$NEEDS_CLARIFICATION" ]]; then
         new_change_entry="- $CURRENT_BRANCH: Added $NEW_DB"
     fi
     
@@ -490,11 +507,9 @@ update_agent_file() {
     # Create directory if it doesn't exist
     local target_dir
     target_dir=$(dirname "$target_file")
-    if [[ ! -d "$target_dir" ]]; then
-        if ! mkdir -p "$target_dir"; then
-            log_error "Failed to create directory: $target_dir"
-            return 1
-        fi
+    if [[ ! -d "$target_dir" ]] && ! mkdir -p "$target_dir"; then
+        log_error "Failed to create directory: $target_dir"
+        return 1
     fi
     
     if [[ ! -f "$target_file" ]]; then
@@ -594,6 +609,7 @@ update_specific_agent() {
             exit 1
             ;;
     esac
+    return 0
 }
 
 update_all_existing_agents() {
@@ -665,6 +681,7 @@ update_all_existing_agents() {
         log_info "No existing agent files found, creating default Claude file..."
         update_agent_file "$CLAUDE_FILE" "Claude Code"
     fi
+    return 0
 }
 print_summary() {
     echo
@@ -685,6 +702,7 @@ print_summary() {
     echo
 
     log_info "Usage: $0 [claude|gemini|copilot|cursor-agent|qwen|opencode|codex|windsurf|kilocode|auggie|codebuddy|q]"
+    return 0
 }
 
 #==============================================================================
