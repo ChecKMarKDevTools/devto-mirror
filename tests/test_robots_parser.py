@@ -193,14 +193,14 @@ Allow: /"""
     def test_parse_robots_txt_invalid_type(self):
         """Test that non-string input raises TypeError."""
         with self.assertRaises(TypeError) as context:
-            parse_robots_txt(None)
+            parse_robots_txt(None)  # NOSONAR - intentional wrong type for error-path test
         self.assertIn("content must be a string", str(context.exception))
 
         with self.assertRaises(TypeError):
-            parse_robots_txt(123)
+            parse_robots_txt(123)  # NOSONAR - intentional wrong type for error-path test
 
         with self.assertRaises(TypeError):
-            parse_robots_txt([])
+            parse_robots_txt([])  # NOSONAR - intentional wrong type for error-path test
 
     def test_parse_user_agent_line_malformed(self):
         """Test parsing malformed user-agent line without colon."""
