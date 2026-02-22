@@ -14,8 +14,18 @@ from devto_mirror.core.constants import POSTS_DATA_FILE
 from devto_mirror.core.utils import parse_date
 
 ROOT = Path(__file__).resolve().parents[3]
-DATA_FILE = ROOT / POSTS_DATA_FILE
-BACKUP_FILE = ROOT / f"{POSTS_DATA_FILE}.bak"
+
+
+def _safe_path(path: Path) -> Path:
+    """Resolve path and validate it stays within ROOT to prevent path traversal."""
+    resolved = path.resolve()
+    if not str(resolved).startswith(str(ROOT.resolve())):
+        raise ValueError(f"Path traversal detected: {resolved!r} is outside repo root")
+    return resolved
+
+
+DATA_FILE = _safe_path(ROOT / POSTS_DATA_FILE)
+BACKUP_FILE = _safe_path(ROOT / f"{POSTS_DATA_FILE}.bak")
 
 
 def key_for(post):
