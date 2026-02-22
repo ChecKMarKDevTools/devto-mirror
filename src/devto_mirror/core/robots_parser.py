@@ -102,7 +102,11 @@ def _parse_user_agent_line(line: str) -> list[str]:
     if len(parts) < 2:
         return []
     agent = parts[1].strip()
-    return ["*"] if agent == "*" else [agent] if agent else []
+    if agent == "*":
+        return ["*"]
+    if agent:
+        return [agent]
+    return []
 
 
 def _parse_directive_value(line: str) -> str | None:
