@@ -8,6 +8,9 @@ from .utils import validate_json_ld_schema
 
 logger = logging.getLogger(__name__)
 
+SCHEMA_ORG_BASE = "https://schema.org"
+JSON_LD_CONTEXT = "@context"
+JSON_LD_TYPE = "@type"
 SCHEMA_ORG_COMMENT_ACTION = "https://schema.org/CommentAction"
 SCHEMA_ORG_LIKE_ACTION = "https://schema.org/LikeAction"
 
@@ -85,7 +88,7 @@ class DevToSchemaGenerator:
             image_url = getattr(post, "cover_image", "")
 
         if image_url:
-            return {"@type": "ImageObject", "url": image_url, "width": 1000, "height": 500}
+            return {JSON_LD_TYPE: "ImageObject", "url": image_url, "width": 1000, "height": 500}
         return None
 
     def _extract_tags(self, post: Any, api_data: Optional[Dict[str, Any]]) -> list:
@@ -147,7 +150,7 @@ class DevToSchemaGenerator:
 
         """
         return {
-            "@type": "InteractionCounter",
+            JSON_LD_TYPE: "InteractionCounter",
             "interactionType": interaction_type,
             "userInteractionCount": count,
         }
@@ -220,7 +223,7 @@ class DevToSchemaGenerator:
 
         if "pageViews" in interaction_stats:
             result["additionalProperty"] = [
-                {"@type": "PropertyValue", "name": "pageViews", "value": interaction_stats["pageViews"]}
+                {JSON_LD_TYPE: "PropertyValue", "name": "pageViews", "value": interaction_stats["pageViews"]}
             ]
 
         return result
@@ -232,12 +235,12 @@ class DevToSchemaGenerator:
         published_date, modified_date = self._extract_dates(post, api_data)
 
         schema = {
-            "@context": "https://schema.org",
-            "@type": "Article",
+            JSON_LD_CONTEXT: SCHEMA_ORG_BASE,
+            JSON_LD_TYPE: "Article",
             "headline": getattr(post, "title", "Untitled"),
-            "author": {"@type": "Person", "name": author_name, "url": author_url},
-            "publisher": {"@type": "Organization", "name": self.site_name, "url": self.site_url or canonical_url},
-            "mainEntityOfPage": {"@type": "WebPage", "@id": canonical_url},
+            "author": {JSON_LD_TYPE: "Person", "name": author_name, "url": author_url},
+            "publisher": {JSON_LD_TYPE: "Organization", "name": self.site_name, "url": self.site_url or canonical_url},
+            "mainEntityOfPage": {JSON_LD_TYPE: "WebPage", "@id": canonical_url},
             "url": canonical_url,
         }
 
@@ -271,8 +274,8 @@ class DevToSchemaGenerator:
 
     def generate_website_schema(self, site_info: Dict[str, Any]) -> Dict[str, Any]:
         schema = {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
+            JSON_LD_CONTEXT: SCHEMA_ORG_BASE,
+            JSON_LD_TYPE: "WebSite",
             "@id": site_info.get("url", self.site_url),
             "name": site_info.get("name", self.site_name),
             "url": site_info.get("url", self.site_url),
@@ -284,8 +287,8 @@ class DevToSchemaGenerator:
 
         if self.site_url:
             schema["potentialAction"] = {
-                "@type": "SearchAction",
-                "target": {"@type": "EntryPoint", "urlTemplate": f"{self.site_url}/?q={{search_term_string}}"},
+                JSON_LD_TYPE: "SearchAction",
+                "target": {JSON_LD_TYPE: "EntryPoint", "urlTemplate": f"{self.site_url}/?q={{search_term_string}}"},
                 "query-input": "required name=search_term_string",
             }
 
@@ -297,9 +300,9 @@ class DevToSchemaGenerator:
 
     def generate_breadcrumb_schema(self, post: Any) -> Dict[str, Any]:
         breadcrumbs = [
-            {"@type": "ListItem", "position": 1, "name": "Home", "item": self.site_url or "/"},
+            {JSON_LD_TYPE: "ListItem", "position": 1, "name": "Home", "item": self.site_url or "/"},
             {
-                "@type": "ListItem",
+                JSON_LD_TYPE: "ListItem",
                 "position": 2,
                 "name": "Posts",
                 "item": f"{self.site_url}/posts" if self.site_url else "/posts",
@@ -310,14 +313,14 @@ class DevToSchemaGenerator:
         post_slug = getattr(post, "slug", "post")
         breadcrumbs.append(
             {
-                "@type": "ListItem",
+                JSON_LD_TYPE: "ListItem",
                 "position": 3,
                 "name": post_title,
                 "item": f"{self.site_url}/posts/{post_slug}.html" if self.site_url else f"/posts/{post_slug}.html",
             }
         )
 
-        schema = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": breadcrumbs}
+        schema = {JSON_LD_CONTEXT: SCHEMA_ORG_BASE, JSON_LD_TYPE: "BreadcrumbList", "itemListElement": breadcrumbs}
 
         if validate_json_ld_schema(schema):
             return schema
