@@ -13,6 +13,8 @@ from xml.sax.saxutils import escape  # nosec B406
 
 from .utils import determine_content_type as classify_content_type
 
+XML_DECLARATION = '<?xml version="1.0" encoding="UTF-8"?>'
+
 logger = logging.getLogger(__name__)
 
 
@@ -208,7 +210,7 @@ class DevToAISitemapGenerator:
             lastmod = post_date.isoformat() if post_date else None
 
             # Determine change frequency based on post age and type
-            changefreq = self._determine_post_changefreq(post, content_type)
+            changefreq = self._determine_post_changefreq(post)
 
             # Determine priority based on content type and engagement
             priority = self._determine_post_priority(post, content_type)
@@ -329,13 +331,12 @@ class DevToAISitemapGenerator:
 
         return classify_content_type(tags)
 
-    def _determine_post_changefreq(self, post: Any, content_type: str = None) -> str:
+    def _determine_post_changefreq(self, post: Any) -> str:
         """
-        Determine change frequency for a post based on age and type.
+        Determine change frequency for a post based on age.
 
         Args:
             post: Post object
-            content_type: Optional content type classification
 
         Returns:
             Change frequency string
@@ -391,7 +392,7 @@ class DevToAISitemapGenerator:
 
         return f"{base_priority:.1f}"
 
-    def _get_post_date(self, post: Any) -> datetime:
+    def _get_post_date(self, post: Any) -> Optional[datetime]:
         """
         Extract date from post object, handling various formats.
 
@@ -457,7 +458,7 @@ class DevToAISitemapGenerator:
             XML sitemap string
         """
         xml_lines = [
-            '<?xml version="1.0" encoding="UTF-8"?>',
+            XML_DECLARATION,
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
         ]
 
@@ -488,7 +489,7 @@ class DevToAISitemapGenerator:
             XML discovery feed string
         """
         xml_lines = [
-            '<?xml version="1.0" encoding="UTF-8"?>',
+            XML_DECLARATION,
             '<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" ',
             'xmlns:ai="http://ai-optimization.dev/rss/1.0/">',
             "  <channel>",
@@ -540,7 +541,7 @@ class DevToAISitemapGenerator:
             Basic XML sitemap string
         """
         xml_lines = [
-            '<?xml version="1.0" encoding="UTF-8"?>',
+            XML_DECLARATION,
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
         ]
 
