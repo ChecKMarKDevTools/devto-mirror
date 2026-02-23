@@ -1,14 +1,8 @@
 {
   "release-type": "python",
-  "include-component-in-tag": false,
-  "packages": {
-    ".": {
-      "release-type": "python",
-      "package-name": "devto-mirror",
-      "extra-files": [
-        "pyproject.toml",
-        "src/devto_mirror/__init__.py"
-      ]
-    }
-  }
+  "package-name": "devto-mirror",
+  "extra-files": [
+    "pyproject.toml",
+    "src/devto_mirror/__init__.py"
+  ]
 }
