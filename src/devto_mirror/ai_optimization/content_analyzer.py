@@ -13,6 +13,8 @@ from typing import Any, Dict, List
 # Configure logging for content analysis
 logger = logging.getLogger(__name__)
 
+_LANG_PATTERN_CLASS = "class "
+
 
 class DevToContentAnalyzer:
     """
@@ -290,7 +292,7 @@ class DevToContentAnalyzer:
             languages.update(tag_languages)
 
         if not content or not isinstance(content, str):
-            return sorted(list(languages))
+            return sorted(languages)
 
         try:
             languages.update(self._extract_languages_from_attributes(content))
@@ -388,10 +390,10 @@ class DevToContentAnalyzer:
             "go": ["package ", "func ", "import (", "fmt.Print", "go "],
             "rust": ["fn ", "let mut", "println!", "use std::", "impl "],
             "php": ["<?php", "echo ", "$_GET", "$_POST", "function "],
-            "ruby": ["def ", "end", "puts ", "require ", "class "],
+            "ruby": ["def ", "end", "puts ", "require ", _LANG_PATTERN_CLASS],
             "swift": ["func ", "var ", "let ", "import Foundation", "print("],
-            "kotlin": ["fun ", "val ", "var ", "println(", "class "],
-            "scala": ["def ", "val ", "var ", "object ", "class "],
+            "kotlin": ["fun ", "val ", "var ", "println(", _LANG_PATTERN_CLASS],
+            "scala": ["def ", "val ", "var ", "object ", _LANG_PATTERN_CLASS],
             "sql": ["SELECT ", "FROM ", "WHERE ", "INSERT INTO", "UPDATE ", "DELETE "],
             "html": ["<html", "<div", "<span", "<body", "<!DOCTYPE"],
             "css": ["{", "}", "margin:", "padding:", "color:", "background:"],
@@ -404,9 +406,7 @@ class DevToContentAnalyzer:
         for language, patterns in language_patterns.items():
             matches = sum(1 for pattern in patterns if pattern in code_lower)
             # If we find multiple patterns for a language, it's likely that language
-            if matches >= 2:
-                detected.append(language)
-            elif matches == 1 and len(patterns) <= 3:  # For languages with fewer patterns
+            if matches >= 2 or (matches == 1 and len(patterns) <= 3):  # For languages with fewer patterns
                 detected.append(language)
 
         return detected
@@ -442,6 +442,14 @@ class DevToContentAnalyzer:
             return ""
 
         return normalized
+
+    def _get_language_for_tag(self, tag_lower: str, programming_language_tags: set, framework_to_language: dict) -> str:
+        """Resolve a tag to a normalized language name, or return empty string."""
+        if tag_lower in programming_language_tags:
+            return self._normalize_language_name(tag_lower)
+        if tag_lower in framework_to_language:
+            return self._normalize_language_name(framework_to_language[tag_lower])
+        return ""
 
     def _extract_languages_from_tags(self, api_data: Dict[str, Any]) -> List[str]:
         """
@@ -592,23 +600,11 @@ class DevToContentAnalyzer:
         for tag in tags:
             if not isinstance(tag, str):
                 continue
+            lang = self._get_language_for_tag(tag.lower().strip(), programming_language_tags, framework_to_language)
+            if lang:
+                languages.add(lang)
 
-            tag_lower = tag.lower().strip()
-
-            # Direct language match
-            if tag_lower in programming_language_tags:
-                normalized = self._normalize_language_name(tag_lower)
-                if normalized:
-                    languages.add(normalized)
-
-            # Framework/library implies language
-            elif tag_lower in framework_to_language:
-                implied_lang = framework_to_language[tag_lower]
-                normalized = self._normalize_language_name(implied_lang)
-                if normalized:
-                    languages.add(normalized)
-
-        result = sorted(list(languages))
+        result = sorted(languages)
         if result:
             self.logger.debug(f"Extracted languages from tags: {result}")
 
