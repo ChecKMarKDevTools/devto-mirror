@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: |
           echo "## 🔧 Installing dependencies" >> "$GITHUB_STEP_SUMMARY"
-          uv sync --locked --group dev
+          uv lock
           make install
           echo "✅ Dependencies installed" >> "$GITHUB_STEP_SUMMARY"
 
