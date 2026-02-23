@@ -55,6 +55,45 @@ class AIOptimizationManager:
             "sitemap": sitemap_generator is not None,
         }
 
+    def _apply_optional_components(
+        self, post: Any, api_data: Dict[str, Any], all_posts: List[Any], optimization_data: Dict[str, Any]
+    ) -> None:
+        """
+        Apply optional AI optimization components (metadata, content, cross-reference).
+
+        Updates optimization_data in place. Each component failure is logged as a
+        warning and does not prevent other components from running.
+
+        Args:
+            post: Post object to optimize
+            api_data: Dev.to API data for the post
+            all_posts: List of all posts for cross-referencing
+            optimization_data: Dictionary to update with results
+        """
+        slug = getattr(post, "slug", "unknown")
+
+        if self.metadata_enhancer:
+            try:
+                optimization_data["enhanced_metadata"] = self.metadata_enhancer.enhance_post_metadata(post)
+            except Exception as e:
+                logger.warning(f"Metadata enhancement failed for post {slug}: {e}")
+
+        if self.content_analyzer:
+            try:
+                optimization_data["content_analysis"] = self.content_analyzer.analyze_post_content(post, api_data)
+            except Exception as e:
+                logger.warning(f"Content analysis failed for post {slug}: {e}")
+
+        if self.cross_reference_manager:
+            try:
+                optimization_data["cross_references"] = {
+                    "source_attribution": self.cross_reference_manager.add_source_attribution(post),
+                    "related_links": self.cross_reference_manager.generate_related_links(post, all_posts),
+                    "backlinks": self.cross_reference_manager.create_dev_to_backlinks(post),
+                }
+            except Exception as e:
+                logger.warning(f"Cross-reference generation failed for post {slug}: {e}")
+
     def optimize_post(self, post: Any, api_data: Dict[str, Any] = None, all_posts: List[Any] = None) -> Dict[str, Any]:
         """
         Apply all AI optimizations to a single post.
@@ -93,35 +132,7 @@ class AIOptimizationManager:
 
             optimization_data["json_ld_schemas"] = [article_schema, breadcrumb_schema]
 
-            if self.metadata_enhancer:
-                try:
-                    enhanced_meta = self.metadata_enhancer.enhance_post_metadata(post)
-                    optimization_data["enhanced_metadata"] = enhanced_meta
-                except Exception as e:
-                    logger.warning(f"Metadata enhancement failed for post {getattr(post, 'slug', 'unknown')}: {e}")
-
-            if self.content_analyzer:
-                try:
-                    content_analysis = self.content_analyzer.analyze_post_content(post, api_data)
-                    optimization_data["content_analysis"] = content_analysis
-                except Exception as e:
-                    logger.warning(f"Content analysis failed for post {getattr(post, 'slug', 'unknown')}: {e}")
-
-            if self.cross_reference_manager:
-                try:
-                    source_attribution = self.cross_reference_manager.add_source_attribution(post)
-                    related_links = self.cross_reference_manager.generate_related_links(post, all_posts)
-                    backlinks = self.cross_reference_manager.create_dev_to_backlinks(post)
-
-                    optimization_data["cross_references"] = {
-                        "source_attribution": source_attribution,
-                        "related_links": related_links,
-                        "backlinks": backlinks,
-                    }
-                except Exception as e:
-                    logger.warning(
-                        f"Cross-reference generation failed for post {getattr(post, 'slug', 'unknown')}: {e}"
-                    )
+            self._apply_optional_components(post, api_data, all_posts, optimization_data)
 
             optimization_data["optimization_applied"] = True
 

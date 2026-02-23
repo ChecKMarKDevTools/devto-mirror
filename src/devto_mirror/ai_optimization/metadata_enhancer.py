@@ -14,6 +14,8 @@ from typing import Any, Dict
 # Configure logging
 logger = logging.getLogger(__name__)
 
+DEVTO_DOMAIN = "dev.to"
+
 
 class DevToMetadataEnhancer:
     """
@@ -309,7 +311,7 @@ class DevToMetadataEnhancer:
         if not self._validate_devto_canonical_url(canonical_url):
             return metadata
 
-        metadata["source-platform"] = "dev.to"
+        metadata["source-platform"] = DEVTO_DOMAIN
         metadata["source-url"] = canonical_url
 
         username = self._extract_username_from_devto_url(canonical_url)
@@ -380,8 +382,8 @@ class DevToMetadataEnhancer:
         if not url or not isinstance(url, str):
             return False
 
-        # Check if it's a Dev.to URL
-        return "dev.to" in url.lower() and url.startswith(("http://", "https://"))
+        # Check if it's a Dev.to URL (canonical URLs must use HTTPS)
+        return DEVTO_DOMAIN in url.lower() and url.startswith("https://")
 
     def _extract_username_from_devto_url(self, url: str) -> str:
         """
@@ -394,13 +396,13 @@ class DevToMetadataEnhancer:
             Username string, or empty string if extraction fails
         """
         try:
-            if not url or "dev.to" not in url:
+            if not url or DEVTO_DOMAIN not in url:
                 return ""
 
             # Split URL and extract username
             # Expected format: https://dev.to/username/post-slug
             url_parts = url.split("/")
-            if len(url_parts) >= 4 and "dev.to" in url:
+            if len(url_parts) >= 4 and DEVTO_DOMAIN in url:
                 username = url_parts[3]  # Username should be at index 3
                 # Basic validation - username shouldn't be empty or contain special chars
                 if username and username.replace("-", "").replace("_", "").isalnum():

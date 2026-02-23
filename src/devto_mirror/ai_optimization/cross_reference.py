@@ -14,6 +14,9 @@ from devto_mirror.core.url_utils import post_page_href
 # Configure logging
 logger = logging.getLogger(__name__)
 
+DEVTO_PLATFORM = "Dev.to"
+_JSON_LD_TYPE = "@type"
+
 
 def _clean_tag_list(tags: Any) -> list[str]:
     if not isinstance(tags, list):
@@ -63,13 +66,13 @@ def _safe_local_link_for_post(post: Any) -> str:
         return ""
 
 
-def add_source_attribution(post: Any, site_config: Optional[Dict[str, str]] = None) -> Dict[str, str]:
+def add_source_attribution(post: Any, _site_config: Optional[Dict[str, str]] = None) -> Dict[str, str]:
     """
     Add enhanced Dev.to source attribution metadata.
 
     Args:
         post: Post object containing Dev.to information
-        site_config: Optional site configuration with attribution settings
+        _site_config: Optional site configuration (reserved for future use)
 
     Returns:
         Dictionary of attribution metadata for templates
@@ -89,10 +92,10 @@ def add_source_attribution(post: Any, site_config: Optional[Dict[str, str]] = No
             logger.warning(f"Non-Dev.to canonical URL detected: {canonical_url}")
 
         # Basic attribution text
-        attribution_data["source_platform"] = "Dev.to"
+        attribution_data["source_platform"] = DEVTO_PLATFORM
         attribution_data["source_url"] = canonical_url
-        attribution_data["attribution_text"] = "Originally published on Dev.to"
-        attribution_data["attribution_link_text"] = "Read the original article on Dev.to"
+        attribution_data["attribution_text"] = f"Originally published on {DEVTO_PLATFORM}"
+        attribution_data["attribution_link_text"] = f"Read the original article on {DEVTO_PLATFORM}"
 
         # Enhanced attribution with author information
         author = getattr(post, "author", "")
@@ -113,14 +116,14 @@ def add_source_attribution(post: Any, site_config: Optional[Dict[str, str]] = No
 
         # Structured data for attribution
         attribution_data["structured_attribution"] = {
-            "source": "Dev.to",
+            "source": DEVTO_PLATFORM,
             "author": author,
             "canonical_url": canonical_url,
             "publication_date": date,
         }
 
         # Generate prominent attribution HTML
-        attribution_data["attribution_html"] = _generate_attribution_html(canonical_url, author, date, site_config)
+        attribution_data["attribution_html"] = _generate_attribution_html(canonical_url, author, date)
 
         # Generate meta tags for source attribution
         attribution_data["meta_tags"] = _generate_attribution_meta_tags(canonical_url, author, date)
@@ -131,9 +134,9 @@ def add_source_attribution(post: Any, site_config: Optional[Dict[str, str]] = No
         logger.error(f"Error generating source attribution: {e}")
         # Provide minimal fallback attribution
         attribution_data = {
-            "source_platform": "Dev.to",
-            "attribution_text": "Originally published on Dev.to",
-            "attribution_html": "<p><em>Originally published on Dev.to</em></p>",
+            "source_platform": DEVTO_PLATFORM,
+            "attribution_text": f"Originally published on {DEVTO_PLATFORM}",
+            "attribution_html": f"<p><em>Originally published on {DEVTO_PLATFORM}</em></p>",
         }
 
     return attribution_data
@@ -225,7 +228,7 @@ def create_dev_to_backlinks(post: Any) -> Dict[str, Any]:
         # Basic backlink information
         backlink_data["canonical_url"] = canonical_url
         backlink_data["rel_canonical"] = True
-        backlink_data["source_platform"] = "Dev.to"
+        backlink_data["source_platform"] = DEVTO_PLATFORM
 
         # Extract Dev.to username and post slug from URL
         parsed_url = urlparse(canonical_url)
@@ -237,15 +240,15 @@ def create_dev_to_backlinks(post: Any) -> Dict[str, Any]:
 
         # Generate structured data for backlinks
         backlink_data["structured_data"] = {
-            "@type": "WebPage",
+            _JSON_LD_TYPE: "WebPage",
             "url": canonical_url,
             "isPartOf": {
-                "@type": "WebSite",
+                _JSON_LD_TYPE: "WebSite",
                 "@id": "https://dev.to",
                 "name": "DEV Community",
             },
             "mainEntity": {
-                "@type": "Article",
+                _JSON_LD_TYPE: "Article",
                 "url": canonical_url,
             },
         }
@@ -264,9 +267,7 @@ def create_dev_to_backlinks(post: Any) -> Dict[str, Any]:
     return backlink_data
 
 
-def _generate_attribution_html(
-    canonical_url: str, author: str, date: str, site_config: Optional[Dict[str, str]] = None
-) -> str:
+def _generate_attribution_html(canonical_url: str, author: str, date: str) -> str:
     """
     Generate HTML for prominent Dev.to attribution display.
 
@@ -274,7 +275,6 @@ def _generate_attribution_html(
         canonical_url: Original Dev.to post URL
         author: Post author name
         date: Publication date
-        site_config: Optional site configuration
 
     Returns:
         HTML string for attribution display
@@ -324,10 +324,10 @@ def _generate_attribution_meta_tags(canonical_url: str, author: str, date: str) 
     """
     meta_tags = {
         "article:author": author,
-        "article:publisher": "Dev.to",
-        "article:source": "Dev.to",
+        "article:publisher": DEVTO_PLATFORM,
+        "article:source": DEVTO_PLATFORM,
         "content:source": canonical_url,
-        "content:original_publisher": "Dev.to",
+        "content:original_publisher": DEVTO_PLATFORM,
     }
 
     if date:

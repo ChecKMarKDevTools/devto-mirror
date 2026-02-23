@@ -13,6 +13,8 @@ from xml.sax.saxutils import escape  # nosec B406
 
 from .utils import determine_content_type as classify_content_type
 
+XML_DECLARATION = '<?xml version="1.0" encoding="UTF-8"?>'
+
 logger = logging.getLogger(__name__)
 
 
@@ -208,7 +210,7 @@ class DevToAISitemapGenerator:
             lastmod = post_date.isoformat() if post_date else None
 
             # Determine change frequency based on post age and type
-            changefreq = self._determine_post_changefreq(post, content_type)
+            changefreq = self._determine_post_changefreq(post)
 
             # Determine priority based on content type and engagement
             priority = self._determine_post_priority(post, content_type)
@@ -329,13 +331,12 @@ class DevToAISitemapGenerator:
 
         return classify_content_type(tags)
 
-    def _determine_post_changefreq(self, post: Any, content_type: str = None) -> str:
+    def _determine_post_changefreq(self, post: Any) -> str:
         """
-        Determine change frequency for a post based on age and type.
+        Determine change frequency for a post based on age.
 
         Args:
             post: Post object
-            content_type: Optional content type classification
 
         Returns:
             Change frequency string
@@ -391,7 +392,7 @@ class DevToAISitemapGenerator:
 
         return f"{base_priority:.1f}"
 
-    def _get_post_date(self, post: Any) -> datetime:
+    def _get_post_date(self, post: Any) -> Optional[datetime]:
         """
         Extract date from post object, handling various formats.
 
@@ -457,7 +458,7 @@ class DevToAISitemapGenerator:
             XML sitemap string
         """
         xml_lines = [
-            '<?xml version="1.0" encoding="UTF-8"?>',
+            XML_DECLARATION,
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
         ]
 
@@ -488,7 +489,7 @@ class DevToAISitemapGenerator:
             XML discovery feed string
         """
         xml_lines = [
-            '<?xml version="1.0" encoding="UTF-8"?>',
+            XML_DECLARATION,
             '<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" ',
             'xmlns:ai="http://ai-optimization.dev/rss/1.0/">',
             "  <channel>",
@@ -528,6 +529,23 @@ class DevToAISitemapGenerator:
 
         return "\n".join(xml_lines)
 
+    def _build_post_url(self, post: Any) -> str:
+        """Return the best URL for a post: canonical first, then local slug-based."""
+        canonical_url = getattr(post, "link", "")
+        if canonical_url:
+            return canonical_url
+        slug = getattr(post, "slug", "")
+        if slug:
+            return f"{self.site_url}/posts/{slug}.html" if self.site_url else f"/posts/{slug}.html"
+        return ""
+
+    def _build_comment_url(self, comment: Dict[str, Any]) -> str:
+        """Return the absolute URL for a comment entry."""
+        url = comment.get("url") or comment.get("local", "")
+        if url and not url.startswith("http") and self.site_url:
+            return f"{self.site_url}/{url.lstrip('/')}"
+        return url
+
     def _generate_basic_sitemap(self, posts: List[Any], comments: List[Dict[str, Any]]) -> str:
         """
         Generate basic sitemap as fallback when AI optimization fails.
@@ -540,7 +558,7 @@ class DevToAISitemapGenerator:
             Basic XML sitemap string
         """
         xml_lines = [
-            '<?xml version="1.0" encoding="UTF-8"?>',
+            XML_DECLARATION,
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
         ]
 
@@ -550,22 +568,15 @@ class DevToAISitemapGenerator:
 
         # Add posts
         for post in posts:
-            canonical_url = getattr(post, "link", "")
-            if canonical_url:
-                xml_lines.append(f"  <url><loc>{escape(canonical_url)}</loc></url>")
-            else:
-                slug = getattr(post, "slug", "")
-                if slug:
-                    post_url = f"{self.site_url}/posts/{slug}.html" if self.site_url else f"/posts/{slug}.html"
-                    xml_lines.append(f"  <url><loc>{escape(post_url)}</loc></url>")
+            url = self._build_post_url(post)
+            if url:
+                xml_lines.append(f"  <url><loc>{escape(url)}</loc></url>")
 
         # Add comments
         for comment in comments:
-            comment_url = comment.get("url") or comment.get("local", "")
-            if comment_url:
-                if not comment_url.startswith("http") and self.site_url:
-                    comment_url = f"{self.site_url}/{comment_url.lstrip('/')}"
-                xml_lines.append(f"  <url><loc>{escape(comment_url)}</loc></url>")
+            url = self._build_comment_url(comment)
+            if url:
+                xml_lines.append(f"  <url><loc>{escape(url)}</loc></url>")
 
         xml_lines.append("</urlset>")
         return "\n".join(xml_lines)

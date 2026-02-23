@@ -210,7 +210,6 @@ class TestDevToMetadataEnhancer(unittest.TestCase):
         """Test Dev.to canonical URL validation."""
         valid_urls = [
             "https://dev.to/user/post-slug",
-            "http://dev.to/user/post-slug",
             "https://dev.to/user/post-slug-123",
         ]
 
@@ -220,6 +219,7 @@ class TestDevToMetadataEnhancer(unittest.TestCase):
             "https://example.com/post",
             "not-a-url",
             "ftp://dev.to/user/post",
+            "http://dev.to/user/post-slug",
         ]
 
         for url in valid_urls:

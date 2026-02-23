@@ -142,19 +142,20 @@ class TestValidateSiteGeneration(unittest.TestCase):
         self.assertTrue(any("Unexpected error" in call for call in print_calls))
 
     @patch("scripts.validate_site_generation.validate_site_generation")
-    def test_main_function_success(self, mock_validate):
+    @patch("sys.exit")
+    def test_main_function_success(self, mock_exit, mock_validate):
         """Test main function with successful validation."""
         mock_validate.return_value = True
 
         with patch("builtins.print") as mock_print:
-            # Import and run main to avoid sys.exit in test
             from scripts.validate_site_generation import main
 
-            try:
-                main()
-            except SystemExit as e:
-                # Should not exit with error code
-                self.fail(f"main() should not exit with error, got: {e}")
+            main()
+
+        # Verify no non-zero exit was called
+        for call in mock_exit.call_args_list:
+            code = call.args[0] if call.args else 0
+            self.assertEqual(code, 0, f"main() should not exit with error, got: sys.exit({code})")
 
         # Check success message was printed
         print_calls = [str(call) for call in mock_print.call_args_list]

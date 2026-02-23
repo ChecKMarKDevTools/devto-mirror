@@ -62,6 +62,7 @@ NEEDS_PIP_AUDIT=false
 for f in "${FILES[@]}"; do
   case "$f" in
     pyproject.toml|uv.lock) NEEDS_PIP_AUDIT=true; break ;;
+    *) ;;
   esac
 done
 if [[ "$NEEDS_PIP_AUDIT" == true ]]; then
@@ -79,6 +80,7 @@ BANDIT_FILES=()
 for f in "${FILES[@]}"; do
   case "$f" in
     src/*.py|scripts/*.py) BANDIT_FILES+=("$f") ;;
+    *) ;;
   esac
 done
 if [[ ${#BANDIT_FILES[@]} -gt 0 ]]; then
@@ -96,6 +98,7 @@ NEEDS_TESTS=false
 for f in "${FILES[@]}"; do
   case "$f" in
     src/*|tests/*) NEEDS_TESTS=true; break ;;
+    *) ;;
   esac
 done
 if [[ "$NEEDS_TESTS" == true ]]; then

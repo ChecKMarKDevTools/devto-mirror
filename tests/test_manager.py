@@ -30,22 +30,22 @@ class TestAIOptimizationManager(unittest.TestCase):
     def test_initialization_with_all_components(self):
         """Test manager initialization with all components."""
         self.assertTrue(self.manager.optimization_enabled)
-        self.assertEqual(self.manager.component_status["schema"], True)
-        self.assertEqual(self.manager.component_status["metadata"], True)
-        self.assertEqual(self.manager.component_status["content"], True)
-        self.assertEqual(self.manager.component_status["cross_reference"], True)
-        self.assertEqual(self.manager.component_status["sitemap"], True)
+        self.assertTrue(self.manager.component_status["schema"])
+        self.assertTrue(self.manager.component_status["metadata"])
+        self.assertTrue(self.manager.component_status["content"])
+        self.assertTrue(self.manager.component_status["cross_reference"])
+        self.assertTrue(self.manager.component_status["sitemap"])
 
     def test_initialization_with_no_components(self):
         """Test manager initialization with no components."""
         empty_manager = AIOptimizationManager()
 
         self.assertTrue(empty_manager.optimization_enabled)
-        self.assertEqual(empty_manager.component_status["schema"], False)
-        self.assertEqual(empty_manager.component_status["metadata"], False)
-        self.assertEqual(empty_manager.component_status["content"], False)
-        self.assertEqual(empty_manager.component_status["cross_reference"], False)
-        self.assertEqual(empty_manager.component_status["sitemap"], False)
+        self.assertFalse(empty_manager.component_status["schema"])
+        self.assertFalse(empty_manager.component_status["metadata"])
+        self.assertFalse(empty_manager.component_status["content"])
+        self.assertFalse(empty_manager.component_status["cross_reference"])
+        self.assertFalse(empty_manager.component_status["sitemap"])
 
     def test_optimize_post_with_all_components(self):
         """Test post optimization with all components working."""
