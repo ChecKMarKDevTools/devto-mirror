@@ -31,9 +31,6 @@ class TestCoverageSmoke(unittest.TestCase):
         from devto_mirror.core.article_fetcher import fetch_all_articles_from_api
         from devto_mirror.core.path_utils import sanitize_filename, sanitize_slug, validate_safe_path
         from devto_mirror.core.run_state import get_last_run_timestamp, mark_no_new_posts, set_last_run_timestamp
-        from devto_mirror.tools.analyze_descriptions import analyze_posts_data
-        from devto_mirror.tools.clean_posts import dedupe_posts, key_for
-        from devto_mirror.tools.fix_slugs import extract_slug_from_url
 
         self.assertEqual(constants.POSTS_DATA_FILE, "posts_data.json")
         self.assertEqual(sanitize_filename("a/b:c"), "a-b-c")
@@ -96,32 +93,6 @@ class TestCoverageSmoke(unittest.TestCase):
             finally:
                 os.environ.clear()
                 os.environ.update(old_env)
-
-            # analyze_descriptions
-            long_desc = "x" * (constants.SEO_DESCRIPTION_WARNING + 1)
-            posts_path = root / "posts_data.json"
-            posts_path.write_text(
-                json.dumps(
-                    [
-                        {"title": "A", "description": long_desc, "link": "https://example.com/a"},
-                        {"title": "B", "description": "", "link": "https://example.com/b"},
-                    ]
-                ),
-                encoding="utf-8",
-            )
-            long, missing = analyze_posts_data(str(posts_path))
-            self.assertEqual(len(long), 1)
-            self.assertEqual(len(missing), 1)
-
-            # clean_posts helpers
-            a = {"link": "https://example.com/post/", "date": "2024-01-01T00:00:00Z"}
-            b = {"link": "https://example.com/post", "date": "2024-01-02T00:00:00Z"}
-            self.assertEqual(key_for(a), "https://example.com/post")
-            deduped = dedupe_posts([a, b])
-            self.assertEqual(len(deduped), 1)
-
-            # fix_slugs helper
-            self.assertEqual(extract_slug_from_url("https://dev.to/me/my-post-123"), "my-post-123")
 
 
 class TestSiteGenerationModules(unittest.TestCase):
@@ -352,45 +323,6 @@ class TestMoreCoverageTargets(unittest.TestCase):
 
             self.assertTrue((root / "index.html").exists())
             self.assertTrue((root / "sitemap.xml").exists())
-
-    def test_analyze_descriptions_generate_report(self):
-        from devto_mirror.tools import analyze_descriptions
-
-        long = [
-            {
-                "title": "T",
-                "url": "https://example.com/t",
-                "description": "x" * 200,
-                "length": 200,
-                "status": "EXCEEDS LIMIT",
-            }
-        ]
-        missing = [{"title": "M", "url": "https://example.com/m", "reason": "Empty"}]
-
-        with patch("builtins.print"):
-            analyze_descriptions.print_summary(long, missing)
-            analyze_descriptions.print_long_descriptions(long)
-            analyze_descriptions.print_missing_descriptions(missing)
-            analyze_descriptions.print_markdown_comment(long, missing)
-            analyze_descriptions.generate_report(long, missing)
-
-    def test_fix_slugs_main_updates_file_in_place(self):
-        from devto_mirror.tools import fix_slugs
-
-        with tempfile.TemporaryDirectory() as td:
-            root = Path(td)
-            posts = [
-                {"title": "A", "link": "https://dev.to/testuser/my-post-123", "slug": "my-post"},
-                {"title": "B", "link": "", "slug": "unchanged"},
-            ]
-            (root / "posts_data.json").write_text(json.dumps(posts), encoding="utf-8")
-
-            with _chdir(root), patch("builtins.print"):
-                fix_slugs.main()
-
-            self.assertTrue((root / "posts_data.json.backup").exists())
-            updated = json.loads((root / "posts_data.json").read_text(encoding="utf-8"))
-            self.assertEqual(updated[0]["slug"], "my-post-123")
 
 
 class TestGeneratorExtra(unittest.TestCase):
