@@ -66,13 +66,13 @@ def _safe_local_link_for_post(post: Any) -> str:
         return ""
 
 
-def add_source_attribution(post: Any, site_config: Optional[Dict[str, str]] = None) -> Dict[str, str]:
+def add_source_attribution(post: Any, _site_config: Optional[Dict[str, str]] = None) -> Dict[str, str]:
     """
     Add enhanced Dev.to source attribution metadata.
 
     Args:
         post: Post object containing Dev.to information
-        site_config: Optional site configuration with attribution settings
+        _site_config: Optional site configuration (reserved for future use)
 
     Returns:
         Dictionary of attribution metadata for templates

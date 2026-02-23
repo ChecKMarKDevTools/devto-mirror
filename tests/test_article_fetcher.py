@@ -20,15 +20,15 @@ from devto_mirror.core.article_fetcher import (
 
 class TestConvertCachedPost(unittest.TestCase):
     def test_non_dict_string_returns_none(self):
-        result = _convert_cached_post_to_devto_article(item="not-a-dict", username="user")
+        result = _convert_cached_post_to_devto_article(item="not-a-dict", username="user")  # NOSONAR
         self.assertIsNone(result)
 
     def test_non_dict_list_returns_none(self):
-        result = _convert_cached_post_to_devto_article(item=[1, 2, 3], username="user")
+        result = _convert_cached_post_to_devto_article(item=[1, 2, 3], username="user")  # NOSONAR
         self.assertIsNone(result)
 
     def test_non_dict_none_returns_none(self):
-        result = _convert_cached_post_to_devto_article(item=None, username="user")
+        result = _convert_cached_post_to_devto_article(item=None, username="user")  # NOSONAR
         self.assertIsNone(result)
 
     def test_api_data_not_dict_treated_as_empty(self):
@@ -199,7 +199,7 @@ class TestFetchFullArticles(unittest.TestCase):
         mock_session = MagicMock(spec=requests.Session)
         mock_create_session.return_value = mock_session
         with patch("devto_mirror.core.article_fetcher._fetch_full_article_json", return_value={"id": 1}):
-            full, failed = _fetch_full_articles(article_summaries=[{"id": 1}])
+            full, _failed = _fetch_full_articles(article_summaries=[{"id": 1}])
         mock_session.close.assert_called_once()
         self.assertEqual(len(full), 1)
 
@@ -224,7 +224,7 @@ class TestFetchFullArticles(unittest.TestCase):
             patch("devto_mirror.core.article_fetcher._fetch_full_article_json", return_value={"id": 1}),
             patch("devto_mirror.core.article_fetcher.time.sleep") as mock_sleep,
         ):
-            full, failed = _fetch_full_articles(article_summaries=[{"id": 1}])
+            full, _failed = _fetch_full_articles(article_summaries=[{"id": 1}])
         mock_sleep.assert_not_called()
         self.assertEqual(len(full), 1)
 
