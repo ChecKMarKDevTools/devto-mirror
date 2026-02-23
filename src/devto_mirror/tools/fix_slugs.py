@@ -38,7 +38,7 @@ def _safe_path(path: pathlib.Path, base: pathlib.Path) -> pathlib.Path:
 
 def main():
     """Fix slugs in posts_data.json"""
-    base_dir = pathlib.Path(__file__).resolve().parents[3]
+    base_dir = pathlib.Path.cwd()
     posts_file = _safe_path(base_dir / "posts_data.json", base_dir)
 
     if not posts_file.exists():
