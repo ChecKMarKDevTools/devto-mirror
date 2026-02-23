@@ -3,11 +3,17 @@ Tests for the Dev.to API client utilities.
 """
 
 import unittest
+from datetime import timezone
 from unittest.mock import MagicMock, patch
 
 import requests
 
-from devto_mirror.core.api_client import create_devto_session, fetch_page_with_retry, filter_new_articles
+from devto_mirror.core.api_client import (
+    _parse_api_timestamp,
+    create_devto_session,
+    fetch_page_with_retry,
+    filter_new_articles,
+)
 
 
 class TestCreateDevtoSession(unittest.TestCase):
@@ -348,6 +354,61 @@ class TestFilterNewArticles(unittest.TestCase):
         result = filter_new_articles(articles, last_run)
 
         self.assertEqual([a["id"] for a in result], [1])
+
+
+class TestParseApiTimestamp(unittest.TestCase):
+    """Test cases for the _parse_api_timestamp helper."""
+
+    def test_none_returns_none(self):
+        self.assertIsNone(_parse_api_timestamp(None))
+
+    def test_empty_string_returns_none(self):
+        self.assertIsNone(_parse_api_timestamp(""))
+
+    def test_zero_returns_none(self):
+        self.assertIsNone(_parse_api_timestamp(0))
+
+    def test_invalid_string_returns_none(self):
+        self.assertIsNone(_parse_api_timestamp("not-a-date"))
+
+    def test_valid_z_suffix_utc_string(self):
+        result = _parse_api_timestamp("2024-01-01T00:00:00Z")
+        self.assertIsNotNone(result)
+        self.assertIsNotNone(result.tzinfo)
+        self.assertEqual(result.year, 2024)
+
+    def test_naive_datetime_string_gets_utc(self):
+        """Naive ISO string (no timezone) should be given UTC tzinfo."""
+        result = _parse_api_timestamp("2024-06-15T12:30:00")
+        self.assertIsNotNone(result)
+        self.assertEqual(result.tzinfo, timezone.utc)
+        self.assertEqual(result.hour, 12)
+
+    def test_timezone_aware_string(self):
+        result = _parse_api_timestamp("2024-01-01T00:00:00+00:00")
+        self.assertIsNotNone(result)
+        self.assertIsNotNone(result.tzinfo)
+
+
+class TestFilterNewArticlesExtra(unittest.TestCase):
+    """Extra coverage for filter_new_articles – naive last_run_iso normalization."""
+
+    def test_naive_last_run_iso_is_utc_normalized(self):
+        """last_run_iso without timezone → treated as UTC (line 149 in api_client)."""
+        articles = [
+            {"id": 1, "published_at": "2024-01-03T00:00:00Z"},
+            {"id": 2, "published_at": "2024-01-01T00:00:00Z"},
+        ]
+        # "2024-01-02T00:00:00" has no timezone; should be treated as UTC
+        result = filter_new_articles(articles, "2024-01-02T00:00:00")
+        self.assertEqual(len(result), 1)
+        self.assertEqual(result[0]["id"], 1)
+
+    def test_all_articles_none_timestamp_skipped(self):
+        """Articles with only None/missing timestamps are all skipped."""
+        articles = [{"id": 1}, {"id": 2}]
+        result = filter_new_articles(articles, "2024-01-02T00:00:00+00:00")
+        self.assertEqual(result, [])
 
 
 if __name__ == "__main__":

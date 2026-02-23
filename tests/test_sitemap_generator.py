@@ -346,5 +346,249 @@ class TestDevToAISitemapGenerator(unittest.TestCase):
         self.assertGreaterEqual(len(urls), 1)
 
 
+class TestBuildPostUrl(unittest.TestCase):
+    """Tests for DevToAISitemapGenerator._build_post_url"""
+
+    def setUp(self):
+        self.generator = DevToAISitemapGenerator("https://example.com", "Test Site")
+
+    def test_returns_canonical_link_when_present(self):
+        post = Mock()
+        post.configure_mock(**{"link": "https://dev.to/user/post-123", "slug": "post-123"})
+        url = self.generator._build_post_url(post)
+        self.assertEqual(url, "https://dev.to/user/post-123")
+
+    def test_falls_back_to_slug_when_no_link(self):
+        post = Mock()
+        post.configure_mock(**{"link": "", "slug": "my-post-slug"})
+        url = self.generator._build_post_url(post)
+        self.assertIn("my-post-slug", url)
+        self.assertIn("https://example.com", url)
+
+    def test_slug_fallback_without_site_url(self):
+        generator = DevToAISitemapGenerator("", "Test Site")
+        post = Mock()
+        post.configure_mock(**{"link": "", "slug": "my-post"})
+        url = generator._build_post_url(post)
+        self.assertIn("my-post", url)
+        self.assertTrue(url.startswith("/posts/"))
+
+    def test_returns_empty_when_no_link_and_no_slug(self):
+        post = Mock()
+        post.configure_mock(**{"link": "", "slug": ""})
+        url = self.generator._build_post_url(post)
+        self.assertEqual(url, "")
+
+
+class TestBuildCommentUrl(unittest.TestCase):
+    """Tests for DevToAISitemapGenerator._build_comment_url"""
+
+    def setUp(self):
+        self.generator = DevToAISitemapGenerator("https://example.com", "Test Site")
+
+    def test_returns_absolute_url_unchanged(self):
+        comment = {"url": "https://dev.to/comment/abc", "local": "comments/abc.html"}
+        url = self.generator._build_comment_url(comment)
+        self.assertEqual(url, "https://dev.to/comment/abc")
+
+    def test_constructs_url_from_local_path(self):
+        comment = {"local": "comments/abc.html"}
+        url = self.generator._build_comment_url(comment)
+        self.assertIn("comments/abc.html", url)
+        self.assertIn("example.com", url)
+
+    def test_local_path_without_site_url(self):
+        generator = DevToAISitemapGenerator("", "Test Site")
+        comment = {"local": "comments/abc.html"}
+        url = generator._build_comment_url(comment)
+        self.assertEqual(url, "comments/abc.html")
+
+    def test_empty_comment_returns_empty_string(self):
+        comment = {}
+        url = self.generator._build_comment_url(comment)
+        self.assertEqual(url, "")
+
+
+class TestGenerateBasicSitemap(unittest.TestCase):
+    """Tests for _generate_basic_sitemap (the fallback path)."""
+
+    def setUp(self):
+        self.generator = DevToAISitemapGenerator("https://example.com", "Test Site")
+
+    def test_includes_home_page(self):
+        sitemap = self.generator._generate_basic_sitemap([], [])
+        self.assertIn("https://example.com", sitemap)
+
+    def test_includes_post_canonical_url(self):
+        post = Mock()
+        post.configure_mock(**{"link": "https://dev.to/user/post-1", "slug": "post-1"})
+        sitemap = self.generator._generate_basic_sitemap([post], [])
+        self.assertIn("dev.to/user/post-1", sitemap)
+
+    def test_includes_comment_url(self):
+        comment = {"url": "https://dev.to/comment/abc", "local": "comments/abc.html"}
+        sitemap = self.generator._generate_basic_sitemap([], [comment])
+        self.assertIn("comment/abc", sitemap)
+
+    def test_post_with_no_url_or_slug_skipped(self):
+        post = Mock()
+        post.configure_mock(**{"link": "", "slug": ""})
+        sitemap = self.generator._generate_basic_sitemap([post], [])
+        # Should not raise; only home page in output
+        self.assertIn("example.com", sitemap)
+
+
+class TestCreateCommentUrlEntry(unittest.TestCase):
+    """Tests for _create_comment_url_entry – the method called from generate_main_sitemap."""
+
+    def setUp(self):
+        self.generator = DevToAISitemapGenerator("https://example.com", "Test Site")
+
+    def test_comment_with_empty_url_and_local_returns_none(self):
+        entry = self.generator._create_comment_url_entry({})
+        self.assertIsNone(entry)
+
+    def test_comment_with_local_path_gets_site_prefix(self):
+        entry = self.generator._create_comment_url_entry({"local": "comments/abc.html"})
+        self.assertIsNotNone(entry)
+        self.assertIn("example.com", entry["loc"])
+
+    def test_comment_with_absolute_url_kept_as_is(self):
+        entry = self.generator._create_comment_url_entry({"url": "https://dev.to/comment/abc"})
+        self.assertIsNotNone(entry)
+        self.assertIn("comment/abc", entry["loc"])
+
+
+class TestCreatePostUrlEntry(unittest.TestCase):
+    """Tests for _create_post_url_entry edge cases."""
+
+    def setUp(self):
+        self.generator = DevToAISitemapGenerator("https://example.com", "Test Site")
+
+    def test_post_with_no_link_and_no_slug_returns_none(self):
+        post = Mock()
+        post.configure_mock(**{"link": "", "slug": "", "date": None, "api_data": {}})
+        entry = self.generator._create_post_url_entry(post)
+        self.assertIsNone(entry)
+
+    def test_post_with_slug_builds_local_url(self):
+        post = Mock()
+        post.configure_mock(**{"link": "", "slug": "my-slug", "date": None, "api_data": {}})
+        entry = self.generator._create_post_url_entry(post)
+        self.assertIsNotNone(entry)
+        self.assertIn("my-slug", entry["loc"])
+
+
+class TestCreateDiscoveryEntry(unittest.TestCase):
+    """Tests for _create_discovery_entry."""
+
+    def setUp(self):
+        self.generator = DevToAISitemapGenerator("https://example.com", "Test Site")
+
+    def test_creates_entry_with_all_fields(self):
+        post = Mock()
+        post.configure_mock(
+            **{
+                "title": "Test Post",
+                "description": "A test description",
+                "link": "https://dev.to/user/test-post",
+                "date": "2024-01-01T00:00:00Z",
+                "tags": ["python", "test"],
+                "api_data": {"reading_time_minutes": 5, "public_reactions_count": 10},
+            }
+        )
+        entry = self.generator._create_discovery_entry(post)
+        self.assertIsNotNone(entry)
+        self.assertIn("Test Post", entry["title"])
+        self.assertEqual(entry["readingTime"], 5)
+        self.assertEqual(entry["reactions"], 10)
+
+    def test_creates_entry_with_no_api_data(self):
+        post = Mock()
+        post.configure_mock(
+            **{
+                "title": "Simple Post",
+                "description": "",
+                "link": "https://dev.to/user/simple",
+                "date": "2024-01-01T00:00:00Z",
+                "tags": [],
+                "api_data": {},
+            }
+        )
+        entry = self.generator._create_discovery_entry(post)
+        self.assertIsNotNone(entry)
+
+
+class TestGenerateDiscoveryXml(unittest.TestCase):
+    """Tests for _generate_discovery_xml."""
+
+    def setUp(self):
+        self.generator = DevToAISitemapGenerator("https://example.com", "Test Site")
+
+    def test_skips_entry_without_title_or_link(self):
+        entries = [
+            {"title": "", "link": "https://example.com/post"},  # no title
+            {"title": "Valid Post", "link": "https://example.com/valid"},  # valid
+        ]
+        xml = self.generator._generate_discovery_xml(entries)
+        self.assertIn("Valid Post", xml)
+
+    def test_includes_tags_as_categories(self):
+        entries = [
+            {
+                "title": "Tagged Post",
+                "link": "https://example.com/tagged",
+                "description": "desc",
+                "pubDate": "",
+                "tags": ["python", "tutorial"],
+                "readingTime": 0,
+                "reactions": 0,
+            }
+        ]
+        xml = self.generator._generate_discovery_xml(entries)
+        self.assertIn("<category>python</category>", xml)
+
+    def test_includes_reading_time_and_reactions(self):
+        entries = [
+            {
+                "title": "T",
+                "link": "https://example.com/t",
+                "description": "",
+                "pubDate": "",
+                "tags": [],
+                "readingTime": 7,
+                "reactions": 42,
+            }
+        ]
+        xml = self.generator._generate_discovery_xml(entries)
+        self.assertIn("7", xml)
+        self.assertIn("42", xml)
+
+
+class TestCategorizePosts(unittest.TestCase):
+    """Tests for _categorize_posts_by_type."""
+
+    def setUp(self):
+        self.generator = DevToAISitemapGenerator("https://example.com", "Test Site")
+
+    def test_unknown_type_goes_to_article(self):
+        post = Mock()
+        post.configure_mock(**{"tags": ["random_unknown_tag_xyz"], "api_data": {}})
+        result = self.generator._categorize_posts_by_type([post])
+        self.assertIn(post, result["article"])
+
+    def test_tutorial_post_categorized_correctly(self):
+        post = Mock()
+        post.configure_mock(**{"tags": ["python", "tutorial"], "api_data": {}})
+        result = self.generator._categorize_posts_by_type([post])
+        self.assertIn(post, result["tutorial"])
+
+    def test_posts_with_api_data_tags_used_as_fallback(self):
+        post = Mock()
+        post.configure_mock(**{"tags": [], "api_data": {"tags": ["career", "job"]}})
+        result = self.generator._categorize_posts_by_type([post])
+        self.assertIn(post, result["career"])
+
+
 if __name__ == "__main__":
     unittest.main()
