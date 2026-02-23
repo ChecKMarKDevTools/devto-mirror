@@ -251,11 +251,11 @@ class CrawlerAccessTester:
             total_pages = sum(summary_stats.values())
             accessible_pages = summary_stats["accessible"]
 
-            status = "✅ ACCESSIBLE"
-            if accessible_pages == 0:
-                status = "❌ BLOCKED"
-            elif accessible_pages < total_pages:
-                status = "⚠️  PARTIAL"
+            status = (
+                "❌ BLOCKED"
+                if accessible_pages == 0
+                else "⚠️  PARTIAL" if accessible_pages < total_pages else "✅ ACCESSIBLE"
+            )
 
             print(f"{crawler_name:20} {status:12} ({accessible_pages}/{total_pages} pages)")
 

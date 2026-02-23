@@ -166,26 +166,25 @@ class GitHubPagesCrawlerAnalyzer:
 
         # Check crawler access results
         crawler_summary = self.analysis_results.get("actual_crawler_access", {}).get("summary", {})
-        if crawler_summary:
-            total_crawlers = crawler_summary.get("total_crawlers_tested", 0)
-            fully_accessible = crawler_summary.get("fully_accessible", 0)
+        total_crawlers = crawler_summary.get("total_crawlers_tested", 0)
+        fully_accessible = crawler_summary.get("fully_accessible", 0)
 
-            if fully_accessible == total_crawlers and total_crawlers > 0:
-                recommendations.append(
-                    {
-                        "type": "positive",
-                        "category": "access",
-                        "message": f"✅ All {total_crawlers} tested crawlers have full access to the site",
-                    }
-                )
-            elif crawler_summary.get("fully_blocked", 0) > 0:
-                recommendations.append(
-                    {
-                        "type": "warning",
-                        "category": "access",
-                        "message": f"⚠️  {crawler_summary['fully_blocked']} crawlers are completely blocked",
-                    }
-                )
+        if fully_accessible == total_crawlers and total_crawlers > 0:
+            recommendations.append(
+                {
+                    "type": "positive",
+                    "category": "access",
+                    "message": f"✅ All {total_crawlers} tested crawlers have full access to the site",
+                }
+            )
+        elif crawler_summary.get("fully_blocked", 0) > 0:
+            recommendations.append(
+                {
+                    "type": "warning",
+                    "category": "access",
+                    "message": f"⚠️  {crawler_summary['fully_blocked']} crawlers are completely blocked",
+                }
+            )
 
         # Check comparison results
         comparison = self.analysis_results.get("comparison", {})
@@ -259,6 +258,19 @@ class GitHubPagesCrawlerAnalyzer:
 
         return self.analysis_results
 
+    def _print_robots_analysis_section(self, robots_analysis):
+        """Print the robots.txt analysis section of the summary."""
+        if robots_analysis.get("accessible"):
+            analysis = robots_analysis.get("analysis", {})
+            print(f"✅ robots.txt accessible ({robots_analysis.get('content_length', 0)} bytes)")
+            print(f"Universal Allow: {'✅ Yes' if analysis.get('universal_allow') else '❌ No'}")
+            print(f"Has Restrictions: {'⚠️  Yes' if analysis.get('has_restrictions') else '✅ No'}")
+            print(f"Specific Agent Rules: {analysis.get('total_specific_agents', 0)}")
+            if robots_analysis.get("sitemap_url"):
+                print(f"Sitemap URL: {robots_analysis['sitemap_url']}")
+        else:
+            print(f"❌ robots.txt not accessible: {robots_analysis.get('error', 'Unknown error')}")
+
     def _print_analysis_summary(self):
         """Print a human-readable analysis summary."""
         print("\n" + "=" * 70)
@@ -272,17 +284,7 @@ class GitHubPagesCrawlerAnalyzer:
         print("\nROBOTS.TXT ANALYSIS:")
         print("-" * 30)
         robots_analysis = self.analysis_results.get("robots_txt_analysis", {})
-        if robots_analysis.get("accessible"):
-            analysis = robots_analysis.get("analysis", {})
-            print(f"✅ robots.txt accessible ({robots_analysis.get('content_length', 0)} bytes)")
-            print(f"Universal Allow: {'✅ Yes' if analysis.get('universal_allow') else '❌ No'}")
-            print(f"Has Restrictions: {'⚠️  Yes' if analysis.get('has_restrictions') else '✅ No'}")
-            print(f"Specific Agent Rules: {analysis.get('total_specific_agents', 0)}")
-
-            if robots_analysis.get("sitemap_url"):
-                print(f"Sitemap URL: {robots_analysis['sitemap_url']}")
-        else:
-            print(f"❌ robots.txt not accessible: {robots_analysis.get('error', 'Unknown error')}")
+        self._print_robots_analysis_section(robots_analysis)
 
         # Crawler Access Summary
         print("\nCRAWLER ACCESS SUMMARY:")

@@ -529,6 +529,23 @@ class DevToAISitemapGenerator:
 
         return "\n".join(xml_lines)
 
+    def _build_post_url(self, post: Any) -> str:
+        """Return the best URL for a post: canonical first, then local slug-based."""
+        canonical_url = getattr(post, "link", "")
+        if canonical_url:
+            return canonical_url
+        slug = getattr(post, "slug", "")
+        if slug:
+            return f"{self.site_url}/posts/{slug}.html" if self.site_url else f"/posts/{slug}.html"
+        return ""
+
+    def _build_comment_url(self, comment: Dict[str, Any]) -> str:
+        """Return the absolute URL for a comment entry."""
+        url = comment.get("url") or comment.get("local", "")
+        if url and not url.startswith("http") and self.site_url:
+            return f"{self.site_url}/{url.lstrip('/')}"
+        return url
+
     def _generate_basic_sitemap(self, posts: List[Any], comments: List[Dict[str, Any]]) -> str:
         """
         Generate basic sitemap as fallback when AI optimization fails.
@@ -551,22 +568,15 @@ class DevToAISitemapGenerator:
 
         # Add posts
         for post in posts:
-            canonical_url = getattr(post, "link", "")
-            if canonical_url:
-                xml_lines.append(f"  <url><loc>{escape(canonical_url)}</loc></url>")
-            else:
-                slug = getattr(post, "slug", "")
-                if slug:
-                    post_url = f"{self.site_url}/posts/{slug}.html" if self.site_url else f"/posts/{slug}.html"
-                    xml_lines.append(f"  <url><loc>{escape(post_url)}</loc></url>")
+            url = self._build_post_url(post)
+            if url:
+                xml_lines.append(f"  <url><loc>{escape(url)}</loc></url>")
 
         # Add comments
         for comment in comments:
-            comment_url = comment.get("url") or comment.get("local", "")
-            if comment_url:
-                if not comment_url.startswith("http") and self.site_url:
-                    comment_url = f"{self.site_url}/{comment_url.lstrip('/')}"
-                xml_lines.append(f"  <url><loc>{escape(comment_url)}</loc></url>")
+            url = self._build_comment_url(comment)
+            if url:
+                xml_lines.append(f"  <url><loc>{escape(url)}</loc></url>")
 
         xml_lines.append("</urlset>")
         return "\n".join(xml_lines)
