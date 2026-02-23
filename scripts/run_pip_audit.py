@@ -28,6 +28,31 @@ def _is_strict() -> bool:
     return os.getenv("CI") == "true" or os.getenv("GITHUB_ACTIONS") == "true"
 
 
+def _run_pip_audit(cmd: list, timeout_seconds: int, strict: bool) -> "subprocess.CompletedProcess | int":
+    """Run pip-audit subprocess, returning CompletedProcess or an int exit code on error."""
+    try:
+        return subprocess.run(  # nosec B603
+            cmd,
+            capture_output=True,
+            text=True,
+            timeout=timeout_seconds,
+        )
+    except KeyboardInterrupt:
+        print(
+            "WARNING: pip-audit was interrupted (likely a long-running network call).",
+            file=sys.stderr,
+        )
+    except subprocess.TimeoutExpired:
+        msg = (
+            f"WARNING: pip-audit timed out after {timeout_seconds}s. "
+            "Set PIP_AUDIT_TIMEOUT_SECONDS to raise/lower this."
+        )
+        print(msg, file=sys.stderr)
+    except Exception as e:
+        print(f"WARNING: pip-audit failed to run: {e}", file=sys.stderr)
+    return 1 if strict else 0
+
+
 def main() -> int:
     strict = _is_strict()
 
@@ -50,29 +75,9 @@ def main() -> int:
         "--skip-editable",
     ]
 
-    try:
-        result = subprocess.run(  # nosec B603
-            cmd,
-            capture_output=True,
-            text=True,
-            timeout=timeout_seconds,
-        )
-    except KeyboardInterrupt:
-        print(
-            "WARNING: pip-audit was interrupted (likely a long-running network call).",
-            file=sys.stderr,
-        )
-        return 1 if strict else 0
-    except subprocess.TimeoutExpired:
-        msg = (
-            f"WARNING: pip-audit timed out after {timeout_seconds}s. "
-            "Set PIP_AUDIT_TIMEOUT_SECONDS to raise/lower this."
-        )
-        print(msg, file=sys.stderr)
-        return 1 if strict else 0
-    except Exception as e:
-        print(f"WARNING: pip-audit failed to run: {e}", file=sys.stderr)
-        return 1 if strict else 0
+    result = _run_pip_audit(cmd, timeout_seconds, strict)
+    if isinstance(result, int):
+        return result
 
     # pip-audit return codes:
     # - 0: no vulns

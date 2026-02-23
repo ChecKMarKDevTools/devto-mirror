@@ -170,22 +170,22 @@ def _validate_footers(footers) -> bool:
         )
         return False
 
-    for token, value in parsed:
-        if token == BREAKING_CHANGE_TOKEN:
-            if not value:
-                print("BREAKING CHANGE footer must include a description", file=sys.stderr)
+    try:
+        for token, value in parsed:
+            if token == BREAKING_CHANGE_TOKEN:
+                if not value:
+                    print("BREAKING CHANGE footer must include a description", file=sys.stderr)
+                    return False
+                continue
+            if token not in FOOTER_VALIDATORS:
+                print("Unknown footer token:", token, file=sys.stderr)
                 return False
-            continue
-        if token not in FOOTER_VALIDATORS:
-            print("Unknown footer token:", token, file=sys.stderr)
-            return False
-        try:
             ok = FOOTER_VALIDATORS[token](value)
-        except ValueError as e:
-            print(str(e), file=sys.stderr)
-            return False
-        if not ok:
-            return False
+            if not ok:
+                return False
+    except ValueError as e:
+        print(str(e), file=sys.stderr)
+        return False
     return True
 
 

@@ -100,6 +100,19 @@ def fetch_page_with_retry(
     return None
 
 
+def _parse_api_timestamp(value: object) -> datetime | None:
+    """Parse a Dev.to API timestamp string to a timezone-aware datetime."""
+    if not value:
+        return None
+    try:
+        dt = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except (ValueError, TypeError):
+        return None
+    if dt.tzinfo is None:
+        return dt.replace(tzinfo=timezone.utc)
+    return dt
+
+
 def filter_new_articles(data: List[dict], last_run_iso: Optional[str]) -> List[dict]:
     """
     Filter articles to only include those published after last run.
@@ -134,17 +147,6 @@ def filter_new_articles(data: List[dict], last_run_iso: Optional[str]) -> List[d
     # Normalize naive datetimes to UTC for safe comparison.
     if last_run_dt.tzinfo is None:
         last_run_dt = last_run_dt.replace(tzinfo=timezone.utc)
-
-    def _parse_api_timestamp(value: object) -> datetime | None:
-        if not value:
-            return None
-        try:
-            dt = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
-        except (ValueError, TypeError):
-            return None
-        if dt.tzinfo is None:
-            return dt.replace(tzinfo=timezone.utc)
-        return dt
 
     def _activity_timestamp(article: dict) -> datetime | None:
         # Dev.to commonly provides: created_at, published_at, edited_at.

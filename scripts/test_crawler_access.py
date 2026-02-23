@@ -20,15 +20,11 @@ import requests
 CRAWLER_USER_AGENTS = {
     "Googlebot": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
     "Bingbot": "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)",
-    "GPTBot": (
-        "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; " "+https://openai.com/gptbot)"
-    ),
+    "GPTBot": "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.0; +https://openai.com/gptbot)",
     "ClaudeBot": (
-        "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; ClaudeBot/1.0; " "+claudebot@anthropic.com)"
+        "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; " + "ClaudeBot/1.0; +claudebot@anthropic.com)"
     ),
-    "Claude-Web": (
-        "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-Web/1.0; " "+https://claude.ai/)"
-    ),
+    "Claude-Web": "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Claude-Web/1.0; +https://claude.ai/)",
     "PerplexityBot": (
         "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; PerplexityBot/1.0; "
         "+https://perplexity.ai/bot)"
@@ -41,7 +37,7 @@ CRAWLER_USER_AGENTS = {
     "CCBot": "Mozilla/5.0 (compatible; CCBot/2.0; https://commoncrawl.org/faq/)",
     "facebookexternalhit": "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)",
     "Twitterbot": "Twitterbot/1.0",
-    "LinkedInBot": ("LinkedInBot/1.0 (compatible; Mozilla/5.0; Apache-HttpClient " "+http://www.linkedin.com)"),
+    "LinkedInBot": "LinkedInBot/1.0 (compatible; Mozilla/5.0; Apache-HttpClient +http://www.linkedin.com)",
 }
 
 # Test pages to check (relative to base URL)
