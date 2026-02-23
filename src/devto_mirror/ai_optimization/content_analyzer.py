@@ -351,7 +351,7 @@ class DevToContentAnalyzer:
             if normalized:
                 normalized_languages.append(normalized)
 
-        return sorted(list(set(normalized_languages)))
+        return sorted(set(normalized_languages))
 
     def _extract_code_block_content(self, content: str) -> str:
         """Extract text content from code blocks for language detection."""
