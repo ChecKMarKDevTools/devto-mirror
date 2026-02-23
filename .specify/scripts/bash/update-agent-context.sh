@@ -117,7 +117,7 @@ cleanup() {
     local exit_code=$?
     rm -f /tmp/agent_update_*_$$
     rm -f /tmp/manual_additions_$$
-    return $exit_code
+    exit $exit_code
 }
 
 # Set up cleanup trap
@@ -311,7 +311,7 @@ create_new_agent_file() {
     commands=$(get_commands_for_language "$NEW_LANG")
     
     local language_conventions
-    language_conventions=$(get_language_conventions "$NEW_LANG")
+    language_conventions=$(get_language_conventions "$escaped_lang")
     
     # Perform substitutions with error checking using safer approach
     # Escape special characters for sed by using a different delimiter or escaping

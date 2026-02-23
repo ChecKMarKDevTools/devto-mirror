@@ -330,8 +330,6 @@ class TestGeneratorExtra(unittest.TestCase):
 
     def _import_generator(self):
         """Import generator with VALIDATION_MODE=true and required env vars set."""
-        import importlib
-
         importlib.sys.modules.pop("devto_mirror.site_generation.generator", None)
         return importlib.import_module("devto_mirror.site_generation.generator")
 

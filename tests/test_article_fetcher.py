@@ -237,7 +237,7 @@ class TestFetchFullArticles(unittest.TestCase):
             "devto_mirror.core.article_fetcher._fetch_full_article_json",
             side_effect=[{"id": 1}, {"id": 2}],
         ):
-            full, failed = _fetch_full_articles(article_summaries=[{"id": 1}, {"id": 2}])
+            _fetch_full_articles(article_summaries=[{"id": 1}, {"id": 2}])
         # Sleep called once between articles (not after the last one)
         self.assertEqual(mock_sleep.call_count, 1)
         mock_sleep.assert_called_with(0.8)
