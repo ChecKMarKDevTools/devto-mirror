@@ -382,8 +382,8 @@ class DevToMetadataEnhancer:
         if not url or not isinstance(url, str):
             return False
 
-        # Check if it's a Dev.to URL
-        return DEVTO_DOMAIN in url.lower() and url.startswith(("http://", "https://"))
+        # Check if it's a Dev.to URL (canonical URLs must use HTTPS)
+        return DEVTO_DOMAIN in url.lower() and url.startswith("https://")
 
     def _extract_username_from_devto_url(self, url: str) -> str:
         """
