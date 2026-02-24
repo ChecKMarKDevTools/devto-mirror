@@ -12,8 +12,7 @@ updates:
     assignees:
       - "anchildress1"
     commit-message:
-      prefix: "deps"
-      prefix-development: "deps-dev"
+      prefix: "chore"
       include: "scope"
 
   # Enable version updates for GitHub Actions
