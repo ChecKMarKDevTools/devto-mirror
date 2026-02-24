@@ -117,7 +117,7 @@ cleanup() {
     local exit_code=$?
     rm -f /tmp/agent_update_*_$$
     rm -f /tmp/manual_additions_$$
-    exit $exit_code
+    return $exit_code
 }
 
 # Set up cleanup trap
@@ -745,10 +745,10 @@ main() {
     
     if [[ "$success" == true ]]; then
         log_success "Agent context update completed successfully"
-        exit 0
+        return 0
     else
         log_error "Agent context update completed with errors"
-        exit 1
+        return 1
     fi
 }
 
