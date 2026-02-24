@@ -6,7 +6,7 @@ The package is organized with application code in the `src/` directory
 following standard Python packaging conventions.
 """
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __author__ = "Ashley Childress"
 
 # Make ai_optimization available at package level

@@ -11,6 +11,13 @@ have to reverse-engineer intent from commit archaeology and caffeine stains.
 
 ---
 
+## [1.0.1](https://github.com/ChecKMarKDevTools/devto-mirror/compare/v1.0.0...v1.0.1) (2026-02-24)
+
+
+### Bug Fixes
+
+* sonarqube issues + cleanup ([#62](https://github.com/ChecKMarKDevTools/devto-mirror/issues/62)) ([e54022c](https://github.com/ChecKMarKDevTools/devto-mirror/commit/e54022cfb929dce2dff2e54f6e525dc3bb80ccb1))
+
 ## [1.0.0](https://github.com/ChecKMarKDevTools/devto-mirror/compare/v0.1.0...v1.0.0) (2026-02-01) 🚀
 
 > _We made it to 1.0.0. Nobody panic. The site still renders._
