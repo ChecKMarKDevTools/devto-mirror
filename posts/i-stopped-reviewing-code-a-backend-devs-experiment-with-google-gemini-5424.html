@@ -1,0 +1,475 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<title>I Stopped Reviewing Code: A Backend Dev’s Experiment with Google Gemini</title>
+<link rel="canonical" href="https://dev.to/anchildress1/i-stopped-reviewing-code-a-backend-devs-experiment-with-google-gemini-5424">
+<meta name="description" content="I stopped reviewing code and let Google Gemini build my UI. Then I audited the results to see what autonomy in AI development actually produces.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dev.to/anchildress1/i-stopped-reviewing-code-a-backend-devs-experiment-with-google-gemini-5424">
+<meta property="og:title" content="I Stopped Reviewing Code: A Backend Dev’s Experiment with Google Gemini">
+<meta property="og:description" content="I stopped reviewing code and let Google Gemini build my UI. Then I audited the results to see what autonomy in AI development actually produces.">
+<meta property="og:image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F489ex4jl35lliprm37eh.jpg">
+<meta property="og:site_name" content="anchildress1—Dev.to Mirror">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://dev.to/anchildress1/i-stopped-reviewing-code-a-backend-devs-experiment-with-google-gemini-5424">
+<meta name="twitter:title" content="I Stopped Reviewing Code: A Backend Dev’s Experiment with Google Gemini">
+<meta name="twitter:description" content="I stopped reviewing code and let Google Gemini build my UI. Then I audited the results to see what autonomy in AI development actually produces.">
+<meta name="twitter:image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F489ex4jl35lliprm37eh.jpg">
+
+<!-- LinkedIn -->
+<meta property="linkedin:title" content="I Stopped Reviewing Code: A Backend Dev’s Experiment with Google Gemini">
+<meta property="linkedin:description" content="I stopped reviewing code and let Google Gemini build my UI. Then I audited the results to see what autonomy in AI development actually produces.">
+<meta property="linkedin:image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F489ex4jl35lliprm37eh.jpg">
+
+<!-- Additional Social Meta -->
+<meta name="image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F489ex4jl35lliprm37eh.jpg">
+<meta name="author" content="Ashley Childress">
+<meta name="keywords" content="devchallenge, geminireflections, gemini">
+
+<!-- AI-Specific Enhanced Metadata -->
+
+
+<meta name="article:author" content="Ashley Childress">
+
+<meta name="article:published_time" content="2026-03-04T00:02:48Z">
+
+<meta name="content-type" content="challenge">
+
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+<meta name="content-language" content="en">
+
+<meta name="generator" content="anchildress1—Dev.to Mirror AI-Optimized Mirror">
+
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<meta name="theme-color" content="#000000">
+
+<meta name="canonical" content="https://dev.to/anchildress1/i-stopped-reviewing-code-a-backend-devs-experiment-with-google-gemini-5424">
+
+<meta name="source-platform" content="dev.to">
+
+<meta name="source-url" content="https://dev.to/anchildress1/i-stopped-reviewing-code-a-backend-devs-experiment-with-google-gemini-5424">
+
+<meta name="source-author-profile" content="https://dev.to/anchildress1">
+
+<meta name="source-post-id" content="3307084">
+
+<meta name="original-published-date" content="2026-03-04T00:02:48Z">
+
+<meta name="reading-time" content="5 minutes">
+
+<meta name="devto:reactions" content="41">
+
+<meta name="devto:comments" content="10">
+
+<meta name="devto:engagement_score" content="61">
+
+<meta name="content-fingerprint" content="19b6a2f2c2fa3dbd">
+
+
+
+<!-- Cross-Reference Attribution Meta Tags -->
+
+
+<meta name="article:author" content="Ashley Childress">
+
+<meta name="article:publisher" content="Dev.to">
+
+<meta name="article:source" content="Dev.to">
+
+<meta name="content:source" content="https://dev.to/anchildress1/i-stopped-reviewing-code-a-backend-devs-experiment-with-google-gemini-5424">
+
+<meta name="content:original_publisher" content="Dev.to">
+
+<meta name="article:published_time" content="2026-03-04T00:02:48Z">
+
+
+
+<!-- JSON-LD Structured Data -->
+
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "Ashley Childress", "url": "https://dev.to/anchildress1"}, "dateModified": "2026-03-04T00:02:48Z", "datePublished": "2026-03-04T00:02:48Z", "description": "I stopped reviewing code and let Google Gemini build my UI. Then I audited the results to see what autonomy in AI development actually produces.", "headline": "I Stopped Reviewing Code: A Backend Dev\u2019s Experiment with Google Gemini", "image": {"@type": "ImageObject", "height": 500, "url": "https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F489ex4jl35lliprm37eh.jpg", "width": 1000}, "inLanguage": "en", "interactionStatistic": [{"@type": "InteractionCounter", "interactionType": "https://schema.org/CommentAction", "userInteractionCount": 10}, {"@type": "InteractionCounter", "interactionType": "https://schema.org/LikeAction", "userInteractionCount": 41}], "keywords": ["devchallenge", "geminireflections", "gemini"], "mainEntityOfPage": {"@id": "https://dev.to/anchildress1/i-stopped-reviewing-code-a-backend-devs-experiment-with-google-gemini-5424", "@type": "WebPage"}, "publisher": {"@type": "Organization", "name": "anchildress1\u2014Dev.to Mirror", "url": "https://crawly.checkmarkdevtools.dev"}, "timeRequired": "PT5M", "url": "https://dev.to/anchildress1/i-stopped-reviewing-code-a-backend-devs-experiment-with-google-gemini-5424", "wordCount": 1110}
+</script>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "item": "https://crawly.checkmarkdevtools.dev", "name": "Home", "position": 1}, {"@type": "ListItem", "item": "https://crawly.checkmarkdevtools.dev/posts", "name": "Posts", "position": 2}, {"@type": "ListItem", "item": "https://crawly.checkmarkdevtools.dev/posts/i-stopped-reviewing-code-a-backend-devs-experiment-with-google-gemini-5424.html", "name": "I Stopped Reviewing Code: A Backend Dev\u2019s Experiment with Google Gemini", "position": 3}]}
+</script>
+
+
+</head><body>
+<main>
+  <h1><a href="https://dev.to/anchildress1/i-stopped-reviewing-code-a-backend-devs-experiment-with-google-gemini-5424">I Stopped Reviewing Code: A Backend Dev’s Experiment with Google Gemini</a></h1>
+  
+  <img src="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F489ex4jl35lliprm37eh.jpg?v=2"
+      width="1000" height="420"
+      alt="Banner for I Stopped Reviewing Code: A Backend Dev’s Experiment with Google Gemini"
+      loading="lazy"
+      style="width:100%;max-width:1000px;height:auto;margin:1em 0;aspect-ratio:1000/420;">
+  
+  <p><em>Published: 2026-03-04T00:02:48Z</em></p>
+    
+    <p><strong>Tags:</strong>
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #devchallenge
+            </span> 
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #geminireflections
+            </span> 
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #gemini
+            </span>
+        
+    </p>
+    
+  <p><em>I stopped reviewing code and let Google Gemini build my UI. Then I audited the results to see what autonomy in AI development actually produces.</em></p>
+
+  <!-- Enhanced Dev.to Attribution -->
+  
+  <div style="border: 1px solid #e0e0e0; padding: 15px; margin: 20px 0;
+                    background-color: #f9f9f9; border-radius: 5px;">
+            <p style="margin: 0; font-style: italic; color: #666;">
+                <strong>📝 Originally published on Dev.to</strong><br>
+                by Ashley Childress on 2026-03-04T00:02:48Z
+            </p>
+            <p style="margin: 10px 0 0 0;">
+                <a href="https://dev.to/anchildress1/i-stopped-reviewing-code-a-backend-devs-experiment-with-google-gemini-5424"
+                   style="color: #3b49df; text-decoration: none; font-weight: bold;"
+                   target="_blank" rel="noopener">
+                    → Read the original article on Dev.to
+                </a>
+            </p>
+        </div>
+  
+
+  <article><p><em>This is a submission for the <a href="https://dev.to/challenges/mlh-built-with-google-gemini-02-25-26">Built with Google Gemini: Writing Challenge</a></em></p>
+
+<blockquote>
+<p>🦄 I’ve been officially obsessed with AI for nearly a year now. Not from an ML research angle and not from a purist implementation standpoint. The thrill, for me, is in finding the limits as a user and then leaning on them until something gives. One of my favorite Hunter S. Thompson lines talks about “the tendency to push it as far as you can.” That has been my operating principle this entire year.</p>
+
+<p>This build started as a portfolio experiment. It turned into something else entirely. This challenge became the cleanest environment I’ve found to test what actually happens when you step out of the implementation loop and let the model build the world without you.</p>
+</blockquote>
+
+
+<hr>
+
+<h2>
+  <a href="#what-i-built-with-google-gemini">
+  </a>
+  What I Built with Google Gemini
+</h2>
+
+<p>When I saw the New Year, New You Portfolio Challenge, I knew it required a UI. That wasn’t a surprise. What <em>was</em> a surprise was how quickly I would realize I didn’t understand what I was looking at once it started coming together.</p>
+
+<p>I’m a backend developer. You hand me a distributed systems problem and I’ll happily spend hours untangling it. You ask me to make a <code>div</code> visible in a browser and my brain actively searches for the exit. With only one weekend to build, there was no room for the "eyes-glazing-over" phase. Google Gemini would implement and I would supervise—that was my whole plan.</p>
+
+<p>I walked in expecting Antigravity, powered primarily by Gemini Pro, to behave like every other AI system I’d tested—predictable and fairly easy to keep inside the guardrails. I thought I already knew what those guardrails looked like: strict types, linting, and the familiar routine of code review. </p>
+
+<h3>
+  <a href="#the-pivot-dropping-the-code-review-ritual">
+  </a>
+  The Pivot: Dropping the Code Review Ritual
+</h3>
+
+<p>Initially, I followed the "responsible" pattern: prompt, review the diff, run tests, approve. It felt disciplined. It looked professional.</p>
+
+<p>Very quickly, I realized I had no meaningful context for what I was reviewing in a frontend stack. I wasn't improving the output; I was participating in ceremony. So, I stopped reviewing code altogether.</p>
+
+<p>Instead of validating lines of code, <strong>I validated outcomes</strong>. If the UI rendered correctly and passed functional tests, that was success. I cranked up the autonomy, taught Antigravity my repository expectations, and let it run. Copilot reviewed the code in my place, and Gemini responded in a closed loop. I stepped out of the implementation and into the role of a systems auditor.</p>
+
+
+<hr>
+
+<h2>
+  <a href="#demo">
+  </a>
+  Demo
+</h2>
+
+<p>This portfolio iteration documents what happens when you turn an agent loose inside a defined system.</p>
+
+
+<div class="ltag__cloud-run">
+  
+  
+</div>
+
+
+<p>For this build, the Antigravity panel was the primary interface. I defined the repo rules and testing expectations there, and Gemini implemented directly within that structure. It became the control surface for the entire loop.</p>
+
+<p><a href="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F3qjpmeg7cxyul1miyyig.png" class="article-body-image-wrapper"><img src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F3qjpmeg7cxyul1miyyig.png" alt="Screenshot Antigravity Agent Manager" loading="lazy" width="800" height="516"></a></p>
+
+<ul>
+<li>
+<strong>V1 Release:</strong> <a href="https://github.com/anchildress1/system-notes/tree/v1.1.0" target="_blank" rel="noopener noreferrer">Preserved version v1.1.0</a>
+</li>
+<li>
+<strong>Live Portfolio:</strong> <a href="https://anchildress1.dev" target="_blank" rel="noopener noreferrer">https://anchildress1.dev</a>
+</li>
+</ul>
+
+<h3>
+  <a href="#replacing-trust-with-systems">
+  </a>
+  Replacing Trust With Systems
+</h3>
+
+<p>I didn’t simply remove oversight; I replaced it with Lighthouse audits and expanded test coverage. My assumption was simple: if the browser behaves and the tests pass, the code is "safe." I believed I had replaced trust in code with trust in systems. I was wrong—I had confused passing tests with structural integrity.</p>
+
+
+<hr>
+
+<h2>
+  <a href="#what-i-learned">
+  </a>
+  What I Learned
+</h2>
+
+<h3>
+  <a href="#high-reasoning-isnt-optional">
+  </a>
+  High Reasoning Isn’t Optional
+</h3>
+
+<p>I learned that for autonomous development, reasoning depth is a stability requirement. With lower reasoning modes (like Flash), changes were often partial—updating 2/3 of the files but "forgetting" the tests or documentation. </p>
+
+<p>Switching to High Reasoning mode in Gemini Pro changed the pattern. Runtime errors dropped, and cross-file consistency improved. It finally started "remembering" to keep the docs aligned with the code changes without constant nudging.</p>
+
+<p>Reasoning depth wasn’t about intelligence—it was about reliability under autonomy. Gemini’s deeper reasoning and context retention made the closed-loop workflow viable; without it, cross-file consistency collapsed quickly under autonomy.</p>
+
+<h3>
+  <a href="#the-reality-check-sonar">
+  </a>
+  The Reality Check: Sonar
+</h3>
+
+<p>After the high of the successful build wore off, I introduced Sonar as a retrospective audit. The UI rendered correctly. The tests passed. Everything appeared stable.</p>
+
+<p><strong>Sonar reported 13 reliability issues and assigned the project a C reliability rating.</strong> Of those issues, 66% were classified as high severity. Security review surfaced three hotspots, including a container running the default Python image as root and dependency references that did not pin full commit SHAs.</p>
+
+<p>Maintainability scored an A, but still carried 70 maintainability issues—structural patterns that didn’t break behavior, yet increased long-term complexity.</p>
+
+<p><a href="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fvvr7t86vvt317r9bg561.png" class="article-body-image-wrapper"><img src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fvvr7t86vvt317r9bg561.png" alt="Screenshot 81 Sonar failures" loading="lazy" width="800" height="190"></a></p>
+
+<p>That was the moment confidence turned into scrutiny.</p>
+
+<p>The application worked. The tests passed. But reliability, security posture, and structural integrity told a different story. The tests validated behavior; Sonar validated assumptions. And those are not the same thing.</p>
+
+<p>The lesson? <strong>AI-generated tests can pass because they were written to satisfy the implementation, not challenge it.</strong> Structural validation requires an independent layer of review outside the generation loop.</p>
+
+<h2>
+  <a href="#google-gemini-feedback">
+  </a>
+  Google Gemini Feedback
+</h2>
+
+<h3>
+  <a href="#what-worked-well">
+  </a>
+  What Worked Well
+</h3>
+
+<ul>
+<li>
+<strong>Cohesive Implementation:</strong> High reasoning Gemini Pro produced cross-file changes that respected the intent of the repository.</li>
+<li>
+<strong>Agentic Orchestration:</strong> The model switching was seamless, and the orchestration interface made it possible to define expectations clearly and enforce them consistently.</li>
+</ul>
+
+<h3>
+  <a href="#where-friction-appeared">
+  </a>
+  Where Friction Appeared
+</h3>
+
+<ul>
+<li>
+<strong>Cooldown Transparency:</strong> While the interface shows when current credits refresh, the length of the next cooldown remains a black box.</li>
+<li>
+<strong>Tool Performance:</strong> MCP responsiveness materially impacted iteration speed, sometimes forcing me to batch requests rather than work in small, rapid increments.</li>
+</ul>
+
+<blockquote>
+<p>💡 <strong>Pro Tip:</strong> It would be a massive UX win to see exactly how long your <em>next</em> cooldown will be (e.g., "Your next cooldown will be X hours long") directly on the models page. Knowing if the lockout is 1 hour or 96 hours is vital for developer planning.</p>
+</blockquote>
+
+
+<hr>
+
+<h3>
+  <a href="#the-final-verdict-autonomy-still-demands-an-audit">
+  </a>
+  The Final Verdict: Autonomy Still Demands an Audit
+</h3>
+
+<p>The lesson wasn’t that Gemini failed; it was that systems-level trust requires more than passing tests. In future builds, autonomy won’t ship without an explicit adversarial audit. Whether that means a mandatory Sonar gate, a red-team prompt pass, or a second high-reasoning model instructed to hunt for the first model’s shortcuts—the loop must be challenged.</p>
+
+<p>This project began as a weekend experiment to escape the “teleportation” haze of frontend development. It ended as an exploration of the razor-thin edge of system-level trust. The real build wasn’t the portfolio—it was discovering what happens when you lean on the limits of AI until they finally give.</p>
+
+<p>Removing myself from the implementation loop didn’t eliminate responsibility; it redefined it. The more freedom you give an agent, the more rigor you must give your audit.</p>
+
+<h4>
+  <a href="#the-tools-behind-the-curtain">
+  </a>
+  🛡️ The Tools Behind The Curtain
+</h4>
+
+<p>This post was brewed by me—with a shot of Google Gemini and a splash of ChatGPT. If you catch a bias or a goof, call it out. AI isn’t perfect, and neither am I.</p>
+
+</article>
+
+  <!-- Dev.to Backlinks -->
+  
+  <div style="margin: 20px 0; padding: 10px; border-left: 4px solid #3b49df; background-color: #f8f9ff;">
+            <p style="margin: 0; font-size: 0.9em; color: #555;">
+                💬 Join the discussion about "I Stopped Reviewing Code: A Backend Dev’s Experiment with Google Gemini" on Dev.to:
+            </p>
+            <p style="margin: 5px 0 0 0;">
+                <a href="https://dev.to/anchildress1/i-stopped-reviewing-code-a-backend-devs-experiment-with-google-gemini-5424"
+                   style="color: #3b49df; font-weight: bold; text-decoration: none;"
+                   target="_blank" rel="noopener">
+                    View comments and reactions →
+                </a>
+            </p>
+        </div>
+  
+
+  <!-- Related Posts Section -->
+  
+  <section style="margin: 30px 0; padding: 20px; background-color: #f8f9fa; border-radius: 8px;
+                  border: 1px solid #e9ecef;">
+    <h3 style="margin-top: 0; color: #495057; font-size: 1.2em;">📚 Related Articles</h3>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="my-portfolio-doesnt-live-on-the-page-218e.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            My Portfolio Doesn’t Live on the Page 🚫📃
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">A systems‑first portfolio built with Antigravity—focused on outcomes over code, intentional constraints, and the work that lives beyond the page.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#gemini</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#devchallenge</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="i-genuinely-meant-it-when-i-said-i-was-done-i-even-had-that-rare-fragile-sense-of-closure-then-i-1cna.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            I genuinely meant it when I said I was done. I even had that rare, fragile sense of closure. Then I noticed one small thing, which led to another, and somehow became a full pass of “minor” edits. I failed at stopping, but this time I really did. 🚧🚦
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">My Portfolio Doesn’t Live on the Page 🚫📃       Ashley Childress...</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#gemini</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#devchallenge</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="find-the-dev-post-that-needs-you-now-33ng.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            Find the DEV Post That Needs You Now 🫶
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">A DEV Community dashboard that surfaces posts needing human replies so members can quickly find where to engage.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#devchallenge</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="conversational-retrieval-when-chat-becomes-navigation-2gij.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            Conversational Retrieval: When Chat Becomes Navigation 💬
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">Building a conversational interface on Algolia where chat acts as navigation, grounded in fast, predictable retrieval.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#devchallenge</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="from-static-portfolio-to-indexed-decisions-46bf.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            From Static Portfolio to Indexed Decisions 📃
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">How I built a portfolio as a search system using Algolia, prioritizing retrieval speed, consistency, and real-world constraints.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#devchallenge</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+    </ul>
+  </section>
+  
+
+  <p><a href="https://dev.to/anchildress1/i-stopped-reviewing-code-a-backend-devs-experiment-with-google-gemini-5424">Read on Dev.to →</a></p>
+</main>
+</body></html>
+</text>
