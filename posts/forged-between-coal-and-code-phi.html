@@ -1,0 +1,618 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<title>Forged Between Coal and Code</title>
+<link rel="canonical" href="https://dev.to/anchildress1/forged-between-coal-and-code-phi">
+<meta name="description" content="A backend engineer builds an immersive narrated web experience with Canvas, WebGL, layered audio, and her own Appalachian voiceover. No frameworks. 13 ADRs.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dev.to/anchildress1/forged-between-coal-and-code-phi">
+<meta property="og:title" content="Forged Between Coal and Code">
+<meta property="og:description" content="A backend engineer builds an immersive narrated web experience with Canvas, WebGL, layered audio, and her own Appalachian voiceover. No frameworks. 13 ADRs.">
+<meta property="og:image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fmgm4kwrmc8hv3icpalx7.jpg">
+<meta property="og:site_name" content="anchildress1—Dev.to Mirror">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://dev.to/anchildress1/forged-between-coal-and-code-phi">
+<meta name="twitter:title" content="Forged Between Coal and Code">
+<meta name="twitter:description" content="A backend engineer builds an immersive narrated web experience with Canvas, WebGL, layered audio, and her own Appalachian voiceover. No frameworks. 13 ADRs.">
+<meta name="twitter:image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fmgm4kwrmc8hv3icpalx7.jpg">
+
+<!-- LinkedIn -->
+<meta property="linkedin:title" content="Forged Between Coal and Code">
+<meta property="linkedin:description" content="A backend engineer builds an immersive narrated web experience with Canvas, WebGL, layered audio, and her own Appalachian voiceover. No frameworks. 13 ADRs.">
+<meta property="linkedin:image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fmgm4kwrmc8hv3icpalx7.jpg">
+
+<!-- Additional Social Meta -->
+<meta name="image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fmgm4kwrmc8hv3icpalx7.jpg">
+<meta name="author" content="Ashley Childress">
+<meta name="keywords" content="wecoded, devchallenge, frontend, css">
+
+<!-- AI-Specific Enhanced Metadata -->
+
+
+<meta name="article:author" content="Ashley Childress">
+
+<meta name="article:published_time" content="2026-04-03T05:49:31Z">
+
+<meta name="article:modified_time" content="2026-04-03T14:33:26Z">
+
+<meta name="content-type" content="challenge">
+
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+<meta name="content-language" content="en">
+
+<meta name="generator" content="anchildress1—Dev.to Mirror AI-Optimized Mirror">
+
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<meta name="theme-color" content="#000000">
+
+<meta name="canonical" content="https://dev.to/anchildress1/forged-between-coal-and-code-phi">
+
+<meta name="source-platform" content="dev.to">
+
+<meta name="source-url" content="https://dev.to/anchildress1/forged-between-coal-and-code-phi">
+
+<meta name="source-author-profile" content="https://dev.to/anchildress1">
+
+<meta name="source-post-id" content="3423911">
+
+<meta name="original-published-date" content="2026-04-03T05:49:31Z">
+
+<meta name="reading-time" content="12 minutes">
+
+<meta name="devto:reactions" content="1">
+
+<meta name="devto:comments" content="0">
+
+<meta name="devto:engagement_score" content="1">
+
+<meta name="content-fingerprint" content="588c72db9502a84d">
+
+
+
+<!-- Cross-Reference Attribution Meta Tags -->
+
+
+<meta name="article:author" content="Ashley Childress">
+
+<meta name="article:publisher" content="Dev.to">
+
+<meta name="article:source" content="Dev.to">
+
+<meta name="content:source" content="https://dev.to/anchildress1/forged-between-coal-and-code-phi">
+
+<meta name="content:original_publisher" content="Dev.to">
+
+<meta name="article:published_time" content="2026-04-03T05:49:31Z">
+
+
+
+<!-- JSON-LD Structured Data -->
+
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "Ashley Childress", "url": "https://dev.to/anchildress1"}, "dateModified": "2026-04-03T14:33:26Z", "datePublished": "2026-04-03T05:49:31Z", "description": "A backend engineer builds an immersive narrated web experience with Canvas, WebGL, layered audio, and her own Appalachian voiceover. No frameworks. 13 ADRs.", "headline": "Forged Between Coal and Code", "image": {"@type": "ImageObject", "height": 500, "url": "https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fmgm4kwrmc8hv3icpalx7.jpg", "width": 1000}, "inLanguage": "en", "interactionStatistic": [{"@type": "InteractionCounter", "interactionType": "https://schema.org/CommentAction", "userInteractionCount": 0}, {"@type": "InteractionCounter", "interactionType": "https://schema.org/LikeAction", "userInteractionCount": 1}], "keywords": ["wecoded", "devchallenge", "frontend", "css"], "mainEntityOfPage": {"@id": "https://dev.to/anchildress1/forged-between-coal-and-code-phi", "@type": "WebPage"}, "publisher": {"@type": "Organization", "name": "anchildress1\u2014Dev.to Mirror", "url": "https://crawly.checkmarkdevtools.dev"}, "timeRequired": "PT12M", "url": "https://dev.to/anchildress1/forged-between-coal-and-code-phi", "wordCount": 3142}
+</script>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "item": "https://crawly.checkmarkdevtools.dev", "name": "Home", "position": 1}, {"@type": "ListItem", "item": "https://crawly.checkmarkdevtools.dev/posts", "name": "Posts", "position": 2}, {"@type": "ListItem", "item": "https://crawly.checkmarkdevtools.dev/posts/forged-between-coal-and-code-phi.html", "name": "Forged Between Coal and Code", "position": 3}]}
+</script>
+
+
+</head><body>
+<main>
+  <h1><a href="https://dev.to/anchildress1/forged-between-coal-and-code-phi">Forged Between Coal and Code</a></h1>
+  
+  <img src="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fmgm4kwrmc8hv3icpalx7.jpg?v=2"
+      width="1000" height="420"
+      alt="Banner for Forged Between Coal and Code"
+      loading="lazy"
+      style="width:100%;max-width:1000px;height:auto;margin:1em 0;aspect-ratio:1000/420;">
+  
+  <p><em>Published: 2026-04-03T05:49:31Z</em></p>
+    
+    <p><strong>Tags:</strong>
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #wecoded
+            </span> 
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #devchallenge
+            </span> 
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #frontend
+            </span> 
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #css
+            </span>
+        
+    </p>
+    
+  <p><em>A backend engineer builds an immersive narrated web experience with Canvas, WebGL, layered audio, and her own Appalachian voiceover. No frameworks. 13 ADRs.</em></p>
+
+  <!-- Enhanced Dev.to Attribution -->
+  
+  <div style="border: 1px solid #e0e0e0; padding: 15px; margin: 20px 0;
+                    background-color: #f9f9f9; border-radius: 5px;">
+            <p style="margin: 0; font-style: italic; color: #666;">
+                <strong>📝 Originally published on Dev.to</strong><br>
+                by Ashley Childress on 2026-04-03T05:49:31Z
+            </p>
+            <p style="margin: 10px 0 0 0;">
+                <a href="https://dev.to/anchildress1/forged-between-coal-and-code-phi"
+                   style="color: #3b49df; text-decoration: none; font-weight: bold;"
+                   target="_blank" rel="noopener">
+                    → Read the original article on Dev.to
+                </a>
+            </p>
+        </div>
+  
+
+  <article><p><em>This is a submission for the <a href="https://dev.to/challenges/wecoded-2026">2026 WeCoded Challenge</a>: Frontend Art</em></p>
+
+<h2>
+  <a href="#show-us-your-art">
+  </a>
+  Show us your Art
+</h2>
+
+<p><em>Carbon Trace</em> is an immersive memoir that I designed, wrote, narrated, and produced. I used my native Appalachian accent throughout since the origin story starts at home in a small coal town in Southwest Virginia.</p>
+
+<p>For the full experience, visit my website at <a href="https://carbon-trace.anchildress1.dev" target="_blank" rel="noopener noreferrer">https://carbon-trace.anchildress1.dev</a> and be sure to turn on your sound. </p>
+
+<p>Pay attention to the ambient audio shifting between scenes. Watch the circuit traces grow from barely visible to full coverage. The ghost-drift text is intentionally out of sync with the narration—it's not a subtitle, it's a feeling.</p>
+
+<p>Built with Canvas 2D, WebGL displacement effects, GSAP timelines, layered Howler.js audio, and accessibility-first interaction design—no frameworks, no shortcuts.</p>
+
+
+<div class="ltag__cloud-run">
+  
+  
+</div>
+
+
+<blockquote>
+<p>💡 This submission reflects the <a href="https://github.com/anchildress1/carbon-trace/tree/v1.0.0" target="_blank" rel="noopener noreferrer">v1.0.0</a> release used for the competition build.</p>
+</blockquote>
+
+
+<hr>
+
+<h2>
+  <a href="#inspiration">
+  </a>
+  Inspiration
+</h2>
+
+<h3>
+  <a href="#origins-of-carbon-trace">
+  </a>
+  Origins of <em>Carbon Trace</em> 🪨
+</h3>
+
+<p>When I first saw this challenge, I felt what I wanted to draw almost immediately. The first obstacle was figuring out how to translate that feeling into code.</p>
+
+<p>I wasn't inspired by any one thing. I was inspired by <em>everything</em>. To accurately convey the depth of gender roles in my life, I had to start at the beginning in the small Appalachian coal town where I grew up. Life there has clear binary boundaries: men work in the mines and women take care of the home. I've been pushing back on this ideal for as long as I can remember—starting with the toy kitchen gift I had zero interest in as a toddler.</p>
+
+<p><em>Carbon Trace</em> isn't another generic idea of equality. It's the fight I went through to be treated as an equal in a male dominated world. The diamond is a metaphor for my life and moves through its own journey in pictures as I tell you mine. I wrote and narrated the script in the exact same dialect I grew up speaking. Each scene has independent ambient audio designed to embody a specific emotion. There are small animations throughout that help bring the static images alive. Each individual component adds a layer of depth to the overall story.</p>
+
+<p>Every image builds off of the previous version as the narrative progresses and follows the same constraints: circuitry begins barely perceptible and grows every frame until it covers the entire frame. The diamond starts black and covered in coal and shines brighter until its full power in the end. Strategic lighting throughout obscures faces to keep the focus on the diamond as the primary character and prevent this from being about any one person—it's designed to be about women in the industry as a whole because my experience is not unique. It's one of many.</p>
+
+<p>So the diamond is my story zoomed out and abstracted so every individual can feel themselves inside the experience while I tell you about mine.</p>
+
+<h3>
+  <a href="#the-numbers-havent-changed">
+  </a>
+  The Numbers Haven't Changed 📉
+</h3>
+
+<p>Even though we have grown from ideas like the ones I grew up with—where women belong in the kitchen, not in the coal mines—the inequality is still glaringly apparent in the tech space.</p>
+
+<p>In college I served as president of the <a href="https://www.westga.edu/news/student-success/cs-wow.php" target="_blank" rel="noopener noreferrer">CS WoW</a> club that aims to improve visibility of tech-related careers for young grade school girls through community outreach. Even with programs like this throughout the US, only one woman earns a CS degree for every 4 men (<a href="https://nces.ed.gov/programs/digest/d23/tables/dt23_325.35.asp" target="_blank" rel="noopener noreferrer">NCES, 2021–22</a>).</p>
+
+<p>In tech and more specifically engineering, men currently outnumber women 4 to 1 (<a href="https://www.bls.gov/cps/cpsaat39.htm" target="_blank" rel="noopener noreferrer">BLS, CPS Table 39</a>). The women who do work these jobs earn approximately 12% less on average than their male counterparts (<a href="https://www.bls.gov/opub/reports/womens-earnings/2023/" target="_blank" rel="noopener noreferrer">BLS, Highlights of Women's Earnings 2023</a>). I built <em>Carbon Trace</em> as a long-lasting impact piece. It maintains the state of truth in 2026 the same as these statistics do. I didn't build it to raise awareness. I built <em>Carbon Trace</em> to make you feel what these numbers can't.</p>
+
+<h3>
+  <a href="#why-it-had-to-be-immersive">
+  </a>
+  Why It Had to Be Immersive 🌊
+</h3>
+
+<p>I imagine there's at least one person reading this and wondering why I needed a full scale production to tell a story that I just as easily could have written about. My answer is because <strong>I needed you to feel it.</strong></p>
+
+<p>Every technical layer in <em>Carbon Trace</em> exists to carry a piece of that feeling. The ambient audio shifts between scenes to set an emotional tone that words alone can't establish—mine dust settling, water running, wind through an empty room. The ghost-drift text floats fragments of thought across the screen like the things you almost say out loud but don't. The circuit trace shimmer starts nearly invisible and grows brighter every scene because the potential was always there—it just needed the right conditions to be seen. The PixiJS displacement effects make the world around the diamond physically respond: water flows, heat rises, and the diamond glows with increasing intensity. None of these layers are decorative. Each one is a narrative instrument, and <em>Carbon Trace</em> is what happens when they all play at once.</p>
+
+
+<hr>
+
+<h2>
+  <a href="#my-code">
+  </a>
+  My Code
+</h2>
+
+
+<div class="ltag-github-readme-tag">
+  <div class="readme-overview">
+    <h2>
+      <img height="450" width="800" src="https://assets.dev.to/assets/github-logo-5a155e1f9a670af7944dd5e12375bc76ed542ea80224905ecaf878b9157cdefc.svg" alt="GitHub logo">
+      <a href="https://github.com/anchildress1" target="_blank" rel="noopener noreferrer">
+        anchildress1
+      </a> / <a href="https://github.com/anchildress1/carbon-trace" target="_blank" rel="noopener noreferrer">
+        carbon-trace
+      </a>
+    </h2>
+    <h3>
+      Deterministic scene engine for an interactive narrative experience using GSAP, Howler, Canvas 2D and PixiJS. Built for WeCoded 2026 Frontend Art.
+    </h3>
+  </div>
+  <div class="ltag-github-body">
+    
+<div class="md">
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/anchildress1/carbon-trace/public/assets/images/carbon-trace-banner-gh-e897ebe7.webp"><img src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fraw.githubusercontent.com%2Fanchildress1%2Fcarbon-trace%2FHEAD%2Fpublic%2Fassets%2Fimages%2Fcarbon-trace-banner-gh-e897ebe7.webp" alt="Banner" style="" loading="lazy"></a></p>
+<div class="markdown-heading">
+<h1>Carbon Trace: An Immersive Art Experience</h1>
+</div>
+<p><a href="https://github.com/anchildress1/carbon-trace/actions/workflows/ci.yml" target="_blank" rel="noopener noreferrer"><img height="450" width="800" src="https://github.com/anchildress1/carbon-trace/actions/workflows/ci.yml/badge.svg" alt="CI" style=""></a> <a href="https://github.com/anchildress1/carbon-trace/LICENSE" target="_blank" rel="noopener noreferrer"><img height="450" width="800" src="https://camo.githubusercontent.com/2cb6e0aa35fa3e38e0e2b58f8f6f5e63b4a57f080945f2f6d61b1966fb7542d5/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d506f6c79666f726d253230536869656c642d626c7565" alt="License: Polyform Shield" style=""></a> <a href="https://sonarcloud.io/project/overview?id=anchildress1_carbon-trace" rel="nofollow noopener noreferrer" target="_blank"><img height="450" width="800" src="https://camo.githubusercontent.com/b073cc108d821fb439d8fe79837a0d5b16732f256c17c31df7c6e148c226ad7b/68747470733a2f2f736f6e6172636c6f75642e696f2f6170692f70726f6a6563745f6261646765732f6d6561737572653f70726f6a6563743d616e6368696c6472657373315f636172626f6e2d7472616365266d65747269633d616c6572745f737461747573" alt="Quality Gate" style=""></a> <a href="https://sonarcloud.io/project/overview?id=anchildress1_carbon-trace" rel="nofollow noopener noreferrer" target="_blank"><img height="450" width="800" src="https://camo.githubusercontent.com/d81ceb39c2bc2bcffce9819b98bbd21ce6956fd6f1200ed2d91989525e319130/68747470733a2f2f736f6e6172636c6f75642e696f2f6170692f70726f6a6563745f6261646765732f6d6561737572653f70726f6a6563743d616e6368696c6472657373315f636172626f6e2d7472616365266d65747269633d636f766572616765" alt="Coverage" style=""></a> <a href="https://developer.chrome.com/docs/lighthouse/accessibility" rel="nofollow noopener noreferrer" target="_blank"><img height="450" width="800" src="https://camo.githubusercontent.com/d4a75227d1a6ef2a77b7d4fdeb80a300ce48b56b66dac82bbc204a8164b25980/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6163636573736962696c6974792d39352532352532422532304c69676874686f7573652d627269676874677265656e" alt="Accessibility" style=""></a></p>
+<p>An immersive visual narrative told from the awareness of a diamond trapped in a coal seam—12 painted scenes with ghost-drift text, narrated audio, and pixel-level visual effects. Built for <a href="https://dev.to/devteam/join-the-2026-wecoded-challenge-and-celebrate-underrepresented-voices-in-tech-through-writing--4828" rel="nofollow">WeCoded 2026 DEV Challenge</a> Frontend Art.</p>
+<p><strong>Experience it live: <a href="https://carbon-trace.anchildress1.dev" rel="nofollow noopener noreferrer" target="_blank">https://carbon-trace.anchildress1.dev</a></strong></p>
+<div class="markdown-heading">
+<h2>The Story 💎</h2>
+</div>
+<p>A diamond wakes up inside a coal seam. It doesn't know what it is yet—just pressure, darkness, and the sense that something isn't right. Over 12 scenes it moves through tunnels, furnaces, pockets, sinks, and silence. It gets carried, stored, forgotten, and found again. By the end, it isn't just a diamond anymore. It's a circuit. It's music. It's light.</p>
+<p>The narrative follows a carbon cycle that isn't chemistry—it's personal. Coal to diamond to circuit to light. Each scene is a painted image (Leonardo AI, Flux 2 Pro) with narration I recorded, ambient textures, ghost-drift text that pours in and blows out…</p></div>
+  </div>
+  <div class="gh-btn-container"><a class="gh-btn" href="https://github.com/anchildress1/carbon-trace" target="_blank" rel="noopener noreferrer">View on GitHub</a></div>
+</div>
+
+
+<blockquote>
+<p>⚖️ This project is licensed under <a href="https://github.com/anchildress1/carbon-trace/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Polyform Shield 1.0.0</a>.</p>
+</blockquote>
+
+<h3>
+  <a href="#what-i-am-not">
+  </a>
+  What I Am Not 🔧
+</h3>
+
+<p><strong>I am not a frontend developer.</strong> I'm a backend-focused engineer who had never heard of Canvas 2D, Howler.js, PixiJS, or GSAP before this project. I spent just as much time learning what these tools do as I did designing the system around them. AI helped me learn what each tool did and gave me alternatives. I decided what to do with it from there.</p>
+
+<p>I'm also not an artist. I used <a href="https://leonardo.ai" target="_blank" rel="noopener noreferrer">Leonardo.ai</a> to generate all images and dusted off some old GIMP skills to build the image layer masks by hand. Everything you see in <em>Carbon Trace</em> was built by someone who doesn't do this every day—which is exactly why it took a full production pipeline, 13 ADRs, and four competing AI reviewers to ship it.</p>
+
+<p>What I am is a backend engineer who brought backend discipline to a frontend art project. The ADR process, the adversarial review gauntlet, the CI/CD pipeline, 685 unit tests, 220 E2E tests—that's what happens when someone who builds production systems decides to build something meaningful instead.</p>
+
+<h3>
+  <a href="#the-voice-you-cant-generate">
+  </a>
+  The Voice You Can't Generate 🎙️
+</h3>
+
+<p>I wrote and narrated the script myself because real Appalachian is something that AI is incapable of—even with the list of words it's allowed to use in reference to the area I still call home. Words like "holler" (hollow) or "sangle" (single) and phrases like "ain't got a pot to piss in" (little financial means) are all authentic from the Southwestern Virginia and Eastern Kentucky regions.</p>
+
+<p>I know enough about recording to know I never wanted to learn it myself. However, <em>Carbon Trace</em> could not exist without quality recordings that you don't get from QuickTime. So, I taught myself enough of GarageBand to record all tracks and no, that wasn't very much fun. I got in and out with the basics and then used <code>ffmpeg</code> to help slice the ambient sounds from <a href="http://freesound.org" target="_blank" rel="noopener noreferrer">FreeSound.org</a>. AI was in the background to help me iterate ideas until I was happy with the end result.</p>
+
+<h3>
+  <a href="#how-i-wrangled-the-robots">
+  </a>
+  How I Wrangled the Robots 🦾
+</h3>
+
+<p>Since this project lives entirely outside my usual stack, I leaned heavily on my AI friends to get the job done, but this was not a prompt-and-go solution.</p>
+
+<h4>
+  <a href="#the-review-gauntlet">
+  </a>
+  The Review Gauntlet ⚔️
+</h4>
+
+<p>My primary workflow was Claude Code as implementer, Codex and Antigravity performed adversarial code reviews for every branch to identify inconsistencies and bugs, and Copilot had the final review sign off for all changes. Sonar and Trivy ran for every PR along with a suite of tests, including Playwright and Lighthouse.</p>
+
+<p>This is just one of many examples of why this works overall—one LLM is never good at everything and putting them in competition with each other helps to increase code quality.</p>
+
+<p><a href="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Flejvtljh477qu3sv5lft.png" class="article-body-image-wrapper"><img src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Flejvtljh477qu3sv5lft.png" alt="Screenshot showing adversarial review findings (P1/P2 bugs, tests passing) in Codex" loading="lazy" width="800" height="785"></a></p>
+
+<p>The adversarial reviews were critical to the final build, because no single AI was allowed to operate unchecked in a repo where I didn't plan to personally review the code. Beyond architecture bugs, the gauntlet caught frontend-specific issues—a mask processing loop that was freezing the page during scene loads, and repeated layout calculations that caused animation stutter. It also proved to be a pain because every time I thought I was done with a feature, there would be another hour or more of AI wrangling I had to do. The back and forth continued until all of my helper reviewers agreed on the ultimate solution and only then was the branch merged.</p>
+
+<p><a href="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fgapdlukampka1489v2g0.png" class="article-body-image-wrapper"><img src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fgapdlukampka1489v2g0.png" alt="Screenshot Antigravity catching Claude's PausableTimer hallucination with mathematical proof" loading="lazy" width="800" height="771"></a></p>
+
+<h4>
+  <a href="#from-design-doc-to-decision-records">
+  </a>
+  From Design Doc to Decision Records 🗂️
+</h4>
+
+<p>I started with a simple design document in markdown that was converted into an <code>AGENTS.md</code> file and wired to each AI individually. By the time I made it to version 5 of the "simple" design, I decided I needed something with a bit more structure. That's when I started writing architecture decision records instead and I added them to the repo for tracking. I ended up with 13 ADRs, most of which were updated after one or more decisions I made proved impossible given the constraints I defined. This forced every major technical decision to be intentional instead of experimental.</p>
+
+<p>Alongside the repo work, ChatGPT and Claude Cowork helped me with image generation prompts and gave me all the info I needed about GSAP, Howler.js, PixiJS, and Canvas 2D to be able to make design decisions. They had competing reviews between them, as well, just to make sure all the pertinent information was available to me when I needed it.</p>
+
+<blockquote>
+<p>💡 For a full breakdown of every architectural decision made during the build, <a href="https://github.com/anchildress1/carbon-trace/tree/v1.0.0/docs/ADRs" target="_blank" rel="noopener noreferrer">the ADRs</a> are available in the repo.</p>
+</blockquote>
+
+<h3>
+  <a href="#hundreds-of-wrong-diamonds">
+  </a>
+  Hundreds of Wrong Diamonds 🔮
+</h3>
+
+<p>Leonardo wasn't very easy to wrangle either, as I generated literally hundreds of images to perfect each scene. ChatGPT and Claude often helped with wording, so both had their own best-practice instructions generated from research, covering several different image flows across models including Flux Pro 2.0, Nano Banana, and GPT Image 1.5.</p>
+
+<p>I had several hilarious outtakes during image generation, too. I learned that specific words like "rough faceted" or "silhouette" did not mix well with some models. I ended up with a somewhat extensive set of rules for prompt generation to ensure the diamond's story was properly told through each picture.</p>
+
+<p>Here's a couple of my favorite outtake images:</p>
+
+<p><a href="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F39fmxh13fuqmhmh9glr5.png" class="article-body-image-wrapper"><img src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F39fmxh13fuqmhmh9glr5.png" alt="Diamond in jeans pocket with coal scrip coins—wrong context/scale, funny failure" loading="lazy" width="800" height="477"></a></p>
+
+<p><a href="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fgni9og02f0oj5ounrdbz.png" class="article-body-image-wrapper"><img src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fgni9og02f0oj5ounrdbz.png" alt="Man reaching for tiny diamond by firelight—face visible, directly violates the " loading="lazy" width="800" height="487"></a></p>
+
+<h3>
+  <a href="#under-the-hood">
+  </a>
+  Under the Hood ⚙️
+</h3>
+
+<p><strong>Application architecture:</strong> Vanilla JS (no framework), 14 ES modules orchestrated by a 5-state machine (Loading → Paused → Scene Active → Transitioning → Credits). My goal was to make this a production-level application without over-engineering or introducing abstraction where it doesn't belong. This is a static single page, one-flow-only application and the entire flow for each scene is controlled by <code>scenes.json</code>—every frame's image, narration lines, ambient audio, audio cues, effects, and transition config lives in one file for easy edits that don't interfere with code structure. Every scene difference is expressed as configuration, not logic, which means adding a new per-scene behavior is adding a config key, not an if-block.</p>
+
+<p>The state machine isn't just a label—it controls how every subsystem behaves at any given moment. When a user pauses, audio, canvas transitions, PixiJS effects, shimmer dots, GSAP timelines, and auto-advance timers all freeze in sync. When they resume, everything restarts from exactly where it left off. An unconditional auto-advance timer fires regardless of whether the narration <code>end</code> event arrives, eliminating a race condition where scenes could stall if the browser swallowed the event. Every timer in the system is pause-aware through a shared <code>PausableTimer</code> utility so nothing leaks across scene boundaries.</p>
+
+<p><strong>The audio system is the most complex piece.</strong> I wanted to include different emotional ambient tracks for each scene designed to play just under the narration layer. I sourced all tracks from <a href="https://freesound.org" target="_blank" rel="noopener noreferrer">FreeSound.org</a>, but no two sound effects have the same volume, which meant I needed the ability to mix on demand from the backend in addition to fade controls and delayed timing. Two independent Howler.js channels are responsible for running each track concurrently:</p>
+
+<div class="table-wrapper-paragraph">
+
+
+
+Channel
+Format
+What it does
+
+
+
+
+Ambient
+m4a, looped
+Crossfades between scenes (800ms), pauses with all channels during nav
+
+
+Narration
+m4a, one-shot
+Per-scene voiceover with configurable delay, pre-buffers next scene's audio during current playback
+
+
+</div>
+
+<p>I also implemented buffer recovery escalation through three distinct stages: nudge (no-op seek to force browser re-eval), reload (preserve position → reset source → restore), exhaustion (log warning, clear state, prevent UI lockup). All timers use unified pause/resume logic to prevent cross-scene leakage. The final scene layers in a licensed track from Bridge City Sinners that fades in before the narration ends, then boosts in volume with a 3-second fade once the voiceover completes—a cinematic handoff from story to music.</p>
+
+<p><strong>Rendering architecture:</strong> The visual stack is four layers composited on top of each other—a Canvas 2D scene layer for images, a PixiJS/WebGL canvas for displacement effects, a separate Canvas 2D overlay for the shimmer trace dots, and a DOM layer on top for text, captions, and controls. Each layer has its own render loop and pauses independently with the state machine.</p>
+
+<p><strong>PixiJS visual effects:</strong> A separate WebGL-powered canvas handles pixel-level scene animations—water displacement, heat distortion, glow, and shockwave—each confined to mask-based regions so only targeted areas of the image animate. Effect parameters modulate in real time from audio frequency data via a Web Audio AnalyserNode. The entire PixiJS bundle (~330 KB) is lazy-loaded after the initial paint so it never blocks the first screen the user sees, and if WebGL fails entirely, the experience degrades gracefully to static images.</p>
+
+<p><strong>Circuit trace overlays:</strong> The circuit traces aren't just static images—they're a live shimmer overlay rendered on a dedicated canvas. Each scene loads a hand-authored PNG mask that I drew in GIMP, where dark pixels define walkable paths. <code>shimmer.js</code> spawns glowing dots that navigate those paths using 8-directional pathfinding, pulsing in warm amber tones that shift per scene. The opacity ramps from 5% in the opening to full coverage by the finale—the circuitry was always there, it just needed the right conditions to be seen. </p>
+
+<p>The first design couldn't produce what I had in mind, so I deferred it, rewrote the ADR, and came back with a completely different approach that would get the job done.</p>
+
+<p><strong>GSAP timeline orchestration:</strong> The ghost-drift text was designed to keep the audience engaged in the narration in real time. I set up positioning as a percentage value relative to the container and originally allowed for alignment options. Later, I decided that was unnecessary and removed the extra noise from the codebase.</p>
+
+<p>All captions sync directly into the GSAP timeline via callbacks instead of independent timers. That way when the user pauses or resumes any scene, the captions are automatically included.</p>
+
+<p>The credits overlay has its own ADR and runs a GSAP-driven scroll with touch, wheel, and keyboard input, focus management for links, and full reduced-motion support.</p>
+
+<p><strong>Accessibility (WCAG AA):</strong> Any time I do any front-end work, accessibility is top of mind. This project was no different. I made sure all standard best practices were followed after AI helped to research what that looks like in 2026, including:</p>
+
+<ul>
+<li>
+<code>aria-live="polite"</code> region to announce full narration text on scene change</li>
+<li>Roving tabindex for the scene progress bar</li>
+<li>Standard media keyboard nav: Space (play/pause), Enter/Arrow (advance), Escape (pause)</li>
+<li>Screen reader narration separate from visual ghost-drift text (<code>aria-hidden="true"</code> on visual elements to prevent duplication)</li>
+<li>A persistent caption toggle via localStorage</li>
+<li>Reduced motion is fully supported—<code>prefers-reduced-motion</code> disables all canvas effects, freezes shimmer dots, cuts transitions instantly, and responds to live preference changes mid-session</li>
+</ul>
+
+<p>I used AI to research and implement accessibility standards, then tested the final result and orchestrated changes to prevent repo chaos.</p>
+
+<h3>
+  <a href="#shipping-it">
+  </a>
+  Shipping It 🚢
+</h3>
+
+<p>Underneath the story is a production-grade engineering process. Since I already have a pretty solid workflow with Release Please and Cloud Run, I provided the examples to AI and had the full CI/CD pipeline configured early on. That allowed me to track each shippable feature as a new deployed version for the final round of testing.</p>
+
+<p>The setup for me was minimal, but it was the last piece of turning this fancy art project into a small scale production build. The final build is ~5,500 lines of code (LOC) backed by ~14,500 LOC of tests across 685 unit tests and 220 E2E tests. Five CI workflows cover linting, automated tests, Lighthouse CI for both mobile and desktop performance, security scanning via Trivy and CodeQL, static analysis through SonarCloud, and release automation.</p>
+
+
+<hr>
+
+<h2>
+  <a href="#what-the-diamond-knows-now">
+  </a>
+  What the Diamond Knows Now 💎
+</h2>
+
+<p>I took an unconventional path to get here, but looking back, I was always going to end up exactly where I am. The circuit traces in every scene of <em>Carbon Trace</em> didn't appear out of nowhere—they were there from the start, just waiting to be seen. That's my story too. I was made to solve problems, even when nobody around me expected that from a girl growing up in a poor coal town.</p>
+
+<p>It's not always easy. But I've never been afraid of hard work to get the job done. The end result is a full circuit—built from pressure, time, and a refusal to stay small.</p>
+
+<p>The fact that I'm a female engineer shouldn't matter. It only matters that I'm a good one.</p>
+
+
+<div class="ltag__user ltag__user__id__3224358">
+    <a href="/anchildress1" class="ltag__user__link profile-image-link">
+      <div class="ltag__user__pic">
+        <img src="https://media2.dev.to/dynamic/image/width=150,height=150,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F3224358%2F7f675c78-6aa0-466a-a5a7-c3e35440d53a.png" alt="anchildress1 image">
+      </div>
+    </a>
+  <div class="ltag__user__content">
+    <h2>
+<a class="ltag__user__link" href="/anchildress1">Ashley Childress</a>Follow
+</h2>
+    <div class="ltag__user__summary">
+      <a class="ltag__user__link" href="/anchildress1">Distributed backend specialist. Perfectly happy playing second fiddle—it means I get to chase fun ideas, dodge meetings, and break things no one told me to touch, all without anyone questioning it. 😇</a>
+    </div>
+  </div>
+</div>
+
+
+
+<hr>
+
+<h3>
+  <a href="#pressuretested-by-more-than-one-brain">
+  </a>
+  🛡️ Pressure-Tested by More Than One Brain
+</h3>
+
+<p>This post was written by me with collaborative editing from Claude, ChatGPT, and Gemini. The code for <em>Carbon Trace</em> was built using Claude Code, Codex, Antigravity, and Copilot, and it was directed by a human who refused to let any of them off easy. All images were generated with Leonardo.ai under my art direction. All narration is my actual voice. No AI was harmed in the making of this post, but all were argued with repeatedly and extensively.</p>
+
+</article>
+
+  <!-- Dev.to Backlinks -->
+  
+  <div style="margin: 20px 0; padding: 10px; border-left: 4px solid #3b49df; background-color: #f8f9ff;">
+            <p style="margin: 0; font-size: 0.9em; color: #555;">
+                💬 Join the discussion about "Forged Between Coal and Code" on Dev.to:
+            </p>
+            <p style="margin: 5px 0 0 0;">
+                <a href="https://dev.to/anchildress1/forged-between-coal-and-code-phi"
+                   style="color: #3b49df; font-weight: bold; text-decoration: none;"
+                   target="_blank" rel="noopener">
+                    View comments and reactions →
+                </a>
+            </p>
+        </div>
+  
+
+  <!-- Related Posts Section -->
+  
+  <section style="margin: 30px 0; padding: 20px; background-color: #f8f9fa; border-radius: 8px;
+                  border: 1px solid #e9ecef;">
+    <h3 style="margin-top: 0; color: #495057; font-size: 1.2em;">📚 Related Articles</h3>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="i-stopped-reviewing-code-a-backend-devs-experiment-with-google-gemini-5424.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            I Stopped Reviewing Code: A Backend Dev’s Experiment with Google Gemini
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">I stopped reviewing code and let Google Gemini build my UI. Then I audited the results to see what autonomy in AI development actually produces.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#devchallenge</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="find-the-dev-post-that-needs-you-now-33ng.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            Find the DEV Post That Needs You Now 🫶
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">A DEV Community dashboard that surfaces posts needing human replies so members can quickly find where to engage.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#devchallenge</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="my-portfolio-doesnt-live-on-the-page-218e.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            My Portfolio Doesn’t Live on the Page 🚫📃
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">A systems‑first portfolio built with Antigravity—focused on outcomes over code, intentional constraints, and the work that lives beyond the page.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#devchallenge</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="conversational-retrieval-when-chat-becomes-navigation-2gij.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            Conversational Retrieval: When Chat Becomes Navigation 💬
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">Building a conversational interface on Algolia where chat acts as navigation, grounded in fast, predictable retrieval.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#devchallenge</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="from-static-portfolio-to-indexed-decisions-46bf.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            From Static Portfolio to Indexed Decisions 📃
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">How I built a portfolio as a search system using Algolia, prioritizing retrieval speed, consistency, and real-world constraints.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#devchallenge</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+    </ul>
+  </section>
+  
+
+  <p><a href="https://dev.to/anchildress1/forged-between-coal-and-code-phi">Read on Dev.to →</a></p>
+</main>
+</body></html>
+</text>
