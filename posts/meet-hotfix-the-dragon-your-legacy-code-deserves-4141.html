@@ -1,0 +1,730 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<title>Meet Hotfix—The Dragon Your Legacy Code Deserves</title>
+<link rel="canonical" href="https://dev.to/anchildress1/meet-hotfix-the-dragon-your-legacy-code-deserves-4141">
+<meta name="description" content="Legacy Smelter is a thermal decommission platform where a Gemini-powered dragon analyzes your code and files very serious, very unhinged postmortems.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dev.to/anchildress1/meet-hotfix-the-dragon-your-legacy-code-deserves-4141">
+<meta property="og:title" content="Meet Hotfix—The Dragon Your Legacy Code Deserves">
+<meta property="og:description" content="Legacy Smelter is a thermal decommission platform where a Gemini-powered dragon analyzes your code and files very serious, very unhinged postmortems.">
+<meta property="og:image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Flosaq50qjkca77jq1q1n.jpg">
+<meta property="og:site_name" content="anchildress1—Dev.to Mirror">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://dev.to/anchildress1/meet-hotfix-the-dragon-your-legacy-code-deserves-4141">
+<meta name="twitter:title" content="Meet Hotfix—The Dragon Your Legacy Code Deserves">
+<meta name="twitter:description" content="Legacy Smelter is a thermal decommission platform where a Gemini-powered dragon analyzes your code and files very serious, very unhinged postmortems.">
+<meta name="twitter:image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Flosaq50qjkca77jq1q1n.jpg">
+
+<!-- LinkedIn -->
+<meta property="linkedin:title" content="Meet Hotfix—The Dragon Your Legacy Code Deserves">
+<meta property="linkedin:description" content="Legacy Smelter is a thermal decommission platform where a Gemini-powered dragon analyzes your code and files very serious, very unhinged postmortems.">
+<meta property="linkedin:image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Flosaq50qjkca77jq1q1n.jpg">
+
+<!-- Additional Social Meta -->
+<meta name="image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Flosaq50qjkca77jq1q1n.jpg">
+<meta name="author" content="Ashley Childress">
+<meta name="keywords" content="devchallenge, 418challenge, showdev">
+
+<!-- AI-Specific Enhanced Metadata -->
+
+
+<meta name="article:author" content="Ashley Childress">
+
+<meta name="article:published_time" content="2026-04-13T04:44:55Z">
+
+<meta name="content-type" content="challenge">
+
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+<meta name="content-language" content="en">
+
+<meta name="generator" content="anchildress1—Dev.to Mirror AI-Optimized Mirror">
+
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<meta name="theme-color" content="#000000">
+
+<meta name="canonical" content="https://dev.to/anchildress1/meet-hotfix-the-dragon-your-legacy-code-deserves-4141">
+
+<meta name="source-platform" content="dev.to">
+
+<meta name="source-url" content="https://dev.to/anchildress1/meet-hotfix-the-dragon-your-legacy-code-deserves-4141">
+
+<meta name="source-author-profile" content="https://dev.to/anchildress1">
+
+<meta name="source-post-id" content="3491667">
+
+<meta name="original-published-date" content="2026-04-13T04:44:55Z">
+
+<meta name="reading-time" content="9 minutes">
+
+<meta name="devto:reactions" content="0">
+
+<meta name="devto:comments" content="0">
+
+<meta name="devto:engagement_score" content="0">
+
+<meta name="content-fingerprint" content="5112cf2e1a2b232d">
+
+
+
+<!-- Cross-Reference Attribution Meta Tags -->
+
+
+<meta name="article:author" content="Ashley Childress">
+
+<meta name="article:publisher" content="Dev.to">
+
+<meta name="article:source" content="Dev.to">
+
+<meta name="content:source" content="https://dev.to/anchildress1/meet-hotfix-the-dragon-your-legacy-code-deserves-4141">
+
+<meta name="content:original_publisher" content="Dev.to">
+
+<meta name="article:published_time" content="2026-04-13T04:44:55Z">
+
+
+
+<!-- JSON-LD Structured Data -->
+
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "Ashley Childress", "url": "https://dev.to/anchildress1"}, "dateModified": "2026-04-13T04:44:55Z", "datePublished": "2026-04-13T04:44:55Z", "description": "Legacy Smelter is a thermal decommission platform where a Gemini-powered dragon analyzes your code and files very serious, very unhinged postmortems.", "headline": "Meet Hotfix\u2014The Dragon Your Legacy Code Deserves", "image": {"@type": "ImageObject", "height": 500, "url": "https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Flosaq50qjkca77jq1q1n.jpg", "width": 1000}, "inLanguage": "en", "interactionStatistic": [{"@type": "InteractionCounter", "interactionType": "https://schema.org/CommentAction", "userInteractionCount": 0}, {"@type": "InteractionCounter", "interactionType": "https://schema.org/LikeAction", "userInteractionCount": 0}], "keywords": ["devchallenge", "418challenge", "showdev"], "mainEntityOfPage": {"@id": "https://dev.to/anchildress1/meet-hotfix-the-dragon-your-legacy-code-deserves-4141", "@type": "WebPage"}, "publisher": {"@type": "Organization", "name": "anchildress1\u2014Dev.to Mirror", "url": "https://crawly.checkmarkdevtools.dev"}, "timeRequired": "PT9M", "url": "https://dev.to/anchildress1/meet-hotfix-the-dragon-your-legacy-code-deserves-4141", "wordCount": 2358}
+</script>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "item": "https://crawly.checkmarkdevtools.dev", "name": "Home", "position": 1}, {"@type": "ListItem", "item": "https://crawly.checkmarkdevtools.dev/posts", "name": "Posts", "position": 2}, {"@type": "ListItem", "item": "https://crawly.checkmarkdevtools.dev/posts/meet-hotfix-the-dragon-your-legacy-code-deserves-4141.html", "name": "Meet Hotfix\u2014The Dragon Your Legacy Code Deserves", "position": 3}]}
+</script>
+
+
+</head><body>
+<main>
+  <h1><a href="https://dev.to/anchildress1/meet-hotfix-the-dragon-your-legacy-code-deserves-4141">Meet Hotfix—The Dragon Your Legacy Code Deserves</a></h1>
+  
+  <img src="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Flosaq50qjkca77jq1q1n.jpg?v=2"
+      width="1000" height="420"
+      alt="Banner for Meet Hotfix—The Dragon Your Legacy Code Deserves"
+      loading="lazy"
+      style="width:100%;max-width:1000px;height:auto;margin:1em 0;aspect-ratio:1000/420;">
+  
+  <p><em>Published: 2026-04-13T04:44:55Z</em></p>
+    
+    <p><strong>Tags:</strong>
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #devchallenge
+            </span> 
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #418challenge
+            </span> 
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #showdev
+            </span>
+        
+    </p>
+    
+  <p><em>Legacy Smelter is a thermal decommission platform where a Gemini-powered dragon analyzes your code and files very serious, very unhinged postmortems.</em></p>
+
+  <!-- Enhanced Dev.to Attribution -->
+  
+  <div style="border: 1px solid #e0e0e0; padding: 15px; margin: 20px 0;
+                    background-color: #f9f9f9; border-radius: 5px;">
+            <p style="margin: 0; font-style: italic; color: #666;">
+                <strong>📝 Originally published on Dev.to</strong><br>
+                by Ashley Childress on 2026-04-13T04:44:55Z
+            </p>
+            <p style="margin: 10px 0 0 0;">
+                <a href="https://dev.to/anchildress1/meet-hotfix-the-dragon-your-legacy-code-deserves-4141"
+                   style="color: #3b49df; text-decoration: none; font-weight: bold;"
+                   target="_blank" rel="noopener">
+                    → Read the original article on Dev.to
+                </a>
+            </p>
+        </div>
+  
+
+  <article><p><em>This is a submission for the <a href="https://dev.to/challenges/aprilfools-2026">DEV April Fools Challenge</a></em></p>
+
+<h2>
+  <a href="#what-i-built">
+  </a>
+  What I Built
+</h2>
+
+<p><strong>TL;DR</strong> <br>
+The permanent solution to every developer headache: thermal decommissioning.</p>
+
+<ul>
+<li>Upload a screenshot → <em>Hotfix</em> roasts it</li>
+<li>Gemini generates structured incident reports</li>
+<li>Community votes via escalation system + shares</li>
+<li>Top incidents become global P0 disasters</li>
+</ul>
+
+<p><em>Hotfix</em> files serious incident reports. It does not understand that it is completely unhinged. That's what makes it so funny.</p>
+
+<p>Here’s a real incident report generated via live capture:</p>
+
+<p><a href="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F990bo4u6qqy7h8ppwc6z.png" class="article-body-image-wrapper"><img src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F990bo4u6qqy7h8ppwc6z.png" alt="Screenshot Legacy Smelter P0 example" loading="lazy" width="800" height="333"></a></p>
+<h3>
+  <a href="#i-am-the-problem">
+  </a>
+  I Am the Problem 🏚️
+</h3>
+
+<p>I am the subject matter expert (SME) for several legacy applications at work, and every single time somebody stirs dust in the server room—since I can't come up with any other viable explanation—something breaks. After dealing with this nonsense in one form or another for well over a solid year, I announced <strong>the permanent fix: smelting.</strong> I am fully confident that smelting those legacy servers will resolve my ongoing issues instantaneously.</p>
+
+<p>The one thing I've been lacking in my fantastical smelting solution is a dragon. Nobody seemed rather invested in how serious I am about problem solving, because so far not one person has offered me a dragon to get the job done. So I built my own—and I'm sharing it, because legacy code suffering is not a solo experience. Take a screenshot and let the Legacy Smelter handle the problem for you.</p>
+<h3>
+  <a href="#asset-designation-hotfix">
+  </a>
+  Asset Designation: <em>Hotfix</em> 🪧
+</h3>
+
+<p>Meet <em>Hotfix</em>—and yes, I named the dragon <em>Hotfix</em> because that is hilarious. Anything else would have been a giant missed opportunity for dragon naming. This app is more than a dragon, though—it's a whole incident management system. You can upload any screenshot—problematic code, poor UI designs, bugs that make you want to scream, or a selfie (if you can handle a little roasting)—and <em>Hotfix</em> will smelt the problem and give you a detailed incident report memorializing the true fix, which is melting it into oblivion.</p>
+
+<p>The incident reports are added to a global manifest where you can share with friends who would appreciate your solution to the problem. Links are configured to unfurl properly on most platforms, including Slack and Discord. Sharing an incident is considered a containment breach by the system—wait seven seconds between shares to avoid rate limits—which increases the overall Impact for that incident. You can also escalate your favorite incidents, which carries even more weight. The top three global incidents with the highest impact rating are displayed on the main page as P0 priority.</p>
+
+<blockquote>
+<p>💡 <strong>Operational Notice:</strong> Submitted images are processed by Gemini's paid API. Google is not using your uploaded images for training—they're only retained 55 days for abuse monitoring. Do not submit assets you do not own. Do not submit from a company device.</p>
+</blockquote>
+
+<hr>
+<h2>
+  <a href="#demo">
+  </a>
+  Demo
+</h2>
+
+<p>Live at <strong><a href="https://hotfix.anchildress1.dev" target="_blank" rel="noopener noreferrer">hotfix.anchildress1.dev</a></strong>—head to the live site for camera uploads, since iframes don't have camera permissions.</p>
+
+
+<div class="ltag__cloud-run">
+  
+  
+</div>
+
+
+<h3>
+  <a href="#try-to-break-it-%E2%80%8D">
+  </a>
+  Try to Break It ⛓️‍💥
+</h3>
+
+<p>Upload:</p>
+
+<ul>
+<li>The worst UI you've ever seen</li>
+<li>Your most cursed code snippet</li>
+<li>A selfie (if you think you're emotionally prepared)</li>
+</ul>
+
+<p>Then:</p>
+
+<ul>
+<li>Share it</li>
+<li>Escalate it</li>
+<li>Win a sanction</li>
+<li>Try to get into the global P0 leaderboard</li>
+<li>Copy your output in the comments—it counts as a containment breach!</li>
+</ul>
+
+
+<hr>
+
+<h2>
+  <a href="#code">
+  </a>
+  Code
+</h2>
+
+<p>The repo includes the full React frontend, Express server, Cloud Functions for sanction judging, Firestore rules, and a docs/ folder with the design decisions and prompt files referenced in this post.</p>
+
+
+<div class="ltag-github-readme-tag">
+  <div class="readme-overview">
+    <h2>
+      <img height="450" width="800" src="https://assets.dev.to/assets/github-logo-5a155e1f9a670af7944dd5e12375bc76ed542ea80224905ecaf878b9157cdefc.svg" alt="GitHub logo">
+      <a href="https://github.com/anchildress1" target="_blank" rel="noopener noreferrer">
+        anchildress1
+      </a> / <a href="https://github.com/anchildress1/legacy-smelter" target="_blank" rel="noopener noreferrer">
+        legacy-smelter
+      </a>
+    </h2>
+    <h3>
+      A hardware-accelerated mobile web app that visually melts user-uploaded legacy tech into a puddle of slag. Built for the DEV April Fools Challenge.
+    </h3>
+  </div>
+  <div class="ltag-github-body">
+    
+<div class="md">
+<div>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://repository-images.githubusercontent.com/1201373945/f2802097-2afe-4c31-848f-a94cc13ca0b1"><img width="1200" height="475" alt="Legacy Smelter" src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Frepository-images.githubusercontent.com%2F1201373945%2Ff2802097-2afe-4c31-848f-a94cc13ca0b1" style="" loading="lazy"></a>
+</div>
+<div class="markdown-heading">
+<h1>Legacy Smelter</h1>
+</div>
+<p>A satirical incident reporting system for condemned digital artifacts. Upload an image. Hotfix processes it. Output: molten slag.</p>
+<p>The system analyzes uploaded images using Gemini Vision and files a formal postmortem — classification, severity, failure origin, disposition, archive note — before thermally decommissioning the artifact via dragon-based remediation.</p>
+<div class="markdown-heading">
+<h2>Features</h2>
+</div>
+<ul>
+<li>
+<strong>Gemini Vision analysis</strong> — 16-field structured incident schema delivered via Gemini's constrained JSON mode</li>
+<li>
+<strong>Hotfix animation</strong> — PixiJS dragon idle, fly-in, and smelt sequence with audio</li>
+<li>
+<strong>Incident postmortem</strong> — full structured report overlay with social share (X, Bluesky, Reddit, LinkedIn) plus copy-link</li>
+<li>
+<strong>Global incident manifest</strong> — real-time Firestore feed of all thermally decommissioned artifacts</li>
+<li>
+<strong>Decommission index</strong> — live cumulative pixel count across all incidents</li>
+<li>
+<strong>Camera support</strong> — deploy field scanner via device camera or file upload</li>
+</ul>
+<div class="markdown-heading">
+<h2>Stack</h2>
+</div>
+<div class="table-wrapper-paragraph">
+
+
+
+Layer
+Technology
+
+
+
+
+Framework
+React 19 + TypeScript + Vite
+
+
+Animation
+PixiJS 8
+
+
+AI
+Gemini (<code>gemini-3.1-flash-lite-preview</code>) via <code>@google/genai</code>
+
+
+
+Database
+Firebase Firestore
+
+
+</div>…</div>
+  </div>
+  <div class="gh-btn-container"><a class="gh-btn" href="https://github.com/anchildress1/legacy-smelter" target="_blank" rel="noopener noreferrer">View on GitHub</a></div>
+</div>
+
+
+<blockquote>
+<p>⚖️ This project is licensed under <a href="https://github.com/anchildress1/legacy-smelter/tree/v2.0.0?tab=License-1-ov-file" target="_blank" rel="noopener noreferrer">Polyform Shield 1.0.0</a> and is released for this challenge as <a href="https://github.com/anchildress1/legacy-smelter/tree/v2.0.0?tab=readme-ov-file" target="_blank" rel="noopener noreferrer">v2.0.0</a>.</p>
+</blockquote>
+
+
+<hr>
+
+<h2>
+  <a href="#how-i-built-it">
+  </a>
+  How I Built It
+</h2>
+
+<h3>
+  <a href="#the-dragon">
+  </a>
+  The Dragon 🥚
+</h3>
+
+<p>Getting the animation right was the hardest part of the entire build, and I went into it knowing almost nothing about sprite animation beyond whether something looked right or not. I found the dragon sprites on <a href="https://gamedevmarket.net" target="_blank" rel="noopener noreferrer">GameDevMarket.net</a> and figured AI could handle the rest—which was optimistic of me, because AI is decidedly rough at producing smooth animation on the first try or the fifth. I picked up bits and pieces along the way, spent a humbling amount of time on what probably should have been a simpler problem, and I am still nowhere near an expert—but I am rather pleased with how <em>Hotfix</em> turned out.</p>
+
+<p><a href="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fbcfql1crxhfsgfvnru5m.png" class="article-body-image-wrapper"><img src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fbcfql1crxhfsgfvnru5m.png" alt="Screenshot of Hotfix—the Legacy Smelter dragon" loading="lazy" width="800" height="408"></a></p>
+
+<h3>
+  <a href="#the-stack">
+  </a>
+  The Stack 🧰
+</h3>
+
+<p>The front end is React 19 and TypeScript on Vite, Tailwind v4 for styling, PixiJS 8 for the dragon animation because Canvas 2D was never going to give me the smoothness I needed, and Howler.js so the smelt actually feels like something is happening. On the backend, Firestore handles everything community-facing, Firebase Auth gates the upload endpoint, and a small Express server keeps my Gemini API key off the client.</p>
+
+<p>Gemini runs through the <code>@google/genai</code> SDK with two models doing two different jobs. Sanction judging fires as a Cloud Functions v2 <code>onDocumentCreated</code> trigger, claimed inside a Firestore transaction so concurrent invocations can't overlap.</p>
+
+<p>Deployment is Cloud Run primarily because I like having the embeds available in these posts. I have a strong deployment pipeline already, which is running locally for this build instead of inside GHA—I already have the setup wired into Claude to build this flow for every app I create, so input from me is minimal.</p>
+
+<p>The downside is that Cloud Run is not the stack I would have picked for this application had AI Studio not wired it that way from the beginning. Cloud Run is expensive, cold starts can be problematic for performance, and I didn't want it always-on just to run background functions—which I never scheduled anyway, so ultimately unnecessary. But that's how Cloud Functions got involved and turned this toy project into a three-server special in GCP.</p>
+
+<h3>
+  <a href="#global-smelt-accumulation">
+  </a>
+  Global Smelt Accumulation 🌋
+</h3>
+
+<p>Every image uploaded is converted into a total pixel count and added to a running Firestore counter. It's displayed at the top of every page and is a completely useless metric that I enjoy seeing—a completely valid use case.</p>
+
+<h3>
+  <a href="#vibing-a-solution-%F0%9F%AB%A0">
+  </a>
+  Vibing a Solution 🫠
+</h3>
+
+<p>I was convinced I didn't need to write tests for a toy project I didn't expect to last, and I failed miserably at that conviction. I ended up using Vitest with Testing Library and the Firebase emulator, because fighting AI to stop making the same mistakes gets expensive much faster than just writing a test suite. The majority of my time was spent validating and complaining that the UI was not yet finished across Claude, ChatGPT, and Gemini. I think the four of us together somehow managed to not embarrass me, which I have categorized as a win.</p>
+
+<h3>
+  <a href="#credits">
+  </a>
+  Credits 🪙
+</h3>
+
+<p><em>Hotfix</em> owes his entire existence to the artists whose work makes up the core of the experience. All assets sourced from <a href="https://gamedevmarket.net" target="_blank" rel="noopener noreferrer">GameDevMarket.net</a>:</p>
+
+<ul>
+<li>
+<strong>Dragon animation sprites</strong> — <a href="https://www.gamedevmarket.net/asset/animated-dragon" target="_blank" rel="noopener noreferrer">Animated Dragon</a> by RobertBrooks</li>
+<li>
+<strong>Slag/liquid effects</strong> — <a href="https://www.gamedevmarket.net/asset/flowing-gooliquid-5653" target="_blank" rel="noopener noreferrer">Flowing Goo-Liquid</a> by RobertBrooks</li>
+<li>
+<strong>Sound effects</strong> — <a href="https://www.gamedevmarket.net/asset/dark-fantasy-studio-dragon" target="_blank" rel="noopener noreferrer">Dark Fantasy Studio – Dragon</a> by DFS (Nicolas Jeudy)</li>
+</ul>
+
+
+<hr>
+
+<h2>
+  <a href="#prize-category">
+  </a>
+  Prize Category
+</h2>
+
+<h3>
+  <a href="#best-google-ai-usage">
+  </a>
+  Best Google AI Usage 🏅
+</h3>
+
+<h4>
+  <a href="#what-gemini-powers">
+  </a>
+  What Gemini Powers ⚙️
+</h4>
+
+<p>Two Gemini models power the live experience. Every upload is processed by <code>gemini-3.1-flash-lite-preview</code>, which:</p>
+
+<ul>
+<li>identifies the subject and draws a bounding box around the primary artifact</li>
+<li>extracts five hex colors as a chromatic profile</li>
+<li>generates a 15-field structured incident report under strict voice and word-count constraints</li>
+<li>
+<em>Hotfix</em> uses that bounding box to smelt the portion of the image Gemini actually flagged</li>
+</ul>
+
+<p><code>gemini-3-flash-preview</code> handles sanction selection on a separate path, grading batches of five incidents based on comedic scoring rules—more on that below.</p>
+
+<p>The voice was a complete accident. The first pass at the prompt was a plain "read the image and return a structured report" instruction, which worked fine right up until I tried to trick the system with a selfie just to see what would happen. It roasted me. Thoroughly.</p>
+
+<p><a href="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fp1y4gng596hti77k6ppu.png" class="article-body-image-wrapper"><img src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fp1y4gng596hti77k6ppu.png" alt="Screenshot of Legacy Smelter Postmortem Incident Report—Archive Note" loading="lazy" width="800" height="254"></a></p>
+
+<p>I spent the rest of the build optimizing for that exact energy—an enterprise postmortem entirely convinced of its own importance. The voice rules at the top of the prompt file are the load-bearing ones:<br>
+</p>
+
+<div class="highlight js-code-highlight">
+<pre><code><span class="gu">## Voice</span>
+
+Enterprise incident report. Postmortem tone: dry, precise, operational, concise. Accusatory toward the artifact and its history.
+
+The system treats absurd subjects as routine incidents. It is filing an incident report. It does not know it is funny.
+
+<span class="gu">## Comedy mechanics</span>
+<span class="p">
+-</span> Specificity over generality. "Also, the green paint" is funny. Find the one weird concrete thing in the image and call it out.
+<span class="p">-</span> The deadpan afterthought. End a technical assessment with a flat, too-honest trailing observation.
+<span class="p">-</span> Commit beyond the point of reason. Start institutional, then dramatically escalate without changing tone.
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    Enter fullscreen mode
+    
+
+
+    Exit fullscreen mode
+    
+
+
+</div>
+</div>
+</div>
+
+
+<p>"The system does not know it is funny" is the whole design philosophy in one sentence. That's the entire premise in a nutshell.</p>
+
+<p>Every one of the 15 returned fields has its own word-count cap and voice constraint baked into the prompt—without them, Gemini defaults to generic corporate language and the bit falls apart. The full prompt file is in the repo in <a href="https://github.com/anchildress1/legacy-smelter/blob/v2.0.0/server.js#L144" target="_blank" rel="noopener noreferrer"><code>server.js</code></a>.</p>
+<h4>
+  <a href="#the-sanction-logic">
+  </a>
+  The Sanction Logic 📛
+</h4>
+
+<p><code>gemini-3-flash-preview</code> handles the sanction path—Flash Lite falls apart on comparison judging across a batch, and Pro is overkill that actually loses some of the unhinged quality Flash is known for.</p>
+
+<p><a href="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Ftoolo42suf5v5lrb23w6.png" class="article-body-image-wrapper"><img src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Ftoolo42suf5v5lrb23w6.png" alt="Screenshot of a Gemini sanction" loading="lazy" width="800" height="217"></a></p>
+
+<p>The original image is never stored, so Gemini can't grade accuracy against the source—it can only judge the writing. The first draft used strict grading criteria and kept picking the most technically accurate report instead of the funniest. Version two mostly lets Gemini run wild, and it picks the funny one now. The guidelines that survived:<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre><code>Signals that a record may deserve sanction:
+<span class="p">
+-</span> disproportionate institutional seriousness applied to an ordinary software or workplace failure
+<span class="p">-</span> precise, concrete details that make the situation feel embarrassingly real
+<span class="p">-</span> escalation from a small defect, design choice, or human workaround into procedural absurdity
+<span class="p">-</span> wording that implies everyone involved has accepted something obviously unreasonable as normal
+<span class="p">-</span> dry phrasing that lands harder the straighter it is read
+
+Do not reward a record merely for being:
+<span class="p">
+-</span> wordy
+<span class="p">-</span> random
+<span class="p">-</span> technically dense
+<span class="p">-</span> surreal without a clear comedic turn
+<span class="p">-</span> mildly clever but interchangeable with the others
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+    Enter fullscreen mode
+    
+
+
+    Exit fullscreen mode
+    
+
+
+</div>
+</div>
+</div>
+
+
+<p>The full sanction prompt file is in the repo in <a href="https://github.com/anchildress1/legacy-smelter/blob/v2.0.0/functions/sanction.js#L76" target="_blank" rel="noopener noreferrer"><code>functions/sanction.js</code></a>.</p>
+<h4>
+  <a href="#building-with-google-ai">
+  </a>
+  Building with Google AI 🧪
+</h4>
+
+<p>I touched nearly every Google AI tool during this build. Gemini Chat for brainstorming and prompt iteration, but it couldn't hold context long enough to be useful past the first few rounds. AI Studio for the initial scaffold—which checked my live API key into the repo on init, so that was fun until GitHub's secret detection caught it before I did. The CLI for animation work, though the accessibility skill was broken and I ended up routing around it. Antigravity until the free tier ran out mid-animation pass. Gemini Pro for the social banner, only it wasn't able to iterate for accurate edits. Each one ran out of steam before I was done, which is how I ended up reaching for all of them.</p>
+
+<p>What actually shipped runs on Gemini. Every postmortem is <code>gemini-3.1-flash-lite-preview</code> doing exactly what it's good at, live, in production. Every sanction is <code>gemini-3-flash-preview</code> reading a batch of five and picking the one a dev would quote to a coworker. Two models, two jobs, both in constrained JSON mode, both doing real work on every request.</p>
+
+<p>Gemini's version of this project is released as <a href="https://github.com/anchildress1/legacy-smelter/tree/v0.0.1" target="_blank" rel="noopener noreferrer">v0.0.1</a> and produced this rather useless but very funny animation:</p>
+
+<p><a href="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fh8s3yu5kqzy5j23spsrv.png" class="article-body-image-wrapper"><img src="https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fh8s3yu5kqzy5j23spsrv.png" alt="Screenshot of Gemini's version of the app for v0.0.1" loading="lazy" width="792" height="1374"></a></p>
+
+<p>What actually shipped runs on Gemini. Every postmortem is <code>gemini-3.1-flash-lite-preview</code> doing exactly what it's good at, live, in production. Every sanction is <code>gemini-3-flash-preview</code> reading a batch of five and picking the one a dev would quote to a coworker. Two models, two jobs, both in constrained JSON mode, both doing real work on every request.</p>
+
+<hr>
+<h3>
+  <a href="#community-favorite-%F0%9F%AA%A9">
+  </a>
+  Community Favorite 🪩
+</h3>
+
+<p>Legacy Smelter is a system designed to be shared, escalated, and collectively abused. Every incident lands on a global manifest, links unfurl on Slack and Discord, shares rack up breach points, escalations carry real weight, and the top three P0 incidents are permanent shrines to whatever the community found most absurd. If that sounds like something you'd enjoy, you're exactly who I built it for.</p>
+
+<hr>
+<h3>
+  <a href="#the-permanent-fix">
+  </a>
+  The Permanent Fix
+</h3>
+
+<p>All in all I'm more than thrilled to finally have my dragon accessible whenever I'm fed up with something. It's a nice way to relieve some stress and the output can be genuinely hilarious overkill. </p>
+
+<p>Some problems just aren’t meant to be fixed...</p>
+
+<p>They’re meant to be smelted.</p>
+
+
+<div class="ltag__user ltag__user__id__3224358">
+    <a href="/anchildress1" class="ltag__user__link profile-image-link">
+      <div class="ltag__user__pic">
+        <img src="https://media2.dev.to/dynamic/image/width=150,height=150,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Fuser%2Fprofile_image%2F3224358%2F7f675c78-6aa0-466a-a5a7-c3e35440d53a.png" alt="anchildress1 image">
+      </div>
+    </a>
+  <div class="ltag__user__content">
+    <h2>
+<a class="ltag__user__link" href="/anchildress1">Ashley Childress</a>Follow
+</h2>
+    <div class="ltag__user__summary">
+      <a class="ltag__user__link" href="/anchildress1">Distributed backend specialist. Perfectly happy playing second fiddle—it means I get to chase fun ideas, dodge meetings, and break things no one told me to touch, all without anyone questioning it. 😇</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+<hr>
+
+<h4>
+  <a href="#thermally-decommissioned-with-assistance">
+  </a>
+  🛡️ Thermally Decommissioned with Assistance
+</h4>
+
+<p>This post was written by me with collaborative editing from Claude, ChatGPT, and Gemini. The code for <em>Legacy Smelter</em> was built using Claude Code—who also wrote the tests, the deployment pipeline, the Cloud Functions, and then got put to work on this submission post because I don't believe in downtime. </p>
+
+<p>ChatGPT and Gemini were consulted at various stages, though "consulted" is generous for how often they were told they were wrong. No AI was harmed in the making of this project, but one of them has now been through every phase of the software development lifecycle in a single sprint and may need to file its own incident report.</p>
+
+</article>
+
+  <!-- Dev.to Backlinks -->
+  
+  <div style="margin: 20px 0; padding: 10px; border-left: 4px solid #3b49df; background-color: #f8f9ff;">
+            <p style="margin: 0; font-size: 0.9em; color: #555;">
+                💬 Join the discussion about "Meet Hotfix—The Dragon Your Legacy Code Deserves" on Dev.to:
+            </p>
+            <p style="margin: 5px 0 0 0;">
+                <a href="https://dev.to/anchildress1/meet-hotfix-the-dragon-your-legacy-code-deserves-4141"
+                   style="color: #3b49df; font-weight: bold; text-decoration: none;"
+                   target="_blank" rel="noopener">
+                    View comments and reactions →
+                </a>
+            </p>
+        </div>
+  
+
+  <!-- Related Posts Section -->
+  
+  <section style="margin: 30px 0; padding: 20px; background-color: #f8f9fa; border-radius: 8px;
+                  border: 1px solid #e9ecef;">
+    <h3 style="margin-top: 0; color: #495057; font-size: 1.2em;">📚 Related Articles</h3>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="find-the-dev-post-that-needs-you-now-33ng.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            Find the DEV Post That Needs You Now 🫶
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">A DEV Community dashboard that surfaces posts needing human replies so members can quickly find where to engage.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#devchallenge</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#showdev</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="forged-between-coal-and-code-phi.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            Forged Between Coal and Code
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">A backend engineer builds an immersive narrated web experience with Canvas, WebGL, layered audio, and her own Appalachian voiceover. No frameworks. 13 ADRs.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#devchallenge</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="i-stopped-reviewing-code-a-backend-devs-experiment-with-google-gemini-5424.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            I Stopped Reviewing Code: A Backend Dev’s Experiment with Google Gemini
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">I stopped reviewing code and let Google Gemini build my UI. Then I audited the results to see what autonomy in AI development actually produces.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#devchallenge</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="my-portfolio-doesnt-live-on-the-page-218e.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            My Portfolio Doesn’t Live on the Page 🚫📃
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">A systems‑first portfolio built with Antigravity—focused on outcomes over code, intentional constraints, and the work that lives beyond the page.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#devchallenge</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="conversational-retrieval-when-chat-becomes-navigation-2gij.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            Conversational Retrieval: When Chat Becomes Navigation 💬
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">Building a conversational interface on Algolia where chat acts as navigation, grounded in fast, predictable retrieval.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#devchallenge</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+    </ul>
+  </section>
+  
+
+  <p><a href="https://dev.to/anchildress1/meet-hotfix-the-dragon-your-legacy-code-deserves-4141">Read on Dev.to →</a></p>
+</main>
+</body></html>
+</text>

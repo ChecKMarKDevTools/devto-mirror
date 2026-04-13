@@ -2,6 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://crawly.checkmarkdevtools.dev/</loc></url>
   
+    <url><loc>https://crawly.checkmarkdevtools.dev/posts/meet-hotfix-the-dragon-your-legacy-code-deserves-4141.html</loc></url>
+  
+    <url><loc>https://crawly.checkmarkdevtools.dev/posts/three-ais-and-a-funeral-my-take-on-gpt-5-3f3e.html</loc></url>
+  
+    <url><loc>https://crawly.checkmarkdevtools.dev/posts/so-this-was-just-a-test-you-made-it-a-thing-6df.html</loc></url>
+  
+    <url><loc>https://crawly.checkmarkdevtools.dev/posts/fact-checking-the-fear-behind-the-dark-side-of-ai-the-real-story-366p.html</loc></url>
+  
+    <url><loc>https://crawly.checkmarkdevtools.dev/posts/name-swap-alert-ocd-strikes-again-but-its-just-the-username-3pai.html</loc></url>
+  
+    <url><loc>https://crawly.checkmarkdevtools.dev/posts/calling-all-nodejs-wizards-what-would-you-add-to-the-ultimate-boilerplate-38aj.html</loc></url>
+  
+    <url><loc>https://crawly.checkmarkdevtools.dev/posts/from-hell-loops-to-happy-commits-38c4.html</loc></url>
+  
+    <url><loc>https://crawly.checkmarkdevtools.dev/posts/letting-ai-drive-a-month-of-building-with-github-copilot-4a94.html</loc></url>
+  
     <url><loc>https://crawly.checkmarkdevtools.dev/posts/forged-between-coal-and-code-phi.html</loc></url>
   
     <url><loc>https://crawly.checkmarkdevtools.dev/posts/i-stopped-reviewing-code-a-backend-devs-experiment-with-google-gemini-5424.html</loc></url>
@@ -72,8 +88,6 @@
   
     <url><loc>https://crawly.checkmarkdevtools.dev/posts/github-copilot-reusable-prompts-part-2-walkthrough-real-examples-17mh.html</loc></url>
   
-    <url><loc>https://crawly.checkmarkdevtools.dev/posts/three-ais-and-a-funeral-my-take-on-gpt-5-3f3e.html</loc></url>
-  
     <url><loc>https://crawly.checkmarkdevtools.dev/posts/github-copilot-agent-mode-the-mistake-you-never-want-to-make-1mmh.html</loc></url>
   
     <url><loc>https://crawly.checkmarkdevtools.dev/posts/what-ive-learned-about-github-copilot-agent-mode-4co2.html</loc></url>
@@ -84,21 +98,9 @@
   
     <url><loc>https://crawly.checkmarkdevtools.dev/posts/oh-i-have-big-news-guess-what-i-got-yesterday-1jca.html</loc></url>
   
-    <url><loc>https://crawly.checkmarkdevtools.dev/posts/so-this-was-just-a-test-you-made-it-a-thing-6df.html</loc></url>
-  
-    <url><loc>https://crawly.checkmarkdevtools.dev/posts/fact-checking-the-fear-behind-the-dark-side-of-ai-the-real-story-366p.html</loc></url>
-  
     <url><loc>https://crawly.checkmarkdevtools.dev/posts/build-it-better-real-world-ai-coding-with-github-copilot-1d47.html</loc></url>
   
     <url><loc>https://crawly.checkmarkdevtools.dev/posts/is-github-copilot-safe-the-fun-and-hard-truth-about-responsible-ai-3b95.html</loc></url>
-  
-    <url><loc>https://crawly.checkmarkdevtools.dev/posts/name-swap-alert-ocd-strikes-again-but-its-just-the-username-3pai.html</loc></url>
-  
-    <url><loc>https://crawly.checkmarkdevtools.dev/posts/calling-all-nodejs-wizards-what-would-you-add-to-the-ultimate-boilerplate-38aj.html</loc></url>
-  
-    <url><loc>https://crawly.checkmarkdevtools.dev/posts/from-hell-loops-to-happy-commits-38c4.html</loc></url>
-  
-    <url><loc>https://crawly.checkmarkdevtools.dev/posts/letting-ai-drive-a-month-of-building-with-github-copilot-4a94.html</loc></url>
   
   
     <url><loc>https://crawly.checkmarkdevtools.dev/comments/2pafg.html</loc></url>
