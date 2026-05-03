@@ -1,0 +1,512 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<title>AI Isn&#39;t Stupid. Your Setup Is. 🛠️</title>
+<link rel="canonical" href="https://dev.to/anchildress1/ai-isnt-stupid-your-setup-is-16cn">
+<meta name="description" content="The bare-minimum AI coding workflow—pick the right model, plan first, write AGENTS.md for agents not humans, and cross-check across LLMs before you blame the tool.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dev.to/anchildress1/ai-isnt-stupid-your-setup-is-16cn">
+<meta property="og:title" content="AI Isn&#39;t Stupid. Your Setup Is. 🛠️">
+<meta property="og:description" content="The bare-minimum AI coding workflow—pick the right model, plan first, write AGENTS.md for agents not humans, and cross-check across LLMs before you blame the tool.">
+<meta property="og:image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F8ddakzjuqx24c2ayunsn.jpg">
+<meta property="og:site_name" content="anchildress1—Dev.to Mirror">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://dev.to/anchildress1/ai-isnt-stupid-your-setup-is-16cn">
+<meta name="twitter:title" content="AI Isn&#39;t Stupid. Your Setup Is. 🛠️">
+<meta name="twitter:description" content="The bare-minimum AI coding workflow—pick the right model, plan first, write AGENTS.md for agents not humans, and cross-check across LLMs before you blame the tool.">
+<meta name="twitter:image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F8ddakzjuqx24c2ayunsn.jpg">
+
+<!-- LinkedIn -->
+<meta property="linkedin:title" content="AI Isn&#39;t Stupid. Your Setup Is. 🛠️">
+<meta property="linkedin:description" content="The bare-minimum AI coding workflow—pick the right model, plan first, write AGENTS.md for agents not humans, and cross-check across LLMs before you blame the tool.">
+<meta property="linkedin:image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F8ddakzjuqx24c2ayunsn.jpg">
+
+<!-- Additional Social Meta -->
+<meta name="image" content="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F8ddakzjuqx24c2ayunsn.jpg">
+<meta name="author" content="Ashley Childress">
+<meta name="keywords" content="ai, agents, productivity, tutorial">
+
+<!-- AI-Specific Enhanced Metadata -->
+
+
+<meta name="article:author" content="Ashley Childress">
+
+<meta name="article:published_time" content="2026-05-02T19:30:01Z">
+
+<meta name="content-type" content="tutorial">
+
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+<meta name="content-language" content="en">
+
+<meta name="generator" content="anchildress1—Dev.to Mirror AI-Optimized Mirror">
+
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<meta name="theme-color" content="#000000">
+
+<meta name="canonical" content="https://dev.to/anchildress1/ai-isnt-stupid-your-setup-is-16cn">
+
+<meta name="source-platform" content="dev.to">
+
+<meta name="source-url" content="https://dev.to/anchildress1/ai-isnt-stupid-your-setup-is-16cn">
+
+<meta name="source-author-profile" content="https://dev.to/anchildress1">
+
+<meta name="source-post-id" content="3601343">
+
+<meta name="original-published-date" content="2026-05-02T19:30:01Z">
+
+<meta name="reading-time" content="6 minutes">
+
+<meta name="devto:reactions" content="2">
+
+<meta name="devto:comments" content="4">
+
+<meta name="devto:engagement_score" content="10">
+
+<meta name="content-fingerprint" content="ab2ff83876bd3383">
+
+
+
+<!-- Cross-Reference Attribution Meta Tags -->
+
+
+<meta name="article:author" content="Ashley Childress">
+
+<meta name="article:publisher" content="Dev.to">
+
+<meta name="article:source" content="Dev.to">
+
+<meta name="content:source" content="https://dev.to/anchildress1/ai-isnt-stupid-your-setup-is-16cn">
+
+<meta name="content:original_publisher" content="Dev.to">
+
+<meta name="article:published_time" content="2026-05-02T19:30:01Z">
+
+
+
+<!-- JSON-LD Structured Data -->
+
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "author": {"@type": "Person", "name": "Ashley Childress", "url": "https://dev.to/anchildress1"}, "dateModified": "2026-05-02T19:30:01Z", "datePublished": "2026-05-02T19:30:01Z", "description": "The bare-minimum AI coding workflow\u2014pick the right model, plan first, write AGENTS.md for agents not humans, and cross-check across LLMs before you blame the tool.", "headline": "AI Isn\u0027t Stupid. Your Setup Is. \ud83d\udee0\ufe0f", "image": {"@type": "ImageObject", "height": 500, "url": "https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F8ddakzjuqx24c2ayunsn.jpg", "width": 1000}, "inLanguage": "en", "interactionStatistic": [{"@type": "InteractionCounter", "interactionType": "https://schema.org/CommentAction", "userInteractionCount": 4}, {"@type": "InteractionCounter", "interactionType": "https://schema.org/LikeAction", "userInteractionCount": 2}], "keywords": ["ai", "agents", "productivity", "tutorial"], "mainEntityOfPage": {"@id": "https://dev.to/anchildress1/ai-isnt-stupid-your-setup-is-16cn", "@type": "WebPage"}, "publisher": {"@type": "Organization", "name": "anchildress1\u2014Dev.to Mirror", "url": "https://crawly.checkmarkdevtools.dev"}, "timeRequired": "PT6M", "url": "https://dev.to/anchildress1/ai-isnt-stupid-your-setup-is-16cn", "wordCount": 1344}
+</script>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "item": "https://crawly.checkmarkdevtools.dev", "name": "Home", "position": 1}, {"@type": "ListItem", "item": "https://crawly.checkmarkdevtools.dev/posts", "name": "Posts", "position": 2}, {"@type": "ListItem", "item": "https://crawly.checkmarkdevtools.dev/posts/ai-isnt-stupid-your-setup-is-16cn.html", "name": "AI Isn\u0027t Stupid. Your Setup Is. \ud83d\udee0\ufe0f", "position": 3}]}
+</script>
+
+
+</head><body>
+<main>
+  <h1><a href="https://dev.to/anchildress1/ai-isnt-stupid-your-setup-is-16cn">AI Isn&#39;t Stupid. Your Setup Is. 🛠️</a></h1>
+  
+  <img src="https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F8ddakzjuqx24c2ayunsn.jpg?v=2"
+      width="1000" height="420"
+      alt="Banner for AI Isn&#39;t Stupid. Your Setup Is. 🛠️"
+      loading="lazy"
+      style="width:100%;max-width:1000px;height:auto;margin:1em 0;aspect-ratio:1000/420;">
+  
+  <p><em>Published: 2026-05-02T19:30:01Z</em></p>
+    
+    <p><strong>Tags:</strong>
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #ai
+            </span> 
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #agents
+            </span> 
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #productivity
+            </span> 
+        
+            <span style="background:#e9ecef; padding:2px 6px; margin:2px; border-radius:3px; font-size:0.9em; color:#495057;">
+                #tutorial
+            </span>
+        
+    </p>
+    
+  <p><em>The bare-minimum AI coding workflow—pick the right model, plan first, write AGENTS.md for agents not humans, and cross-check across LLMs before you blame the tool.</em></p>
+
+  <!-- Enhanced Dev.to Attribution -->
+  
+  <div style="border: 1px solid #e0e0e0; padding: 15px; margin: 20px 0;
+                    background-color: #f9f9f9; border-radius: 5px;">
+            <p style="margin: 0; font-style: italic; color: #666;">
+                <strong>📝 Originally published on Dev.to</strong><br>
+                by Ashley Childress on 2026-05-02T19:30:01Z
+            </p>
+            <p style="margin: 10px 0 0 0;">
+                <a href="https://dev.to/anchildress1/ai-isnt-stupid-your-setup-is-16cn"
+                   style="color: #3b49df; text-decoration: none; font-weight: bold;"
+                   target="_blank" rel="noopener">
+                    → Read the original article on Dev.to
+                </a>
+            </p>
+        </div>
+  
+
+  <article><p>The latest discourse I hear usually sounds something like, "I tried [insert agent flavor of the week] and it gave me garbage. AI is overrated."</p>
+
+<p>My response: "No. You asked your mechanic to build a house and forgot to provide blueprints." 🦄</p>
+
+<p>The agent isn't the problem—the setup is. Here's the workflow that actually works. None of it is clever and all of it took me longer to learn than I'd care to admit.</p>
+
+
+<hr>
+
+<h2>
+  <a href="#1-pick-the-model-that-fits-the-task-specs-beat-vibes">
+  </a>
+  1. Pick the model that fits the task. Specs beat vibes. 🪛
+</h2>
+
+<p>Haiku is a sprinter. It'll absolutely take a swing at your distributed system architecture—the answer just won't be one you can ship. Your job is to match the model to the work.</p>
+
+<p>If the problem is well-defined—clear specs, acceptance criteria, edge cases enumerated—Sonnet handles it fine. You'll spend more time in review, but you'll save real money. You'll also catch your own bad specs faster, which is its own gift.</p>
+
+<p>If the feature is a tangled mess and you can't (or won't) break it down, that's also fine. Hand the whole thing to Opus instead. You don't have to scope every subproblem, but you DO have to define the whole solution. "Make it work" is not a valid requirement—it's a desperate wish the agent will not understand.</p>
+
+<p>A cheap model with great specs beats an expensive model with vibes and feelings, every single time.</p>
+
+
+<hr>
+
+<h2>
+  <a href="#2-plan-in-chat-touch-the-codebase-last">
+  </a>
+  2. Plan in chat. Touch the codebase last. 🪞
+</h2>
+
+<p>I spend hours—<em>many hours</em>—talking through a problem before a single character lands in the codebase. AI is my rubber duck/research assistant with attitude—yes, I code that in because annoying accolades are distracting me from the goal: a solid game plan.</p>
+
+<p>The language? Does not matter. I can read them all (I probably won't). Package manager? I care even less—drop a Makefile in the root and the commands stay the same regardless. Timeline? Sometimes, but the answer is usually "yesterday." What does matter:</p>
+
+<ul>
+<li>Meaningful tech stack</li>
+<li>Desired outcome</li>
+<li>Acceptance criteria</li>
+<li>Test scenarios—positive, negative, error, edge, weird, seen</li>
+<li>Explicit non-goals (the things you are NOT building, so they don't get sneakily built anyway)</li>
+</ul>
+
+<p>Skip these and start prompting with "build me a thing"? You will indeed get <em>a thing</em>. It just won't be <em>your thing</em>.</p>
+
+
+<hr>
+
+<h2>
+  <a href="#3-one-source-of-truth-stop-copying-instructions">
+  </a>
+  3. One source of truth. Stop copying instructions. 🪧
+</h2>
+
+<p><code>AGENTS.md</code>, <code>copilot-instructions</code>, <code>CLAUDE.md</code>, <code>GEMINI.md</code>—pick one. I use <code>AGENTS.md</code> as the source of truth, then drop one-line markdown links to it from the others. That gives you one file to manage instead of four.</p>
+
+<p>If a rule is true everywhere—for you as the operator or across an entire project—it doesn't belong in a skill. Skills get called when triggered. Instructions get loaded always. Know which one you actually need and use accordingly. I wrote <a href="https://dev.to/anchildress1/skills-arent-magic-theyre-scoped-context-d07">another post</a> dedicated solely to this concept, if you want a deeper dive.</p>
+
+<p>The model should maintain <code>AGENTS.md</code> as it works—you do not need a separate <code>MEMORY.md</code> to muddy the waters. When it keeps violating the same rule, don't add another to the pile. Edit instead. Your agent knows exactly where it tripped if you ask, and it already knows how to fix it.</p>
+
+
+<hr>
+
+<h2>
+  <a href="#4-write-for-the-agent-not-the-audience">
+  </a>
+  4. Write for the agent. Not the audience. 🪶
+</h2>
+
+<p>Left to its defaults, the model will write your instructions like a detailed onboarding doc. Section headers. Friendly intros. "This document outlines..." Polished prose for a human reader who is never supposed to show up.</p>
+
+<p>Instructions load into context every turn. Every word costs tokens and burns clarity. So optimize for the actual audience: your agent.</p>
+
+<p>Tell it explicitly:</p>
+
+<ul>
+<li>Edit for AI consumption only—no human-friendly framing, no narrative flow.</li>
+<li>Preserve every meaningful detail. Compress the prose, never drop the intent.</li>
+<li>Strip duplicates. If two rules say the same thing differently, merge them.</li>
+<li>Strip ambiguity. "Try to" and "consider" are noise—say what's required.</li>
+<li>Strip anything inferable from a reasonable code edit. If grep would answer it, cut it.</li>
+</ul>
+
+<p>A polished onboarding doc is a tax on every prompt you ever send. Pay it once at write time, not every turn.</p>
+
+<blockquote>
+<p>💡 <strong>ProTip:</strong> These instructions <em>should be</em> a skill, because the agent only ever uses them when updating <code>AGENTS.md</code>.</p>
+</blockquote>
+
+
+<hr>
+
+<h2>
+  <a href="#5-skills-arent-magical-explicitly-call-them">
+  </a>
+  5. Skills aren't magical. Explicitly call them. 🪄
+</h2>
+
+<p>Skills are designed to be auto-invoked—yes. In theory... or if the description matches the prompt close enough and the planets align on a Tuesday. If you <em>NEED</em> a skill used, then name it explicitly in the prompt. Otherwise you're gambling.</p>
+
+<p>And please stop installing every skill from the marketplace just because the name sounded interesting. If you don't know the exact name of it already, delete it (with a backup). Use a skill builder to document the workflows you actually run. Leave the rest alone. You load trash in, you get trash out.</p>
+
+
+<hr>
+
+<h2>
+  <a href="#6-install-mcps-locally-globals-tax-every-prompt-%F0%9F%AA%BA">
+  </a>
+  6. Install MCPs locally. Globals tax every prompt. 🪺
+</h2>
+
+<p>Having 20 MCPs globally enabled is convenient for you and a context-pollution nightmare for your agent. Every connected MCP eats tokens just by existing.</p>
+
+<p>The question is simple: do I use this everywhere, <em>all the time</em>? If yes, then global is accurate. If not—and the honest answer is usually not—then install it only in the five projects where it actually matters. Symlinks and absolute paths can handle the duplication. Just make sure the agent has access to the directory.</p>
+
+
+<hr>
+
+<h2>
+  <a href="#7-dont-review-test-then-test-again-%F0%9F%A9%BB">
+  </a>
+  7. Don't review. Test. Then test again. 🩻
+</h2>
+
+<p>I stopped reviewing AI-written code line by line. I was doing it badly, doing it slowly, and my eyes glazed over by the third file. The answer is to test it—extensively, often, and the moment it stops spinning. Not three days later when you open a PR.</p>
+
+<p>Unit. Integration. E2E. Performance. A11y (accessibility). Sonar. Semgrep. Et cetera. Then automate and run with GitHub Actions. Make the model cover positive paths, negative paths, error paths, edge cases, and the acceptance criteria you defined back in the planning phase. (You did define them, right?) Add in anything you uncover during testing explicitly, so it doesn't happen again.</p>
+
+<p>Then cross-check across models. Have Codex review Claude. Have Copilot review Codex. Each model has different blind spots and different obsessions—running them against each other in controlled doses IS the review. One LLM is a single point of failure. Three are a quorum.</p>
+
+
+<hr>
+
+<h2>
+  <a href="#8-ban-the-shortcuts-temporary-is-never-temporary">
+  </a>
+  8. Ban the shortcuts. Temporary is never temporary. 🪤
+</h2>
+
+<p>In my <code>AGENTS.md</code> files for personal projects: backwards compatibility is strictly forbidden. Quick fixes are forbidden. Temporary solutions are not a viable path at any point. If the model wants to slap on a band-aid, it has to defend that choice. It can't, because my rule says it can't.</p>
+
+<p>Now keep in mind, this is a personal-project rule and is harsh for live production code. If you're running production daily with real users, then you should probably nix the "no backwards compatibility" rule. But for your own stuff? Stop letting the model leave you with technical debt it threw around your codebase like confetti.</p>
+
+
+<hr>
+
+<h2>
+  <a href="#9-clear-the-context-dont-iterate-on-broken">
+  </a>
+  9. Clear the context. Don't iterate on broken. 🪦
+</h2>
+
+<p>If you've told the model the same thing three times and it's still wrong, then assume your conversation is poisoned. Too much wrong-direction is already baked in. Open a new chat. Start fresh with what you've learned.</p>
+
+<p>A clean context with a sharper prompt beats six more rounds of "NO! I already said..."</p>
+
+
+<hr>
+
+<h2>
+  <a href="#10-the-lesson-it-was-never-the-agent">
+  </a>
+  10. The lesson. It was never the agent. 🧭
+</h2>
+
+<p>The agent is fine. The tooling is fine. What's <em>not fine</em> is treating a multi-thousand-dollar reasoning system like a Magic 8-Ball—shaking it harder every time the answer comes back wrong, hoping round fifteen is the one. It won't be.</p>
+
+<p>Pick the right model. Plan first. One source of truth. Test ruthlessly. Cross-check across models. Forbid the shortcuts. Clean up your skill folder and your MCPs. Clear the context when things go sideways and start over.</p>
+
+<p>This setup? It works. Try it for yourself.</p>
+
+
+<hr>
+
+<h2>
+  <a href="#behind-the-curtain">
+  </a>
+  🛡️ Behind the Curtain 🎭
+</h2>
+
+<p>I wrote this post. Claude helped with the structure pass and the snark calibration so I'm not an accidental asshole. The opinions, the rules, and the <code>AGENTS.md</code> philosophy are mine—hardened over a year of letting AI drive and ruthlessly analyzing all the crashes.</p>
+
+</article>
+
+  <!-- Dev.to Backlinks -->
+  
+  <div style="margin: 20px 0; padding: 10px; border-left: 4px solid #3b49df; background-color: #f8f9ff;">
+            <p style="margin: 0; font-size: 0.9em; color: #555;">
+                💬 Join the discussion about "AI Isn't Stupid. Your Setup Is. 🛠️" on Dev.to:
+            </p>
+            <p style="margin: 5px 0 0 0;">
+                <a href="https://dev.to/anchildress1/ai-isnt-stupid-your-setup-is-16cn"
+                   style="color: #3b49df; font-weight: bold; text-decoration: none;"
+                   target="_blank" rel="noopener">
+                    View comments and reactions →
+                </a>
+            </p>
+        </div>
+  
+
+  <!-- Related Posts Section -->
+  
+  <section style="margin: 30px 0; padding: 20px; background-color: #f8f9fa; border-radius: 8px;
+                  border: 1px solid #e9ecef;">
+    <h3 style="margin-top: 0; color: #495057; font-size: 1.2em;">📚 Related Articles</h3>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="github-copilot-chat-modes-from-chaos-to-command-54k0.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            GitHub Copilot C̴h̴a̴t̴ ̴M̴o̴d̴e̴s̴ Agents: From Chaos to Command 🎛️
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">You’ve built your first GitHub Copilot c̶h̶a̶t̶ ̶m̶o̶d̶e̶ agent—now it’s time to tame it. Here’s how to set up, test, and share custom modes like a professional who occasionally yells at their AI.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#tutorial</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#productivity</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#ai</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="github-copilot-chat-modes-explained-with-personality-2f4c.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            GitHub Copilot C̴h̴a̴t̴ ̴M̴o̴d̴e̴s̴ Agents Explained (with Personality) 🎭
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">The third way to shape how GitHub Copilot responds:  c̶h̶a̶t̶ ̶m̶o̶d̶e̶s̶ agents. Now officially documented and live in your repo, they let you define Copilot’s behavior with your own personality, tone, and workflow—because coding assistants should sound like you.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#tutorial</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#productivity</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#ai</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="copilot-premium-requests-more-than-asked-exactly-what-you-need-8ph.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            Copilot Premium Requests—More Than Asked, Exactly What You Need 💸
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">Learn how to stretch every GitHub Copilot premium request, avoid quota meltdowns, and still get reliable AI output. Includes tested models, workflows, and prompt tips.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#tutorial</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#productivity</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#ai</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="demystifying-coding-agent-prompts-that-always-work-2on7.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            Demystifying Coding Agent: Prompts That Always Work ✨
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">A field guide to the safest, most reliable GitHub Coding Agent prompts—feature docs, test specs, bug fixes, and more—all proven to ship without breaking anything.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#tutorial</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#productivity</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#ai</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+      <li style="margin: 10px 0; padding: 10px; background-color: white; border-radius: 5px;
+                 border-left: 3px solid #003f8a;">
+        <div>
+          <a href="github-coding-agent-the-magical-autonomous-ai-the-prequel-4h11.html" style="color: #003f8a; text-decoration: none; font-weight: bold;">
+            GitHub Coding Agent the Magical Autonomous AI: The Prequel
+          </a>
+          
+          <p style="margin: 5px 0; color: #495057; font-size: 0.9em;">Everything you need to know about setting up GitHub&#39;s Coding Agent for best results—setup, advanced tricks, and gotchas from real stories and wins. Chaos, fun, and no filter.</p>
+          
+          
+          <div style="margin: 5px 0;">
+            <small style="color: #495057;">Shared tags:
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#tutorial</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#productivity</span>
+              
+                <span style="background: #e9ecef; padding: 1px 4px; border-radius: 2px;
+                             margin: 0 2px; color:#495057;">#ai</span>
+              
+            </small>
+          </div>
+          
+        </div>
+      </li>
+      
+    </ul>
+  </section>
+  
+
+  <p><a href="https://dev.to/anchildress1/ai-isnt-stupid-your-setup-is-16cn">Read on Dev.to →</a></p>
+</main>
+</body></html>
+</text>
