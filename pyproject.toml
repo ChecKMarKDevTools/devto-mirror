@@ -7,12 +7,13 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
-    "requests>=2.31.0",
+    "requests>=2.33.0",
     "jinja2>=3.1.2",
     "python-slugify>=8.0.1",
     "bleach>=6.0.0",
-    "python-dotenv>=1.0.0",
+    "python-dotenv>=1.2.2",
     "urllib3>=2.7.0",
+    "idna>=3.15",
 ]
 
 [dependency-groups]
@@ -26,6 +27,8 @@ dev = [
     "isort>=5.12.0",
     "coverage>=7.0.0",
     "radon>=6.0.1",
+    "pygments>=2.20.0",
+    "pip>=26.1",
 ]
 
 [tool.setuptools]
@@ -78,5 +81,5 @@ precision = 2
 directory = "htmlcov"
 
 [build-system]
-requires = ["setuptools>=82.0.1"]
+requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
